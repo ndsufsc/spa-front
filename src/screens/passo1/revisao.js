@@ -11,9 +11,10 @@ import { withStyles } from "@material-ui/core/styles";
 //COMPONENTES
 import Header from '../../components/header';
 import Tabela from '../../components/tabela';
+import api from '../../service/api';
 
 //ROTEAMENTO
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const styles = theme => ({
   button: {
@@ -28,6 +29,37 @@ const styles = theme => ({
 })
 
 class Revisao extends React.Component {
+  constructor() {
+    super()
+    this.state = { 
+      step: 0,
+      usuario: '',
+     }
+  }
+
+  async componentDidMount() {
+    let usuario =   JSON.parse(localStorage.getItem('usuario'));
+    await this.setState({ usuario: usuario })  
+    const response = await api.post('/disciplina/buscarEtapa', {
+      id_usuario: usuario.id_usuario
+    })
+
+    if(response.data != 0){
+      this.setState({ step: response.data })
+    }
+  }
+
+  async redirecionar (props) {
+
+    await api.post('/disciplina/inserirEtapa', {
+      id_usuario: this.state.usuario.id_usuario,
+      etapa: 1,
+      status: 0
+    })
+
+    props.history.push('/index')
+  }
+
   render(){
     const { classes } = this.props;
     return (
@@ -45,9 +77,7 @@ class Revisao extends React.Component {
         </div>
         <div className='buttonsDiv'>
           <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
-          <Link to="/index" >
-            <Button className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-          </Link>
+            <Button onClick={() => this.redirecionar(this.props)} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
         </div>
       </div>
     );
