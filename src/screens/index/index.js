@@ -74,7 +74,7 @@ function getRoute(step: number) {
     case 0:
       return '/revisao';
     case 1:
-      return '/';
+      return '/grade';
     case 2:
       return `/`;
     case 3:
@@ -88,7 +88,7 @@ class App extends React.Component {
     constructor() {
       super()
       this.state = { 
-        activeStep: 0,
+        activeStep: 1,
         steps: getSteps(),
        }
     }
