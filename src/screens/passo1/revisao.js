@@ -3,11 +3,27 @@ import React from 'react';
 //ESTILO
 import './revisao.css';
 
+//COMPONENTES MATERIAL UI
+import Button from '@material-ui/core/Button';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
 //COMPONENTES
 import Header from '../../components/header';
 import Tabela from '../../components/tabela';
 
+//ROTEAMENTO
+import { Link } from 'react-router-dom'
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    button: {
+      marginRight: 20,
+    }
+  }),
+);
+
 function Revisao() {
+  const styles = useStyles();
   return (
     <div>
       <Header />
@@ -20,6 +36,12 @@ function Revisao() {
       </div>
       <div className='tabelas'>
         <Tabela />
+      </div>
+      <div className='buttonsDiv'>
+        <Button className={styles.button} variant="contained" size="large" color="primary">Salvar</Button>
+        <Link to="/index" >
+          <Button className={styles.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
+        </Link>
       </div>
     </div>
   );
