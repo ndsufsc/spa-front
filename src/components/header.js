@@ -36,18 +36,26 @@ const headerStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+
 export default function ButtonAppBar() {
+  function redirecionar () {
+    // localStorage.removeItem('login');
+    // localStorage.removeItem('usuario');
+    this.props.history.push('/')
+  }
+  
   const classes = useStyles();
   const header = headerStyles();
   return (
-    <div className={classes.root}>
+    <div className= {classes.root}>
       <AppBar position="static">
         <Toolbar>
           <img src={logoUFSC} alt="UFSC" className={classes.logoUFSC} />	
           <Typography variant="h6" className={classes.title}>
             Sistema de Planegamento Acadêmico
           </Typography>
-          <Button color="inherit">Sair</Button>
+          <Button color="inherit" onClick={() => redirecionar()}>Sair</Button>
         </Toolbar>
       </AppBar>
       <div className={header.root}>
