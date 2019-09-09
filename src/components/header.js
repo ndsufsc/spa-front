@@ -24,9 +24,21 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const headerStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    title: {
+      flexGrow: 1,
+      fontSize: 15,
+    },
+  }),
+);
+
 export default function ButtonAppBar() {
   const classes = useStyles();
-
+  const header = headerStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -38,6 +50,21 @@ export default function ButtonAppBar() {
           <Button color="inherit">Sair</Button>
         </Toolbar>
       </AppBar>
+      <div className={header.root}>
+        <AppBar position="static" color="inherit">
+          <Toolbar>	
+            <Typography variant="h6" className={header.title}>
+              Coordenador: <b>Fabrício Ourique</b>
+            </Typography>
+            <Typography variant="h6" className={header.title}>
+              Curso: <b>Engenharia de Computação</b>
+            </Typography>
+            <Typography variant="h6" className={header.title}>
+              Semestre: <b>2019/2</b>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </div>
     </div>
   );
 }

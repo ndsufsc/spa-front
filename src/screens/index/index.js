@@ -9,8 +9,6 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 
 //ROTEAMENTO
 import { Link } from 'react-router-dom'
@@ -42,18 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const headerStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    title: {
-      flexGrow: 1,
-      fontSize: 15,
-    },
-  }),
-);
-
 function getSteps() {
   return ['Revisar e alterar informações das disciplinas ofertadas', 
           'Montar a grade de horários de cada turma para as disciplinas ofertadas no semestre', 
@@ -80,7 +66,6 @@ function getStepContent(step: number) {
 
 function App() {
   const classes = useStyles();
-  const header = headerStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
@@ -95,26 +80,11 @@ function App() {
   return (
     <div>
       <Header />
-      <div className={header.root}>
-        <AppBar position="static" color="inherit">
-          <Toolbar>	
-            <Typography variant="h6" className={header.title}>
-              Coordenador: <b>Fabrício Ourique</b>
-            </Typography>
-            <Typography variant="h6" className={header.title}>
-              Curso: <b>Engenharia de Computação</b>
-            </Typography>
-            <Typography variant="h6" className={header.title}>
-              Semestre: <b>2019/2</b>
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </div>
       <div className='introducao'>
         <h4>Olá, Coordenador(a)!</h4>
         <p>Seja bem vindo ao Sistema de Planejamento Acadêmico.<br/>
-           Aqui você pode planejar, controlar e decidir sobre a distribuição de turmas e disciplinas do seu curso.<br/>
-           A ferramenta constitui de quatro etapas que facilitam a organização semestral utilizando os planos.<br/><br/>
+           Aqui você pode planejar, controlar e decidir sobre a distribuição de turmas e disciplinas do seu curso.
+            A ferramenta constitui de quatro etapas que facilitam a organização semestral utilizando os planos.<br/><br/>
            Lembre-se sempre de <b>SALVAR</b> as alterações feitas para não perder seu progresso.
         </p>
       </div>
@@ -141,7 +111,7 @@ function App() {
                         onClick={handleNext}
                         className={classes.button}
                       >
-                      {activeStep === steps.length - 1 ? 'Fim' : 'Próximo'}
+                      {activeStep === steps.length - 1 ? 'Fim' : 'Editar'}
                       </Button>
                     </Link>
                   </div>
