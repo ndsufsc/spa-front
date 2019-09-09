@@ -10,6 +10,7 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import api from '../../service/api';
 
 //ROTEAMENTO
 import { Link } from 'react-router-dom'
@@ -42,6 +43,7 @@ const styles = theme => ({
     fontSize: 16,
     color: '#000',
     marginTop: 20,
+    passo: 0
   }
 })
 
@@ -90,10 +92,22 @@ class App extends React.Component {
       this.state = { 
         activeStep: 1,
         steps: getSteps(),
+        step: 0
        }
     }
-    componentDidMount = () => {
-      console.log('TRETA NA DIREÇÃO')
+    componentDidMount = async() => {
+      let usuario = JSON.parse(localStorage.getItem('usuario'));
+      
+      const response = await api.post('/disciplina/buscarEtapa', {
+        id_usuario: usuario.id_usuario
+      })
+
+      console.log("response data: ", response.data)
+
+      if(response.data != 0){
+        this.setState({ step: response.data[0].etapa })
+      }
+
     };
     
     render(){
@@ -115,7 +129,7 @@ class App extends React.Component {
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                   <StepContent>
-                    <Typography>{getStepContent(index)}</Typography>
+                    <Typography>{getStepContent(this.state.step)}</Typography>
                     <div className={classes.actionsContainer}>
                       <div>
                         <Button
@@ -125,7 +139,7 @@ class App extends React.Component {
                         >
                           Voltar
                         </Button>
-                        <Link to={getRoute(index)} >
+                        <Link to={getRoute(this.state.step)} >
                           <Button
                             variant="contained"
                             color="primary"
