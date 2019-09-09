@@ -2,7 +2,8 @@ import React from 'react';
 import { forwardRef } from 'react';
 
 //ESTILO
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
 
 //MATERIAL UI COMPONENTES
 import MaterialTable from "material-table";
@@ -42,35 +43,38 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const styles = theme => ({
     root: {
       flexGrow: 1,
     },
-  }),
-);
+})
 
-function Tabela() {
-  const styles = useStyles();
-  return (
-    <MaterialTable
-          icons={tableIcons}
-          columns={[
-            { title: "Adı", field: "name" },
-            { title: "Soyadı", field: "surname" },
-            { title: "Doğum Yılı", field: "birthYear", type: "numeric" },
-            {
-              title: "Doğum Yeri",
-              field: "birthCity",
-              lookup: { 34: "İstanbul", 63: "Şanlıurfa" }
-            }
-          ]}
-          data={[
-            { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 }
-          ]}
-          title="Demo Title"
-    />
-  );
+class Tabela extends React.Component {
+  render(){
+    return (
+      <MaterialTable
+            icons={tableIcons}
+            columns={[
+              { title: "Adı", field: "name" },
+              { title: "Soyadı", field: "surname" },
+              { title: "Doğum Yılı", field: "birthYear", type: "numeric" },
+              {
+                title: "Doğum Yeri",
+                field: "birthCity",
+                lookup: { 34: "İstanbul", 63: "Şanlıurfa" }
+              }
+            ]}
+            data={[
+              { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 }
+            ]}
+            title="Demo Title"
+      />
+    )
+  }
 }
 
-export default Tabela;
+Tabela.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Tabela);

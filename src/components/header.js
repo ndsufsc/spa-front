@@ -33,6 +33,9 @@ const headerStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       fontSize: 15,
     },
+    appBar: {
+        zIndex: 100,
+    },
   }),
 );
 
@@ -49,7 +52,7 @@ export default function ButtonAppBar() {
   const header = headerStyles();
   return (
     <div className= {classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <img src={logoUFSC} alt="UFSC" className={classes.logoUFSC} />	
           <Typography variant="h6" className={classes.title}>
@@ -59,7 +62,7 @@ export default function ButtonAppBar() {
         </Toolbar>
       </AppBar>
       <div className={header.root}>
-        <AppBar position="static" color="inherit">
+        <AppBar position="static" color="inherit" className={classes.appBar2}>
           <Toolbar>	
             <Typography variant="h6" className={header.title}>
               Coordenador: <b>Fabrício Ourique</b>
