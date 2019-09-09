@@ -43,7 +43,6 @@ const styles = theme => ({
     fontSize: 16,
     color: '#000',
     marginTop: 20,
-    passo: 0
   }
 })
 
@@ -90,7 +89,6 @@ class App extends React.Component {
     constructor() {
       super()
       this.state = { 
-        activeStep: 1,
         steps: getSteps(),
         step: 0
        }
@@ -108,6 +106,8 @@ class App extends React.Component {
         this.setState({ step: response.data[0].etapa })
       }
 
+      console.log("step: ", this.state.step)
+
     };
     
     render(){
@@ -124,7 +124,7 @@ class App extends React.Component {
             </p>
           </div>
           <div className={classes.root}>
-            <Stepper activeStep={this.state.activeStep} orientation="vertical">
+            <Stepper activeStep={this.state.step} orientation="vertical">
               {this.state.steps.map((label, index) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
@@ -133,7 +133,7 @@ class App extends React.Component {
                     <div className={classes.actionsContainer}>
                       <div>
                         <Button
-                          disabled={this.state.activeStep === 0}
+                          disabled={this.state.step === 0}
                           onClick={null}
                           className={classes.button}
                         >
@@ -146,7 +146,7 @@ class App extends React.Component {
                             onClick={null}
                             className={classes.button}
                           >
-                          {this.state.activeStep === this.state.steps.length - 1 ? 'Fim' : 'Editar'}
+                          {this.state.step === this.state.steps.length - 1 ? 'Fim' : 'Editar'}
                           </Button>
                         </Link>
                       </div>
@@ -155,7 +155,7 @@ class App extends React.Component {
                 </Step>
               ))}
             </Stepper>
-            {this.state.activeStep === this.state.steps.length && (
+            {this.state.step === this.state.steps.length && (
               <Paper square elevation={0} className={classes.resetContainer}>
                 <Typography>Planejamento Acadêmico finalizado.</Typography>
               </Paper>
