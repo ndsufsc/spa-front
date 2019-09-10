@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select'
 
 //ESTILO
 import './grade.css';
@@ -67,7 +68,7 @@ class Grade extends React.Component {
   handleChange = async selectedOption => {
     await this.setState({ selectedOption });
     
-    const response = await api.post("/disciplina/obter2", {
+    const response = await api.post("/disciplina/obter", {
       codigo_curso: this.state.id_curso, fase: this.state.selectedOption.value
     })
 
@@ -122,6 +123,25 @@ class Grade extends React.Component {
         }}
         anchor="right"
       >  
+
+        <div style={{marginTop: 150 + 'px'}}></div>
+
+        <Select id="cadastro_turmas_input_1"
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={this.state.array}
+        />
+
+        <ul>
+          <li>
+          {/* {this.state.disciplinas.map((item => { */}
+          <input type="checkbox" name={this.state.disciplinas} />
+          <label>{this.state.disciplinas}</label>
+          {/* }
+          )
+          )} */}
+        </li>
+        </ul>
 
       </Drawer>
 
