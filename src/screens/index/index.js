@@ -47,10 +47,10 @@ const styles = theme => ({
 })
 
 function getSteps() {
-  return ['Revisar e alterar informações das disciplinas ofertadas', 
-          'Montar a grade de horários de cada turma para as disciplinas ofertadas no semestre', 
-          'Definir os professores responsáveis por cada disciplina no semestre',
-          'Alocar salas de acordo com o planejamento das grades'];
+  return ['Revisar e alterar informações das disciplinas ofertadas',
+    'Montar a grade de horários de cada turma para as disciplinas ofertadas no semestre',
+    'Definir os professores responsáveis por cada disciplina no semestre',
+    'Alocar salas de acordo com o planejamento das grades'];
 }
 
 function getStepContent(step: number) {
@@ -71,7 +71,7 @@ function getStepContent(step: number) {
 }
 
 function getRoute(step: number) {
-  switch(step) {
+  switch (step) {
     case 0:
       return '/revisao';
     case 1:
@@ -86,84 +86,85 @@ function getRoute(step: number) {
 }
 
 class App extends React.Component {
-    constructor() {
-      super()
-      this.state = { 
-        steps: getSteps(),
-        step: 0
-       }
+  constructor() {
+    super()
+    this.state = {
+      steps: getSteps(),
+      step: 0
     }
-    componentDidMount = async() => {
-      let usuario = JSON.parse(localStorage.getItem('usuario'));
-      
-      const response = await api.post('/disciplina/buscarEtapa', {
-        id_usuario: usuario.id_usuario
-      })
+  }
+  
+  componentDidMount = async () => {
+    let usuario = JSON.parse(localStorage.getItem('usuario'));
 
-      console.log("response data: ", response.data)
+    const response = await api.post('/disciplina/buscarEtapa', {
+      id_usuario: usuario.id_usuario
+    })
 
-      if(response.data != 0){
-        this.setState({ step: response.data[0].etapa })
-      }
+    console.log("response data: ", response.data)
 
-      console.log("step: ", this.state.step)
+    if (response.data != 0) {
+      this.setState({ step: response.data[0].etapa })
+    }
 
-    };
-    
-    render(){
-      const { classes } = this.props;
-      return (
-        <div>
-          <Header />
-          <div className='introducao'>
-            <h4 className={classes.h4}>Olá, Coordenador(a)!</h4>
-            <p>Seja bem vindo ao Sistema de Planejamento Acadêmico.<br/>
-              Aqui você pode planejar, controlar e decidir sobre a distribuição de turmas e disciplinas do seu curso.
-                A ferramenta constitui de quatro etapas que facilitam a organização semestral utilizando os planos.<br/><br/>
-              Lembre-se sempre de <b>SALVAR</b> as alterações feitas para não perder seu progresso.
+    console.log("step: ", this.state.step)
+
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <Header />
+        <div className='introducao'>
+          <h4 className={classes.h4}>Olá, Coordenador(a)!</h4>
+          <p>Seja bem vindo ao Sistema de Planejamento Acadêmico.<br />
+            Aqui você pode planejar, controlar e decidir sobre a distribuição de turmas e disciplinas do seu curso.
+                A ferramenta constitui de quatro etapas que facilitam a organização semestral utilizando os planos.<br /><br />
+            Lembre-se sempre de <b>SALVAR</b> as alterações feitas para não perder seu progresso.
             </p>
-          </div>
-          <div className={classes.root}>
-            <Stepper activeStep={this.state.step} orientation="vertical">
-              {this.state.steps.map((label, index) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                  <StepContent>
-                    <Typography>{getStepContent(this.state.step)}</Typography>
-                    <div className={classes.actionsContainer}>
-                      <div>
+        </div>
+        <div className={classes.root}>
+          <Stepper activeStep={this.state.step} orientation="vertical">
+            {this.state.steps.map((label, index) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+                <StepContent>
+                  <Typography>{getStepContent(this.state.step)}</Typography>
+                  <div className={classes.actionsContainer}>
+                    <div>
+                      <Button
+                        disabled={this.state.step === 0}
+                        onClick={null}
+                        className={classes.button}
+                      >
+                        Voltar
+                        </Button>
+                      <Link to={getRoute(this.state.step)} >
                         <Button
-                          disabled={this.state.step === 0}
+                          variant="contained"
+                          color="primary"
                           onClick={null}
                           className={classes.button}
                         >
-                          Voltar
-                        </Button>
-                        <Link to={getRoute(this.state.step)} >
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={null}
-                            className={classes.button}
-                          >
                           {this.state.step === this.state.steps.length - 1 ? 'Fim' : 'Editar'}
-                          </Button>
-                        </Link>
-                      </div>
+                        </Button>
+                      </Link>
                     </div>
-                  </StepContent>
-                </Step>
-              ))}
-            </Stepper>
-            {this.state.step === this.state.steps.length && (
-              <Paper square elevation={0} className={classes.resetContainer}>
-                <Typography>Planejamento Acadêmico finalizado.</Typography>
-              </Paper>
-            )}
-          </div>
+                  </div>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+          {this.state.step === this.state.steps.length && (
+            <Paper square elevation={0} className={classes.resetContainer}>
+              <Typography>Planejamento Acadêmico finalizado.</Typography>
+            </Paper>
+          )}
         </div>
-      );
-    }
+      </div>
+    );
+  }
 }
 
 App.propTypes = {
