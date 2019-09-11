@@ -63,12 +63,12 @@ class Tabela extends React.Component {
       selectedOption: null,
       array: '',
       id_curso: '',
-      disciplinas: []
+      disciplinas: [],
+      numberRowPerPage: 5
     }
   }
 
   async componentDidMount() {
-
     let usuario = JSON.parse(localStorage.getItem('usuario'));
     await this.setState({ usuario: usuario })
     await this.setState({ id_curso: usuario.curso })
@@ -92,7 +92,7 @@ class Tabela extends React.Component {
   handleChange = async selectedOption => {
     await this.setState({ selectedOption });
 
-    const response = await api.post("/disciplina/obter2", {
+    const response = await api.post("/disciplina/obter", {
       codigo_curso: this.state.id_curso, fase: this.state.selectedOption.value
     })
 
@@ -103,10 +103,9 @@ class Tabela extends React.Component {
 
   };
 
-
-
   render() {
     const { selectedOption } = this.state;
+    // const [rowsPerPage, setRowsPerPage] = React.useState(10);
     return (
       <div>
         <Select id="cadastro_turmas_input_1"
@@ -116,14 +115,14 @@ class Tabela extends React.Component {
         />
         <MaterialTable
           icons={tableIcons}
-          rowsPerPage="7"
+          rowsPerPage={10}
           columns={[
             { title: "ID", field: "id_disciplina" },
             { title: "Código", field: "codigo" },
-            { title: "Nome", field: "nome"},
-            { title: "Hrs/Teórica", field: "hr_aula_semanais_teorica"},
-            { title: "Hrs/Prática", field: "hr_aula_semanais_pratica"},
-            
+            { title: "Nome", field: "nome" },
+            { title: "Hrs/Teórica", field: "hr_aula_semanais_teorica" },
+            { title: "Hrs/Prática", field: "hr_aula_semanais_pratica" },
+
           ]}
           data={this.state.disciplinas}
           title="Disciplinas Ofertadas"

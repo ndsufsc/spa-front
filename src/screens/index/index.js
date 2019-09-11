@@ -60,7 +60,7 @@ function getStepContent(step: number) {
               \nCaso alguma disciplina possua horas-aula práticas você deve escolher o laboratório onde será ministrada.
               \nLembre-se sempre de SALVAR as alterações feitas para não perder seu progresso.`;
     case 1:
-      return 'Descrição.';
+      return 'Descrição 2.';
     case 2:
       return `Descrição.`;
     case 3:
