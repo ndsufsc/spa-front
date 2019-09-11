@@ -25,7 +25,26 @@ import {
   Search,
   ViewColumn
 } from "@material-ui/icons";
-//import Select from 'react-select'
+import Select from 'react-select'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import Icon from '@material-ui/core/Icon';
+
+//IMPORT BOOTSTRAP
+import {
+  Grid,
+  Row,
+  Col,
+  FormGroup,
+  ControlLabel,
+  FormControl,
+  Table,
+  Modal,
+  Navbar,
+  Nav,
+  Form,
+  Button
+} from 'react-bootstrap';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -64,19 +83,21 @@ class Tabela extends React.Component {
       array: '',
       id_curso: '',
       disciplinas: [],
-      numberRowPerPage: 5
+      numberRowPerPage: 5,
+      showModal: false,
+      showAlerta: false
     }
   }
 
   async componentDidMount() {
     let usuario = JSON.parse(localStorage.getItem('usuario'));
     await this.setState({ usuario: usuario })
-    await this.setState({ id_curso: usuario.curso })
+    await this.setState({ id_curso: usuario.id_curso })
 
-    console.log("usuario: ", this.state.usuario)
+    console.log("id curso: ", this.state.id_curso)
 
     const response = await api.post("/disciplina/buscarSemestre", {
-      id_course: this.state.usuario.curso
+      id_course: this.state.usuario.id_curso
     })
 
     this.setState({ semestres: response.data[0].semestres })
@@ -103,31 +124,103 @@ class Tabela extends React.Component {
 
   };
 
+
   render() {
     const { selectedOption } = this.state;
-    // const [rowsPerPage, setRowsPerPage] = React.useState(10);
     return (
       <div>
-        {/* <Select id="cadastro_turmas_input_1"
+        <Select id="cadastro_turmas_input_1"
           value={selectedOption}
           onChange={this.handleChange}
           options={this.state.array}
-        /> */}
+          style={{ marginBottom: 20 }}
+        />
+
+        <Modal show={this.state.showAlerta} onHide={() => this.setState({ showAlerta: false })}>
+          <Modal.Header closeButton>
+            <Modal.Title>Alerta</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Esta disciplina não possui horas de aula prática</Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={() => this.setState({ showAlerta: false })}>
+              Fechar
+          </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal
+          show={this.state.showModal}
+          onHide={() => this.setState({ showModal: false })}
+          size="m"
+        >
+          <Modal.Header closeButton>Cadastrar Laboratório</Modal.Header>
+          <Modal.Body
+            style={{
+              background: 'transparent',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{ marginTop: 5, marginBottom: 50 }}>
+              <Form>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Selecione o laboratório</Form.Label>
+                  <Select id="cadastro_turmas_input_1"
+                    value={selectedOption}
+                    onChange={this.handleChange}
+                    options={this.state.array}
+                  />
+                  {/* <Form.Text className="text-muted">
+                      We'll never share your email with anyone else.
+                    </Form.Text> */}
+                </Form.Group>
+
+                <Modal.Footer>
+                  <Button variant="success" onClick={() => this.cadastrar()}>
+                    Cadastrar
+                  </Button>
+                </Modal.Footer>
+              </Form>
+            </div>
+          </Modal.Body>
+        </Modal>
+
         <MaterialTable
           icons={tableIcons}
           rowsPerPage={10}
+          actions={[
+            {
+              header: 'Laboratório',
+              icon: 'edit',
+              tooltip: 'Save User',
+              onClick: (event, rowData) => {
+                if (rowData.hr_aula_semanais_pratica > 0) {
+                  this.setState({ showModal: true })
+                } else {
+                  this.setState({ showAlerta: true })
+                }
+
+              }
+            }
+          ]}
           columns={[
             { title: "ID", field: "id_disciplina" },
             { title: "Código", field: "codigo" },
             { title: "Nome", field: "nome" },
             { title: "Hrs/Teórica", field: "hr_aula_semanais_teorica" },
             { title: "Hrs/Prática", field: "hr_aula_semanais_pratica" },
+            // { title: "Laboratório", field: "botoes", actions: botoes },
 
           ]}
+          localization={{
+            header: {
+              actions: 'Laboratório'
+            },
+          }}
           data={this.state.disciplinas}
           title="Disciplinas Ofertadas"
         />
-      </div>
+      </div >
     )
   }
 }
