@@ -14,7 +14,7 @@ class Login extends Component {
 
     this.InputEmail = this.InputEmail.bind(this);
     this.InputPassword = this.InputPassword.bind(this);
-
+    //EDuardo esteve aqui
   }
 
   InputEmail(event) {

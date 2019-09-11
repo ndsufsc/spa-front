@@ -25,7 +25,7 @@ import {
   Search,
   ViewColumn
 } from "@material-ui/icons";
-import Select from 'react-select'
+//import Select from 'react-select'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -108,11 +108,11 @@ class Tabela extends React.Component {
     // const [rowsPerPage, setRowsPerPage] = React.useState(10);
     return (
       <div>
-        <Select id="cadastro_turmas_input_1"
+        {/* <Select id="cadastro_turmas_input_1"
           value={selectedOption}
           onChange={this.handleChange}
           options={this.state.array}
-        />
+        /> */}
         <MaterialTable
           icons={tableIcons}
           rowsPerPage={10}
