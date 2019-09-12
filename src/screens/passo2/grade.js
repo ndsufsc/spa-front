@@ -92,11 +92,25 @@ class Grade extends React.Component {
       id_disciplina: item.id_disciplina
     })
 
+    this.setState({turmas: '', carregouTurma: false});
+
     for (var i = 0; i < response.data.length; i++) {
-      await this.setState({turmas: [...this.state.turmas, {nome: response.data[i].id_plano_ensino, turma: response.data[i].turma}], carregouTurma: true})
+      await this.setState({turmas: [...this.state.turmas, {id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma}], carregouTurma: true})
     }
 
     console.log("Index: ", index);
+
+  };
+
+  async handleChangeTurma(item) {
+    
+    await this.setState({carregouGerar: true})
+
+  };
+
+  async handleChangeComponente(item) {
+    
+    await this.setState({carregouComponente: true})
 
   };
 
@@ -143,6 +157,11 @@ class Grade extends React.Component {
 
         <div style={{marginTop: 150 + 'px'}}></div>
 
+        { this.state.carregouComponente ? 
+          <div>{this.state.disciplinas.nome + '' + this.state.turmas.nome}</div>
+          : null
+        }
+
         <Select id="cadastro_turmas_input_1"
           value={selectedOptionSemestre}
           onChange={this.handleChangeSemestre}
@@ -163,10 +182,15 @@ class Grade extends React.Component {
         { this.state.carregouTurma ? 
           this.state.turmas.map(function(item) {
             return(
-            <div> <input type="checkbox"/>
+            <div> <input onClick={() => self.handleChangeTurma(item)} type="checkbox"/>
             <p >{item.turma}</p></div>
            )
           })
+          : null
+        }
+
+        { this.state.carregouGerar ? 
+          <div><button onClick={() => self.handleChangeComponente()}>Gerar Componente</button></div>
           : null
         }
         
