@@ -66,6 +66,8 @@ class Grade extends React.Component {
       qtdeSemestre: '',
       disciplinas: [],
       turmas: [],
+      selectedDisciplina: '',
+      selectedTurma: '',
     }
   }
 
@@ -174,9 +176,9 @@ class Grade extends React.Component {
             this.state.disciplinas.map(function (item, index) {
               return (
                 <div
-                  style={{ flexDirection: 'row', display:'flex', marginTop: 10 }}
+                  style={{ flexDirection: 'row', display: 'flex', marginTop: 10 }}
                 >
-                  <input style={{marginRight: 10}} onClick={() => self.handleChangeDisciplina(item, index)} name="input" value={index} type="radio" />
+                  <input style={{ marginRight: 10 }} onClick={() => self.handleChangeDisciplina(item, index)} name="input" value={index} type="radio" />
                   <p>{item.nome}</p>
                 </div>
               )
