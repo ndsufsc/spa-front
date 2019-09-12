@@ -125,6 +125,7 @@ class Grade extends React.Component {
 
   };
 
+  //Comentario
   async handleChangeComponente() {
     
     await this.setState({carregouComponente: true})
