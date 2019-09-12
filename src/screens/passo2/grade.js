@@ -65,6 +65,8 @@ class Grade extends React.Component {
       qtdeSemestre: '',
       disciplinas: [],
       turmas: [],
+      selectedDisciplina: '',
+      selectedTurma: '',
     }
   }
 
@@ -92,6 +94,8 @@ class Grade extends React.Component {
       id_disciplina: item.id_disciplina
     })
 
+    this.setState({selectedDisciplina: item.nome});
+
     this.setState({turmas: '', carregouTurma: false});
 
     for (var i = 0; i < response.data.length; i++) {
@@ -103,12 +107,25 @@ class Grade extends React.Component {
   };
 
   async handleChangeTurma(item) {
+
+    this.setState({selectedTurma: item.turma});
     
     await this.setState({carregouGerar: true})
 
   };
 
-  async handleChangeComponente(item) {
+  async handleDelete() {
+
+    this.setState({selectedDisciplina: ''});
+    this.setState({selectedTurma: ''});
+    
+    await this.setState({carregouComponente: false})
+    await this.setState({carregouGerar: false})
+    await this.setState({carregouTurma: false})
+
+  };
+
+  async handleChangeComponente() {
     
     await this.setState({carregouComponente: true})
 
@@ -158,7 +175,8 @@ class Grade extends React.Component {
         <div style={{marginTop: 150 + 'px'}}></div>
 
         { this.state.carregouComponente ? 
-          <div>{this.state.disciplinas.nome + '' + this.state.turmas.nome}</div>
+          <div><div>{this.state.selectedTurma + ' - ' + this.state.selectedDisciplina}</div>
+          <button onClick={() => self.handleDelete()}>X</button></div>          
           : null
         }
 
