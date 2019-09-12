@@ -94,8 +94,10 @@ class Grade extends React.Component {
     const response = await api.post("/disciplina/buscarTurmas", {
       id_disciplina: item.id_disciplina
     })
+    
+    this.setState({selectedDisciplina: item.nome});
 
-    this.setState({ turmas: '', carregouTurma: false });
+    this.setState({turmas: '', carregouTurma: false});
 
     for (var i = 0; i < response.data.length; i++) {
       await this.setState({ turmas: [...this.state.turmas, { id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma }], carregouTurma: true })
@@ -105,8 +107,19 @@ class Grade extends React.Component {
 
   };
 
-  async handleChangeTurma(item) {
+  async handleDelete() {
 
+    this.setState({selectedDisciplina: ''});
+    this.setState({selectedTurma: ''});
+    
+    await this.setState({carregouComponente: false})
+    await this.setState({carregouGerar: false})
+    await this.setState({carregouTurma: false})
+
+  };
+
+  async handleChangeTurma(item) {
+    this.setState({selectedTurma: item.turma});
     await this.setState({ carregouGerar: true })
 
   };
@@ -161,7 +174,8 @@ class Grade extends React.Component {
           <div style={{ marginTop: 150 + 'px' }}></div>
 
           {this.state.carregouComponente ?
-            <div>{this.state.disciplinas.nome + '' + this.state.turmas.nome}</div>
+            <div><div>{this.state.selectedTurma + ' - ' + this.state.selectedDisciplina}</div>
+              <button onClick={() => self.handleDelete()}>X</button></div>
             : null
           }
 
