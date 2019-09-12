@@ -149,11 +149,11 @@ class Grade extends React.Component {
           options={this.state.array}
         />
 
-        
+
         { this.state.carregouDisciplina ? 
           this.state.disciplinas.map(function(item, index) {
             return(
-            <div> <input onClick={() => self.handleChangeDisciplina(item, index)}  type="radio"/>
+            <div> <input onClick={() => self.handleChangeDisciplina(item, index)} name="input" value={index} type="radio"/>
             <p >{item.nome}</p></div>
            )
           })
