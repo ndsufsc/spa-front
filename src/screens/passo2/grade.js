@@ -60,16 +60,19 @@ class Grade extends React.Component {
       id_curso: '',
       array: [{value: '', label: ''}],
       carregou: '',
+      carregouDisciplina: '',
+      carregouTurma: '',
       qtdeSemestre: '',
-      disciplinas: '',
+      disciplinas: [],
+      turmas: [],
     }
   }
 
-  handleChange = async selectedOption => {
-    await this.setState({ selectedOption });
+  handleChangeSemestre = async selectedOptionSemestre => {
+    await this.setState({ selectedOptionSemestre });
     
     const response = await api.post("/disciplina/obter", {
-      codigo_curso: this.state.id_curso, fase: this.state.selectedOption.value
+      codigo_curso: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
     this.setState({disciplinas: ''});
@@ -78,8 +81,22 @@ class Grade extends React.Component {
       var nome = response.data[i].codigo;
       nome += ' - ';
       nome += response.data[i].nome;
-      await this.setState({disciplinas: [...this.state.disciplinas, nome]})
+      await this.setState({disciplinas: [...this.state.disciplinas, {nome: nome, id_disciplina: response.data[i].id_disciplina}], carregouDisciplina: true})
     }
+
+  };
+
+  async handleChangeDisciplina(item, index) {
+    
+    const response = await api.post("/disciplina/buscarTurmas", {
+      id_disciplina: item.id_disciplina
+    })
+
+    for (var i = 0; i < response.data.length; i++) {
+      await this.setState({turmas: [...this.state.turmas, {nome: response.data[i].id_plano_ensino, turma: response.data[i].turma}], carregouTurma: true})
+    }
+
+    console.log("Index: ", index);
 
   };
 
@@ -87,10 +104,10 @@ class Grade extends React.Component {
     if (localStorage.getItem('login') == 'on') {
       var usuario = JSON.parse(localStorage.getItem('usuario'))
  
-      this.setState({ id_curso: usuario.curso });
+      this.setState({ id_curso: usuario.id_curso });
  
       const response = await api.post("/disciplina/buscarSemestre", {
-        id_course: usuario.curso
+        id_course: usuario.id_curso
       })
  
       await this.setState({ qtdeSemestre: response.data[0].semestres, })
@@ -106,8 +123,8 @@ class Grade extends React.Component {
   
   render(){
 
-    const { selectedOption } = this.state;
-
+    const { selectedOptionSemestre } = this.state;
+    const self = this;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -127,21 +144,34 @@ class Grade extends React.Component {
         <div style={{marginTop: 150 + 'px'}}></div>
 
         <Select id="cadastro_turmas_input_1"
-          value={selectedOption}
-          onChange={this.handleChange}
+          value={selectedOptionSemestre}
+          onChange={this.handleChangeSemestre}
           options={this.state.array}
         />
 
-        <ul>
-          <li>
-          {/* {this.state.disciplinas.map((item => { */}
-          <input type="checkbox" name={this.state.disciplinas} />
-          <label>{this.state.disciplinas}</label>
-          {/* }
-          )
-          )} */}
-        </li>
-        </ul>
+        
+        { this.state.carregouDisciplina ? 
+          this.state.disciplinas.map(function(item, index) {
+            return(
+            <div> <input onClick={() => self.handleChangeDisciplina(item, index)}  type="checkbox"/>
+            <p >{item.nome}</p></div>
+           )
+          })
+          : null
+        }
+
+        { this.state.carregouTurma ? 
+          this.state.turmas.map(function(item) {
+            return(
+            <div> <input type="checkbox"/>
+            <p >{item.turma}</p></div>
+           )
+          })
+          : null
+        }
+        
+
+        
 
       </Drawer>
 
