@@ -75,7 +75,7 @@ class Grade extends React.Component {
       codigo_curso: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
-    this.setState({disciplinas: ''});
+    this.setState({disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false});
 
     for (var i = 0; i < response.data.length; i++) {
       var nome = response.data[i].codigo;
@@ -153,7 +153,7 @@ class Grade extends React.Component {
         { this.state.carregouDisciplina ? 
           this.state.disciplinas.map(function(item, index) {
             return(
-            <div> <input onClick={() => self.handleChangeDisciplina(item, index)}  type="checkbox"/>
+            <div> <input onClick={() => self.handleChangeDisciplina(item, index)}  type="radio"/>
             <p >{item.nome}</p></div>
            )
           })

@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import api from '../../service/api';
 
 //ROTEAMENTO
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 //ESTILO
 import './index.css';
@@ -93,77 +93,83 @@ class App extends React.Component {
       step: 0
     }
   }
-  
+
   componentDidMount = async () => {
-    let usuario = JSON.parse(localStorage.getItem('usuario'));
+    if (localStorage.getItem('login') == 'on') {
+      let usuario = JSON.parse(localStorage.getItem('usuario'));
 
-    const response = await api.post('/disciplina/buscarEtapa', {
-      id_usuario: usuario.id_usuario
-    })
+      const response = await api.post('/disciplina/buscarEtapa', {
+        id_usuario: usuario.id_usuario
+      })
 
-    console.log("response data: ", response.data)
+      console.log("response data: ", response.data)
 
-    if (response.data != 0) {
-      this.setState({ step: response.data[0].etapa })
+      if (response.data != 0) {
+        this.setState({ step: response.data[0].etapa })
+      }
+
+      console.log("step: ", this.state.step)
     }
-
-    console.log("step: ", this.state.step)
-
   };
 
   render() {
     const { classes } = this.props;
-    return (
-      <div>
-        <Header />
-        <div className='introducao'>
-          <h4 className={classes.h4}>Olá, Coordenador(a)!</h4>
-          <p>Seja bem vindo ao Sistema de Planejamento Acadêmico.<br />
-            Aqui você pode planejar, controlar e decidir sobre a distribuição de turmas e disciplinas do seu curso.
+    if (localStorage.getItem('login') == 'on') {
+      return (
+        <div>
+          <Header  />
+          <div className='introducao'>
+            <h4 className={classes.h4}>Olá, Coordenador(a)!</h4>
+            <p>Seja bem vindo ao Sistema de Planejamento Acadêmico.<br />
+              Aqui você pode planejar, controlar e decidir sobre a distribuição de turmas e disciplinas do seu curso.
                 A ferramenta constitui de quatro etapas que facilitam a organização semestral utilizando os planos.<br /><br />
-            Lembre-se sempre de <b>SALVAR</b> as alterações feitas para não perder seu progresso.
+              Lembre-se sempre de <b>SALVAR</b> as alterações feitas para não perder seu progresso.
             </p>
-        </div>
-        <div className={classes.root}>
-          <Stepper activeStep={this.state.step} orientation="vertical">
-            {this.state.steps.map((label, index) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-                <StepContent>
-                  <Typography>{getStepContent(this.state.step)}</Typography>
-                  <div className={classes.actionsContainer}>
-                    <div>
-                      <Button
-                        disabled={this.state.step === 0}
-                        onClick={null}
-                        className={classes.button}
-                      >
-                        Voltar
-                        </Button>
-                      <Link to={getRoute(this.state.step)} >
+          </div>
+          <div className={classes.root}>
+            <Stepper activeStep={this.state.step} orientation="vertical">
+              {this.state.steps.map((label, index) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                  <StepContent>
+                    <Typography>{getStepContent(this.state.step)}</Typography>
+                    <div className={classes.actionsContainer}>
+                      <div>
                         <Button
-                          variant="contained"
-                          color="primary"
+                          disabled={this.state.step === 0}
                           onClick={null}
                           className={classes.button}
                         >
-                          {this.state.step === this.state.steps.length - 1 ? 'Fim' : 'Editar'}
+                          Voltar
                         </Button>
-                      </Link>
+                        <Link to={getRoute(this.state.step)} >
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={null}
+                            className={classes.button}
+                          >
+                            {this.state.step === this.state.steps.length - 1 ? 'Fim' : 'Editar'}
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </StepContent>
-              </Step>
-            ))}
-          </Stepper>
-          {this.state.step === this.state.steps.length && (
-            <Paper square elevation={0} className={classes.resetContainer}>
-              <Typography>Planejamento Acadêmico finalizado.</Typography>
-            </Paper>
-          )}
+                  </StepContent>
+                </Step>
+              ))}
+            </Stepper>
+            {this.state.step === this.state.steps.length && (
+              <Paper square elevation={0} className={classes.resetContainer}>
+                <Typography>Planejamento Acadêmico finalizado.</Typography>
+              </Paper>
+            )}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return (
+      <Redirect to="/" from="" />
+    )
   }
 }
 

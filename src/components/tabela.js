@@ -85,8 +85,21 @@ class Tabela extends React.Component {
       disciplinas: [],
       numberRowPerPage: 5,
       showModal: false,
-      showAlerta: false
+      showAlerta: false,
+      arrayLaboratorios: [],
+      habilitarBtn: true,
     }
+  }
+
+  async carregarLaboratorios(){
+    const response = await api.post('/disciplina/buscarLaboratorios');
+
+    console.log("o que vem de laboratórios: ", response.data);
+
+    await response.data.map((item) => {
+      this.setState({ arrayLaboratorios: [...this.state.arrayLaboratorios, { value: item.nome, label: item.nome }] })
+    })
+
   }
 
   async componentDidMount() {
@@ -107,6 +120,11 @@ class Tabela extends React.Component {
       this.setState({ carregou: true })
     }
 
+    await this.carregarLaboratorios();
+
+    console.log("habilitar btn: ", this.state.habilitarBtn);
+    
+
   }
 
 
@@ -117,9 +135,7 @@ class Tabela extends React.Component {
       codigo_curso: this.state.id_curso, fase: this.state.selectedOption.value
     })
 
-    await this.setState({ disciplinas: response.data });
-
-    console.log("disciplinas: ", response.data);
+    await this.setState({ disciplinas: response.data, habilitarBtn: false });
 
 
   };
@@ -166,9 +182,9 @@ class Tabela extends React.Component {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Selecione o laboratório</Form.Label>
                   <Select id="cadastro_turmas_input_1"
-                    value={selectedOption}
                     onChange={this.handleChange}
-                    options={this.state.array}
+                    options={this.state.arrayLaboratorios}
+                    placeholder="Laboratório"
                   />
                   {/* <Form.Text className="text-muted">
                       We'll never share your email with anyone else.
@@ -176,7 +192,7 @@ class Tabela extends React.Component {
                 </Form.Group>
 
                 <Modal.Footer>
-                  <Button variant="success" onClick={() => this.cadastrar()}>
+                  <Button disabled={this.state.habilitarBtn} variant="success" onClick={() => this.cadastrar()}>
                     Cadastrar
                   </Button>
                 </Modal.Footer>
