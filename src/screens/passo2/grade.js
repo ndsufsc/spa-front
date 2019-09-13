@@ -31,7 +31,7 @@ const drawerWidth = "25%";
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    // display: 'flex',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -47,6 +47,7 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    marginTop: '8%'
   },
   toolbar: theme.mixins.toolbar,
 })
@@ -93,10 +94,10 @@ class Grade extends React.Component {
     const response = await api.post("/disciplina/buscarTurmas", {
       id_disciplina: item.id_disciplina
     })
-    
-    this.setState({selectedDisciplina: item.nome});
 
-    this.setState({turmas: '', carregouTurma: false});
+    this.setState({ selectedDisciplina: item.nome });
+
+    this.setState({ turmas: '', carregouTurma: false });
 
     for (var i = 0; i < response.data.length; i++) {
       await this.setState({ turmas: [...this.state.turmas, { id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma }], carregouTurma: true })
@@ -108,17 +109,17 @@ class Grade extends React.Component {
 
   async handleDelete() {
 
-    this.setState({selectedDisciplina: ''});
-    this.setState({selectedTurma: ''});
-    
-    await this.setState({carregouComponente: false})
-    await this.setState({carregouGerar: false})
-    await this.setState({carregouTurma: false})
+    this.setState({ selectedDisciplina: '' });
+    this.setState({ selectedTurma: '' });
+
+    await this.setState({ carregouComponente: false })
+    await this.setState({ carregouGerar: false })
+    await this.setState({ carregouTurma: false })
 
   };
 
   async handleChangeTurma(item) {
-    this.setState({selectedTurma: [...this.state.selectedTurma, item.turma]});
+    this.setState({ selectedTurma: [...this.state.selectedTurma, item.turma] });
     await this.setState({ carregouGerar: true })
 
   };
@@ -173,7 +174,7 @@ class Grade extends React.Component {
           <div style={{ marginTop: 150 + 'px' }}></div>
 
           {this.state.carregouComponente ?
-            <div style={{display:'flex', flexDirection: 'row'}}><div>{this.state.selectedTurma + ' - ' + this.state.selectedDisciplina}</div>
+            <div style={{ display: 'flex', flexDirection: 'row' }}><div>{this.state.selectedTurma + ' - ' + this.state.selectedDisciplina}</div>
               <button onClick={() => self.handleDelete()}>X</button></div>
             : null
           }
@@ -220,6 +221,580 @@ class Grade extends React.Component {
         </Drawer>
 
         <main className={classes.content}>
+
+          <div id="under_header">
+            <center><strong>Cadastro de turmas - Engenharia de Computação - 1 semestre</strong></center>
+          </div>
+
+          <br />
+
+          <div class="row" id="row">
+
+            <div class="col-sm-9">
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><strong>Horários</strong></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+                  <center><strong>Segunda</strong></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+                  <center><strong>Terça</strong></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+                  <center><strong>Quarta</strong></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+                  <center><strong>Quinta</strong></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+                  <center><strong>Sexta</strong></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+                  <center><strong>Sábado</strong></center>
+                </div>
+
+                <div class="row" id="row">
+                  <br />
+                  <div class="col-sm-1"></div>
+
+                  <div class="col-sm" id="cadastro_turmas_retangulo_horario">
+                    <center><strong>Matutino</strong></center>
+                  </div>
+
+                  <br />
+                </div>
+
+                <br />
+
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>7:30 - 8:20</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>8:20 - 9:10</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>9:10 - 10:00</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>10:10 - 11:00</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>11:00 - 11:50</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_horario">
+                  <center><strong>Vespertino</strong></center>
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>13:30 - 14:20</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>14:20 - 15:10</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>15:10 - 16:00</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>16:20 - 17:10</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>17:10 - 18:00</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_horario">
+                  <center><strong>Noturno</strong></center>
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>18:30 - 19:20</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>19:20 - 20:10</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>20:20 - 21:10</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+
+              <div class="row" id="row">
+                <br />
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo_1">
+                  <center><h6>21:10 - 22:00</h6></center>
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <div class="col-sm" id="cadastro_turmas_retangulo">
+
+                </div>
+
+                <br />
+              </div>
+            </div>
+          </div>
+
+
+          <br />
+
         </main>
 
       </div>
