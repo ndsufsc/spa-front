@@ -19,6 +19,19 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
+
+//MATERIAL ICONS
+import { Delete } from '@material-ui/icons';
 
 //COMPONENTES
 import Header from '../../components/header';
@@ -40,6 +53,7 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    backgroundColor: 'blue',
   },
   drawerPaper: {
     width: drawerWidth,
@@ -49,6 +63,115 @@ const styles = theme => ({
     padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
+  spacer: {
+    marginTop: 140,
+  },
+  select: {
+    width: '90%',
+    alignSelf: 'center',
+  },
+  cardView: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#E7E7E7',
+    minHeight: 100,
+    width: '90%',
+    marginTop: 0,
+    marginBottom: 20,
+    alignSelf: 'center',
+    borderRadius: 5,
+    cursor: 'default'
+  },
+  informativo: {
+    fontFamily: 'Roboto',
+    color: '#707070',
+    textAlign: 'center',
+    marginBottom: -5,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#1976D2',
+    width: 200,
+    minHeight: 90,
+    borderRadius: 5,
+    boxShadow: "1px 1px 3px #9E9E9E",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: -25,
+  },
+  checkbox: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  formControl: {
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    marginTop: 10,
+  },
+  group: {
+    margin: theme.spacing(1, 0),
+  },
+  radio: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  fab: {
+    margin: theme.spacing(1),
+    width: '90%',
+    alignSelf: 'center',
+  },
+  formcontrollabel: {
+    fontFamily: 'Roboto',
+  },
+  contentdrawer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  generator: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  button: {
+    marginRight: 20,
+    marginBottom: 10,
+  },
+  disciplina: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 700,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+    fontSize: 14,
+  },
+  turma: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 400,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+    fontSize: 12,
+  },
+  delete: {
+    cursor: 'pointer',
+    alignSelf: 'flex-end',
+    marginRight: 5,
+    marginTop: 5,
+  },
+  codigodisciplina: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 300,
+    fontSize: 12,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+  },
 })
 
 class Grade extends React.Component {
@@ -58,7 +181,7 @@ class Grade extends React.Component {
     this.state = {
       selectedOption: null,
       id_curso: '',
-      array: [{ value: '', label: '' }],
+      array: [],
       carregou: '',
       carregouDisciplina: '',
       carregouTurma: '',
@@ -67,6 +190,7 @@ class Grade extends React.Component {
       turmas: [],
       selectedDisciplina: '',
       selectedTurma: '',
+      itemChecked: false,
     }
   }
 
@@ -87,7 +211,7 @@ class Grade extends React.Component {
     }
 
   };
-
+  
   async handleChangeDisciplina(item, index) {
 
     const response = await api.post("/disciplina/buscarTurmas", {
@@ -142,7 +266,7 @@ class Grade extends React.Component {
       await this.setState({ qtdeSemestre: response.data[0].semestres, })
       var rows = [];
       for (var i = 1; i <= this.state.qtdeSemestre; i++) {
-        this.setState({ array: [...this.state.array, { value: i, label: i }] })
+        this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre"}] })
         this.setState({ carregou: true })
       }
 
@@ -169,54 +293,94 @@ class Grade extends React.Component {
           }}
           anchor="right"
         >
+          <div className={classes.spacer}></div>
+          
+          <div className={classes.contentdrawer}>
+            
+            <div className={classes.generator}>
+              
+              <div className={classes.cardView}>
+                <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
+                {this.state.carregouComponente ?
+                    <div className={classes.card}>
+                      <p className={classes.codigodisciplina}><i>AAA0000</i></p>
+                      <p className={classes.disciplina}>{this.state.selectedDisciplina}</p>
+                      <p className={classes.turma}>{this.state.selectedTurma}</p>
+                    </div> 
+                  : <p className={classes.informativo}><i>{'Selecione a disciplina e a turma'}<br/>{'para gerar o componente.'}</i></p>
+                }             
+              </div>
 
-          <div style={{ marginTop: 150 + 'px' }}></div>
-
-          {this.state.carregouComponente ?
-            <div style={{display:'flex', flexDirection: 'row'}}><div>{this.state.selectedTurma + ' - ' + this.state.selectedDisciplina}</div>
-              <button onClick={() => self.handleDelete()}>X</button></div>
-            : null
-          }
-
-          <Select id="cadastro_turmas_input_1"
-            value={selectedOptionSemestre}
-            onChange={this.handleChangeSemestre}
-            options={this.state.array}
-          />
-
-
-          {this.state.carregouDisciplina ?
-            this.state.disciplinas.map(function (item, index) {
-              return (
-                <div
-                  style={{ flexDirection: 'row', display: 'flex', marginTop: 10 }}
-                >
-                  <input style={{ marginRight: 10 }} onClick={() => self.handleChangeDisciplina(item, index)} name="input" value={index} type="radio" />
-                  <p>{item.nome}</p>
-                </div>
-              )
-            })
-            : null
-          }
-
-          {this.state.carregouTurma ?
-            this.state.turmas.map(function (item) {
-              return (
-                <div> <input onClick={() => self.handleChangeTurma(item)} type="checkbox" />
-                  <p >{item.turma}</p></div>
-              )
-            })
-            : null
-          }
-
-          {this.state.carregouGerar ?
-            <div><button onClick={() => self.handleChangeComponente()}>Gerar Componente</button></div>
-            : null
-          }
+              <Select id="cadastro_turmas_input_1"
+                value={selectedOptionSemestre}
+                onChange={this.handleChangeSemestre}
+                options={this.state.array}
+                className={classes.select}
+                placeholder={'Semestre'}
+              />
 
 
+              {this.state.carregouDisciplina ?
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Selecione a disciplina:</FormLabel>
+                  <RadioGroup
+                    aria-label="gender"
+                    name="gender1"
+                    className={classes.group}
+                    value={null}
+                    onChange={null}
+                  >
+                    {this.state.disciplinas.map((item, index) => {
+                      return (
+                        <FormControlLabel value={item.nome}
+                                          className={classes.formcontrollabel}
+                                          control={
+                                            <Radio color="primary" className={classes.radio}/>
+                                          } 
+                                          label={item.nome}
+                                          onClick={() => self.handleChangeDisciplina(item, index)} />
+                      )
+                    })}
+                  </RadioGroup>
+                </FormControl>
+                : null
+              }
 
+              {this.state.carregouTurma ?
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Selecione a turma: </FormLabel>
+                  <FormGroup>
+                    {
+                      this.state.turmas.map(function (item) {                    
+                        return (                    
+                          <FormControlLabel
+                            control={
+                              <Checkbox onChange={() => self.handleChangeTurma(item)} value={item.turma} color="primary" className={classes.checkbox}/>
+                            }
+                            label={item.turma}
+                            className={classes.formcontrollabel}
+                          />
+                        )
+                      })
+                    }
+                  </FormGroup>
+                  <FormHelperText>Para turmas compartilhadas selecione ambas antes de criar o componente.</FormHelperText>
+                </FormControl>
+                : null
+              }
 
+              {this.state.carregouGerar ?
+                <Fab onClick={() => self.handleChangeComponente()} variant="extended" color="primary" aria-label="Criar Componente" className={classes.fab}>
+                  Gerar Componente
+                </Fab>
+                : null
+              }
+            </div>
+            <div class='buttonsDiv'>
+              <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
+              <Button onClick={null} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
+            </div>
+          </div>
         </Drawer>
 
         <main className={classes.content}>
