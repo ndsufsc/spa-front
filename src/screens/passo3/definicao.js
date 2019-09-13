@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select'
 
 //ESTILO
-import './grade.css';
+import './definicao.css';
 
 //COMPONENTES MATERIAL UI
 import PropTypes from 'prop-types';
@@ -19,6 +19,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Tabela from '../../components/tabela';
 
 //COMPONENTES
 import Header from '../../components/header';
@@ -46,12 +47,15 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
+    alignItems: 'center',
+    marginTop: '20%',
+    justifyContent: 'center',
     padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
 })
 
-class Grade extends React.Component {
+class Definicao extends React.Component {
 
   constructor() {
     super()
@@ -220,6 +224,7 @@ class Grade extends React.Component {
         </Drawer>
 
         <main className={classes.content}>
+
         </main>
 
       </div>
@@ -227,8 +232,8 @@ class Grade extends React.Component {
   }
 }
 
-Grade.propTypes = {
+Definicao.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Grade);
+export default withStyles(styles)(Definicao);
