@@ -103,6 +103,9 @@ class Tabela extends React.Component {
   }
 
   async componentDidMount() {
+    console.log("props que vem: ", this.props);
+    
+
     let usuario = JSON.parse(localStorage.getItem('usuario'));
     await this.setState({ usuario: usuario })
     await this.setState({ id_curso: usuario.id_curso })
