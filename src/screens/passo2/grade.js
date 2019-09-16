@@ -245,7 +245,7 @@ class Grade extends React.Component {
     await this.setState({ carregouTurma: false })
 
   };
-
+  //mudar de turma
   async handleChangeTurma(item, index) {
 
     if (this.state.arrayAux.length > 0) {
@@ -326,7 +326,6 @@ class Grade extends React.Component {
                 <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 {this.state.carregouComponente ?
                   <div className={classes.card}>
-                    <p className={classes.codigodisciplina}><i>AAA0000</i></p>
                     <p className={classes.disciplina}>{this.state.selectedDisciplina}</p>
                     <p className={classes.turma}>{this.state.selectedTurma}</p>
                   </div>
