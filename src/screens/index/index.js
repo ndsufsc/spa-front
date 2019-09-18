@@ -97,18 +97,8 @@ class App extends React.Component {
   componentDidMount = async () => {
     if (localStorage.getItem('login') == 'on') {
       let usuario = JSON.parse(localStorage.getItem('usuario'));
+      await this.setState({ step: usuario.etapa })
 
-      const response = await api.post('/disciplina/buscarEtapa', {
-        id_usuario: usuario.id_usuario
-      })
-
-      console.log("response data: ", response.data)
-
-      if (response.data != 0) {
-        this.setState({ step: response.data[0].etapa })
-      }
-
-      console.log("step: ", this.state.step)
     }
   };
 

@@ -298,13 +298,20 @@ class Grade extends React.Component {
     if (localStorage.getItem('login') == 'on') {
       var usuario = JSON.parse(localStorage.getItem('usuario'))
 
-      this.setState({ id_curso: usuario.id_curso });
-
-      const response = await api.post("/disciplina/buscarSemestre", {
-        id_course: usuario.id_curso
+      const response = await api.post("/disciplina/buscarCurso", {
+        id_usuario: usuario.id_usuario
       })
-
-      await this.setState({ qtdeSemestre: response.data[0].semestres, })
+  
+      console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
+      
+  
+      this.setState({ id_curso: response.data[0].id_curso })
+  
+      const response2 = await api.post("/disciplina/buscarSemestre", {
+        id_course:  response.data[0].id_curso
+      })
+  
+      await this.setState({ qtdeSemestre: response2.data[0].semestres, })
       var rows = [];
       for (var i = 1; i <= this.state.qtdeSemestre; i++) {
         this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })

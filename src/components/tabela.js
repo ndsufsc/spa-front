@@ -91,7 +91,7 @@ class Tabela extends React.Component {
     }
   }
 
-  async carregarLaboratorios(){
+  async carregarLaboratorios() {
     const response = await api.post('/disciplina/buscarLaboratorios');
 
     console.log("o que vem de laboratórios: ", response.data);
@@ -104,32 +104,33 @@ class Tabela extends React.Component {
 
   async componentDidMount() {
     console.log("props que vem: ", this.props);
-    
 
     let usuario = JSON.parse(localStorage.getItem('usuario'));
     await this.setState({ usuario: usuario })
-    await this.setState({ id_curso: usuario.id_curso })
 
-    console.log("id curso: ", this.state.id_curso)
 
-    const response = await api.post("/disciplina/buscarSemestre", {
-      id_course: this.state.usuario.id_curso
+    const response = await api.post("/disciplina/buscarCurso", {
+      id_usuario: this.state.usuario.id_usuario
     })
 
-    this.setState({ semestres: response.data[0].semestres })
+    console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
+    
+
+    this.setState({ id_curso: response.data[0].id_curso })
+
+    const response2 = await api.post("/disciplina/buscarSemestre", {
+      id_course:  response.data[0].id_curso
+    })
+
+    console.log("response 2: ", response2.data[0].semestres)
+
+    this.setState({ semestres: response2.data[0].semestres })
     var rows = [];
     for (var i = 1; i <= this.state.semestres; i++) {
       this.setState({ array: [...this.state.array, { value: i, label: i }] })
       this.setState({ carregou: true })
     }
-
-    await this.carregarLaboratorios();
-
-    console.log("habilitar btn: ", this.state.habilitarBtn);
-    
-
   }
-
 
   handleChange = async selectedOption => {
     await this.setState({ selectedOption });
@@ -140,9 +141,7 @@ class Tabela extends React.Component {
 
     await this.setState({ disciplinas: response.data, habilitarBtn: false });
 
-
   };
-
 
   render() {
     const { selectedOption } = this.state;
