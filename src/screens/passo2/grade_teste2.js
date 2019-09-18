@@ -196,27 +196,12 @@ class Grade extends React.Component {
       index: '',
       arrayAux: [],
       carregouHorario: false,
+      arrayQuadro: '',
+      arrayTeste: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       carregouMatutino: false,
       arrayLinhas: [1, 2, 3, 4, 5],
       arrayColunas: [1, 2, 3, 4, 5, 6],
-      //matutino
-      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', classes: [null, null, null, null, null, null] }],
-      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', classes: [null, null, null, null, null, null] }],
-      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', classes: [null, null, null, null, null, null] }],
-      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', classes: [null, null, null, null, null, null] }],
-      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', classes: [null, null, null, null, null, null] }],
-      //vespertino
-      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 2, label: '14:20 - 15:10', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 3, label: '15:10 - 16:00', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 4, label: '16:20 - 17:10', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 5, label: '17:10 - 18:00', classes: [null, null, null, null, null, null] }],
-      //noturno
-      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', classes: [null, null, null, null, null, null] }],
-      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', classes: [null, null, null, null, null, null] }],
-      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', classes: [null, null, null, null, null, null] }],
-      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', classes: [null, null, null, null, null, null] }],
-
+      fullGrid: [{ label: 'Segunda', classes: [null, null, null, null, null, null] }]
     }
   }
 
@@ -313,10 +298,8 @@ class Grade extends React.Component {
 
     }
 
-    // var result = this.state.fullGrid.map(person => ({ value: person.label, text: person.classes }));
-
-    // console.log("result: ", result);
-
+    console.log("array map: ", this.state.fullGrid);
+    
 
   };
 
@@ -327,161 +310,21 @@ class Grade extends React.Component {
   }
 
   mostrarDisciplina(i, j) {
-    console.log("i,j: ", i, j);
-
+    console.log("i,j: ", i,j);
+    
     this.state.arrayColunas[i] = this.state.selectedDisciplina
     this.forceUpdate();
     console.log("meu array: ", this.state.arrayColunas[i]);
   }
 
-  setClass(scheduleId, classIndex, pos) {
-
-    if (pos == 1) {
-      this.setState({
-        schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-
-    if (pos == 2) {
-      this.setState({
-        schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-
-    if (pos == 3) {
-      this.setState({
-        schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-
-    if (pos == 4) {
-      this.setState({
-        schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-
-    if (pos == 5) {
-      this.setState({
-        schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-
-    if (pos == 6) {
-      this.setState({
-        schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 7) {
-      this.setState({
-        schedulesVespertino2: this.state.schedulesVespertino2.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 8) {
-      this.setState({
-        schedulesVespertino3: this.state.schedulesVespertino3.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 9) {
-      this.setState({
-        schedulesVespertino4: this.state.schedulesVespertino4.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 10) {
-      this.setState({
-        schedulesVespertino5: this.state.schedulesVespertino5.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 11) {
-      this.setState({
-        schedulesNoturno: this.state.schedulesNoturno.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 12) {
-      this.setState({
-        schedulesNoturno2: this.state.schedulesNoturno2.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 13) {
-      this.setState({
-        schedulesNoturno3: this.state.schedulesNoturno3.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
-    if (pos == 14) {
-      this.setState({
-        schedulesNoturno4: this.state.schedulesNoturno4.map(schedule => {
-          if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
-          }
-          return schedule
-        })
-      })
-    }
+  handleInput(e, i,j) {
+    this.state.arrayColunas[i] = this.state.selectedDisciplina;
+    // this.state.arrayLinhas[j]= this.state.selectedDisciplina
+    console.log("array colunas: ", this.state.arrayColunas);
+    return 
+    // this.forceUpdate();
   }
+
 
   render() {
 
@@ -594,6 +437,7 @@ class Grade extends React.Component {
           </div>
 
           <br />
+
           <br />
           <Table striped bordered hover
             style={{ width: '70%' }}
@@ -610,164 +454,65 @@ class Grade extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.schedulesMatutino.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 1)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
+              {/* {this.state.arrayLinhas.map((item2, j) => {
+                return (
+                  <tr key={j}> */}
+                    {
+                      this.state.arrayLinhas.map((item,j) => {
+                        return(
+                        <tr>
+                          {item.map((item2) => {
+                              <td>{item2}</td>
+                          })
+                          }
 
-              {this.state.schedulesMatutino2.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 2)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
+                        </tr>
+                        )
+                        })
+                      }
+                    {/* {this.state.arrayColunas.map((item, i) => {
+                      return (
+                        <td onClick={() => this.mostrarDisciplina(i, j)} key={i, j}>{this.state.arrayLinhas[i]}</td>
+                      )
+                    })}
+                  </tr>
+                ) */}
               }
-
-              {this.state.schedulesMatutino3.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 3)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesMatutino4.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 4)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesMatutino5.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 5)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-            </tbody>
-          </Table>
-          {/* <Table striped bordered hover
-            style={{ width: '70%' }}
-          >
-            <thead>
-              <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
+              )}
+              {/*   
+                {this.state.carregouDisciplina ?
+                  this.state.disciplinas.map((item, i) => {
+                    return (
+                        <td onClick={() => this.matutino(i)}>{this.state.selectedDisciplina}</td>
+                    )
+                  })
+                  : null
+                }
               </tr>
-            </thead>
-            <tbody>
-              {this.state.schedulesVespertino.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 6)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesVespertino2.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 7)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesVespertino3.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 8)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesVespertino4.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 9)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesVespertino5.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 10)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-            </tbody>
-          </Table> */}
-          <Table striped bordered hover
-            style={{ width: '70%' }}
-          >
-            <thead>
               <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
+                <td>9:10 - 10:00</td>
+                <td colSpan="2"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
-            </thead>
-            <tbody>
-              {this.state.schedulesNoturno.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 11)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesNoturno2.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 12)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesNoturno3.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 13)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-
-              {this.state.schedulesNoturno4.map(schedule => (
-                <tr> <td>{schedule.label}</td>
-                  {schedule.classes.map((_class, index) => (
-                    <td onClick={() => this.setClass(schedule.id, index, 14)}>{!_class ? '' : _class}</td>
-                  ))}
-                </tr>
-              ))
-              }
-       
+              <tr>
+                <td>10:10 - 11:00</td>
+                <td colSpan="2"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>11:00 - 11:50</td>
+                <td colSpan="2"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr> */}
             </tbody>
           </Table>
         </main>
