@@ -216,6 +216,7 @@ class Grade extends React.Component {
       schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', classes: [null, null, null, null, null, null] }],
       schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', classes: [null, null, null, null, null, null] }],
       schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', classes: [null, null, null, null, null, null] }],
+      usuario: ''
 
     }
   }
@@ -223,8 +224,9 @@ class Grade extends React.Component {
   handleChangeSemestre = async selectedOptionSemestre => {
     await this.setState({ selectedOptionSemestre, selectedTurma: [], arrayAux: [] });
 
+
     const response = await api.post("/disciplina/obter", {
-      codigo_curso: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
+      id_course: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
     this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false });
@@ -241,16 +243,20 @@ class Grade extends React.Component {
   async handleChangeDisciplina(item, index) {
     this.setState({ selectedTurma: [], arrayAux: [] })
 
-    const response = await api.post("/disciplina/buscarTurmas", {
-      id_disciplina: item.id_disciplina
+    const response = await api.post("/disciplina/buscarCurso", {
+      id_usuario: this.state.usuario.id_usuario
+    })
+
+    const response2 = await api.post("/disciplina/buscarTurmas", {
+      id_course: response.data[0].id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
     this.setState({ selectedDisciplina: item.nome });
 
     this.setState({ turmas: '', carregouTurma: false });
 
-    for (var i = 0; i < response.data.length; i++) {
-      await this.setState({ turmas: [...this.state.turmas, { id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma }], carregouTurma: true })
+    for (var i = 0; i < response2.data.length; i++) {
+      await this.setState({ turmas: [...this.state.turmas, { id_turma: response2.data[i].id_turma, turma: response2.data[i].codigo }], carregouTurma: true })
     }
     this.handleChangeComponente();
   };
@@ -297,6 +303,7 @@ class Grade extends React.Component {
   componentDidMount = async () => {
     if (localStorage.getItem('login') == 'on') {
       var usuario = JSON.parse(localStorage.getItem('usuario'))
+      this.setState({ usuario: usuario })
 
       const response = await api.post("/disciplina/buscarCurso", {
         id_usuario: usuario.id_usuario
