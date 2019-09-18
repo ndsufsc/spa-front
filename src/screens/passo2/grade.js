@@ -29,6 +29,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
+import { Table } from 'react-bootstrap'
 
 //MATERIAL ICONS
 import { Delete } from '@material-ui/icons';
@@ -193,7 +194,14 @@ class Grade extends React.Component {
       selectedTurma: '',
       itemChecked: false,
       index: '',
-      arrayAux: []
+      arrayAux: [],
+      carregouHorario: false,
+      arrayQuadro: '',
+      arrayTeste: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      carregouMatutino: false,
+      arrayLinhas: [1, 2, 3, 4, 5],
+      arrayColunas: [1, 2, 3, 4, 5, 6],
+      fullGrid: Array(2).fill(Array(5).fill(1))
     }
   }
 
@@ -290,7 +298,28 @@ class Grade extends React.Component {
 
     }
 
+    console.log("array map: ", this.state.fullGrid);
+    
+
   };
+
+  async cadastrarHorario() {
+    await this.setState({ arrayQuadro: [...this.state.arrayQuadro, { nome: this.state.selectedDisciplina }], carregouHorario: true })
+    console.log("array quadro: ", this.state.arrayQuadro);
+
+  }
+
+  mostrarDisciplina(i, j) {
+    console.log("i,j: ", i,j);
+    
+    this.state.fullGrid[i][j] = 'oi';
+    this.forceUpdate();
+    
+    console.log("full grid: ", this.state.fullGrid);
+    
+ 
+  }
+
 
   render() {
 
@@ -404,270 +433,70 @@ class Grade extends React.Component {
 
           <br />
 
-          <div class="row" id="row">
-
-            <div class="col-sm-9">
-              <div class="row" id="row">
-                <br />
-                <div class="col-sm-1"></div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                  <center><strong>Horários</strong></center>
-                </div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo">
-                  <center><strong>Segunda</strong></center>
-                </div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo">
-                  <center><strong>Terça</strong></center>
-                </div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo">
-                  <center><strong>Quarta</strong></center>
-                </div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo">
-                  <center><strong>Quinta</strong></center>
-                </div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo">
-                  <center><strong>Sexta</strong></center>
-                </div>
-
-                <div class="col-sm" id="cadastro_turmas_retangulo">
-                  <center><strong>Sábado</strong></center>
-                </div>
-
-                {
-                  int k=0;
-                  int l=0;
-
-                  for (let i=0; i<17; i++) {
-
-                    l=0;
-
-                    switch(i) {
-
-                      case '0':
-                        return(<div class="row" id="row">
-                        <br />
-                        <div class="col-sm-1"></div>
-      
-                        <div class="col-sm" id="cadastro_turmas_retangulo_horario">
-                          <center><strong>Matutino</strong></center>
-                        </div>
-      
-                        <br />
-                      </div>
-      
-                      <br />
-      
-                    </div>);
-
-                      case '6':
-                        return(<div class="row" id="row">
-                        <br />
-                        <div class="col-sm-1"></div>
-        
-                        <div class="col-sm" id="cadastro_turmas_retangulo_horario">
-                          <center><strong>Vespertino</strong></center>
-                        </div>
-        
-                        <br />
-                      </div>);
-
-                      case '12':
-                        return(<div class="row" id="row">
-                        <br />
-                        <div class="col-sm-1"></div>
-        
-                        <div class="col-sm" id="cadastro_turmas_retangulo_horario">
-                          <center><strong>Noturno</strong></center>
-                        </div>
-        
-                        <br />
-                      </div>);
-
-                        default:
-
-                          for(let j=0; j<7; j++) {
-
-                            if(j==0){
-                              switch(i) {
-                                case '1':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>7:30 - 8:20</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '2':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>8:20 - 09:10</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '3':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>09:10 - 10:00</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '4':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>19:10 - 11:00</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '5':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>11:00 - 11:50</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '7':
-                                  return<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>13:30 - 14:20</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '8':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>14:20 - 15:10</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '9':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>15:10 - 16:00</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '10':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>16:20 - 17:10</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '11':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>17:10 - 18:00</h6></center>
-                                  </div>
-                  
-                                  );
-
-                                case '13':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>18:30 - 19:20</h6></center>
-                                  </div>
-                                  );
-
-                                case '14':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>19:20 - 20:10</h6></center>
-                                  </div>
-                                  );
-
-                                case '15':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                  <div class="col-sm" id="cadastro_turmas_retangulo_1">
-                                    <center><h6>20:20 - 21:10</h6></center>
-                                  </div>
-
-                                  );
-
-                                case '16':
-                                  return(<div class="row" id="row">
-                                  <br />
-                                  <div class="col-sm-1"></div>
-                  
-                                </div>);
-
-                              }
-                            } else {
-                              return(<div class="col-sm cadastro_turmas_retangulo" id="kl">
-                  
-                              </div>);
-
-                              l++;
-                            }
-
-                          }
-                          return(<br />);
-
-                          k++;
-
-                    }
-
-                  }
-
-                }
-            </div>
-          </div>
-
-
           <br />
-
+          <Table striped bordered hover
+            style={{ width: '70%' }}
+          >
+            <thead>
+              <tr>
+                <th>Horários</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+                <th>Sexta</th>
+                <th>Sábado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.fullGrid[0].map((item2, j) => {
+                return (
+                  <tr key={j}>
+                    {this.state.fullGrid[1].map((item, i) => {
+                      return (
+                        <td onClick={() => this.mostrarDisciplina(i, j)} key={i, j}>{this.state.fullGrid}</td>
+                      )
+                    })}
+                  </tr>
+                )
+              }
+              )}
+              {/*   
+                {this.state.carregouDisciplina ?
+                  this.state.disciplinas.map((item, i) => {
+                    return (
+                        <td onClick={() => this.matutino(i)}>{this.state.selectedDisciplina}</td>
+                    )
+                  })
+                  : null
+                }
+              </tr>
+              <tr>
+                <td>9:10 - 10:00</td>
+                <td colSpan="2"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>10:10 - 11:00</td>
+                <td colSpan="2"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>11:00 - 11:50</td>
+                <td colSpan="2"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr> */}
+            </tbody>
+          </Table>
         </main>
 
       </div>
