@@ -136,7 +136,7 @@ class Tabela extends React.Component {
     await this.setState({ selectedOption });
 
     const response = await api.post("/disciplina/obter", {
-      codigo_curso: this.state.id_curso, fase: this.state.selectedOption.value
+      id_course: this.state.id_curso, fase: this.state.selectedOption.value
     })
 
     await this.setState({ disciplinas: response.data, habilitarBtn: false });

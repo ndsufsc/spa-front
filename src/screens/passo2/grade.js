@@ -229,6 +229,9 @@ class Grade extends React.Component {
       id_course: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
+    console.log("disciplina: ", response.data[0]);
+    
+
     this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false });
 
     for (var i = 0; i < response.data.length; i++) {
