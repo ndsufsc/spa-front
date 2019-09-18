@@ -29,7 +29,7 @@ class Login extends Component {
     console.log("email usuario: ", this.state.email_usuario);
     console.log("senha usuario: ", this.state.senha_usuario);
 
-    const res = await api.post('/login/verificar', { email_usuario: this.state.email_usuario, senha_usuario: this.state.senha_usuario })
+    const res = await api.post('/login/verificar', { siape: this.state.email_usuario, senha_usuario: this.state.senha_usuario })
       
     if (res.data.length >= 1) {
       localStorage.setItem('login', 'on');
@@ -64,7 +64,7 @@ class Login extends Component {
               <br />
               <div><h3 id="h3">Login</h3></div>
               <br />
-              <input placeholder="Usuário" onChange={this.InputEmail} id="email_usuario" type="text" />
+              <input placeholder="SIAPE" onChange={this.InputEmail} id="email_usuario" type="text" />
               <br />
               <br />
               <input placeholder="Senha" onChange={this.InputPassword} id="senha_usuario" type="password" />

@@ -207,10 +207,10 @@ class Grade extends React.Component {
       schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', classes: [null, null, null, null, null, null] }],
       //vespertino
       schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 2, label: '14:20 - 15:10', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 3, label: '15:10 - 16:00', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 4, label: '16:20 - 17:10', classes: [null, null, null, null, null, null] }],
-      schedulesVespertino: [{ id: 5, label: '17:10 - 18:00', classes: [null, null, null, null, null, null] }],
+      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', classes: [null, null, null, null, null, null] }],
+      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', classes: [null, null, null, null, null, null] }],
+      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', classes: [null, null, null, null, null, null] }],
+      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', classes: [null, null, null, null, null, null] }],
       //noturno
       schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', classes: [null, null, null, null, null, null] }],
       schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', classes: [null, null, null, null, null, null] }],
@@ -298,13 +298,20 @@ class Grade extends React.Component {
     if (localStorage.getItem('login') == 'on') {
       var usuario = JSON.parse(localStorage.getItem('usuario'))
 
-      this.setState({ id_curso: usuario.id_curso });
-
-      const response = await api.post("/disciplina/buscarSemestre", {
-        id_course: usuario.id_curso
+      const response = await api.post("/disciplina/buscarCurso", {
+        id_usuario: usuario.id_usuario
       })
-
-      await this.setState({ qtdeSemestre: response.data[0].semestres, })
+  
+      console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
+      
+  
+      this.setState({ id_curso: response.data[0].id_curso })
+  
+      const response2 = await api.post("/disciplina/buscarSemestre", {
+        id_course:  response.data[0].id_curso
+      })
+  
+      await this.setState({ qtdeSemestre: response2.data[0].semestres, })
       var rows = [];
       for (var i = 1; i <= this.state.qtdeSemestre; i++) {
         this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })
@@ -656,7 +663,7 @@ class Grade extends React.Component {
               }
             </tbody>
           </Table>
-          {/* <Table striped bordered hover
+          <Table striped bordered hover
             style={{ width: '70%' }}
           >
             <thead>
@@ -716,7 +723,7 @@ class Grade extends React.Component {
               ))
               }
             </tbody>
-          </Table> */}
+          </Table>
           <Table striped bordered hover
             style={{ width: '70%' }}
           >
