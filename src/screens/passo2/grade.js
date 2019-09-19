@@ -190,7 +190,7 @@ class Grade extends React.Component {
       qtdeSemestre: '',
       disciplinas: [],
       turmas: [],
-      selectedDisciplina: '',
+      selectedDisciplina: { nome: '', hrs_totais: '', id_curriculo_disciplina:'' },
       selectedTurma: '',
       itemChecked: false,
       index: '',
@@ -200,50 +200,61 @@ class Grade extends React.Component {
       arrayLinhas: [1, 2, 3, 4, 5],
       arrayColunas: [1, 2, 3, 4, 5, 6],
       //matutino
-      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20',linha:1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' , carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10',linha:2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00',linha:3, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00',linha:4, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50',linha:5, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
       //vespertino
-      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6 ,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9 ,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
       //noturno
-      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', classes: [null, null, null, null, null, null], carregou: [false, false, false, false, false, false] }],
-      usuario: ''
-
+      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      usuario: '',
+      disabled: [false,false,false,false,false,false,false],
+      index: '',
+      arrayQuadro: '',
+      turmaSelecionada: ''
     }
   }
 
   handleChangeSemestre = async selectedOptionSemestre => {
+    
     await this.setState({ selectedOptionSemestre, selectedTurma: [], arrayAux: [] });
-
+    
+    console.log("semestre: ", this.state.selectedOptionSemestre.value);
+    
 
     const response = await api.post("/disciplina/obter", {
       id_course: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
-    console.log("disciplina: ", response.data[0]);
-    
-
     this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false });
+
+    
 
     for (var i = 0; i < response.data.length; i++) {
       var nome = response.data[i].codigo;
       nome += ' - ';
       nome += response.data[i].nome;
-      await this.setState({ disciplinas: [...this.state.disciplinas, { nome: nome, id_disciplina: response.data[i].id_disciplina }], carregouDisciplina: true })
+      await this.setState({ disciplinas: [...this.state.disciplinas, { nome: nome, hrs_totais: response.data[i].horas_totais, id_curriculo_disciplina: response.data[i].id_spa_curriculo_disciplina }], carregouDisciplina: true })
     }
+
+    console.log("disciplinas: ", this.state.disciplinas);
 
   };
 
+  //buscar turma
   async handleChangeDisciplina(item, index) {
+    console.log("item disciplina: ", item);
+    
+
     this.setState({ selectedTurma: [], arrayAux: [] })
 
     const response = await api.post("/disciplina/buscarCurso", {
@@ -254,13 +265,17 @@ class Grade extends React.Component {
       id_course: response.data[0].id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
-    this.setState({ selectedDisciplina: item.nome });
+    this.setState({ selectedDisciplina: { nome: item.nome, horas_totais: item.hrs_totais , id_curriculo_disciplina: item.id_curriculo_disciplina} });
 
     this.setState({ turmas: '', carregouTurma: false });
 
     for (var i = 0; i < response2.data.length; i++) {
-      await this.setState({ turmas: [...this.state.turmas, { id_turma: response2.data[i].id_turma, turma: response2.data[i].codigo }], carregouTurma: true })
+      await this.setState({ turmas: [...this.state.turmas, { id_turma: response2.data[i].id_turmas, turma: response2.data[i].codigo }], carregouTurma: true })
     }
+
+
+    console.log("turmas: ", this.state.selectedDisciplina);
+    
     this.handleChangeComponente();
   };
 
@@ -274,12 +289,14 @@ class Grade extends React.Component {
     await this.setState({ carregouTurma: false })
 
   };
+
   //mudar de turma
   async handleChangeTurma(item, index) {
+    console.log("item: ", item);
+    
 
     if (this.state.arrayAux.length > 0) {
       for (let i = 0; i <= this.state.arrayAux.length; i++) {
-        console.log("index: ", index)
         if (this.state.arrayAux[index] == true) {
           this.state.arrayAux[index] = false;
           this.state.selectedTurma.splice(index, 1);
@@ -289,9 +306,9 @@ class Grade extends React.Component {
         }
       }
     }
-    // this.setState({ selectedTurma: [...this.state.selectedTurma, item.turma] });
     this.state.selectedTurma[index] = item.turma;
     await this.setState({ carregouGerar: true })
+    this.setState({ turmaSelecionada: item.id_turma })
     this.state.arrayAux[index] = true;
     this.forceUpdate();
     this.handleChangeComponente();
@@ -311,16 +328,16 @@ class Grade extends React.Component {
       const response = await api.post("/disciplina/buscarCurso", {
         id_usuario: usuario.id_usuario
       })
-  
+
       console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
-      
-  
+
+
       this.setState({ id_curso: response.data[0].id_curso })
-  
+
       const response2 = await api.post("/disciplina/buscarSemestre", {
-        id_course:  response.data[0].id_curso
+        id_course: response.data[0].id_curso
       })
-  
+
       await this.setState({ qtdeSemestre: response2.data[0].semestres, })
       var rows = [];
       for (var i = 1; i <= this.state.qtdeSemestre; i++) {
@@ -329,19 +346,8 @@ class Grade extends React.Component {
       }
 
     }
-
-    // var result = this.state.fullGrid.map(person => ({ value: person.label, text: person.classes }));
-
-    // console.log("result: ", result);
-
-
   };
 
-  async cadastrarHorario() {
-    await this.setState({ arrayQuadro: [...this.state.arrayQuadro, { nome: this.state.selectedDisciplina }], carregouHorario: true })
-    console.log("array quadro: ", this.state.arrayQuadro);
-
-  }
 
   mostrarDisciplina(i, j) {
     console.log("i,j: ", i, j);
@@ -351,13 +357,41 @@ class Grade extends React.Component {
     console.log("meu array: ", this.state.arrayColunas[i]);
   }
 
+  //diminui a quantidade de créditos
+  diminuirCreditos() {
+    this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1 , id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina}  })
+    console.log("selected disciplina: ", this.state.selectedDisciplina);
+
+  }
+
+  // verifica a quantidade de créditos
+  verificaCreditos() {
+    if (this.state.selectedDisciplina.horas_totais <= 0) {
+      this.state.disabled[this.state.index] = true
+      alert("Horas totais de créditos preenchidas");
+      return 1;
+    }
+  }
+
   setClass(scheduleId, classIndex, pos) {
+    console.log("schedule m: ", this.state.schedulesMatutino);
+    console.log("schedule m2: ", this.state.schedulesMatutino2);
+    console.log("schedule m3: ", this.state.schedulesMatutino3);
+    console.log("schedule m4: ", this.state.schedulesMatutino4);
+    console.log("schedule m5: ", this.state.schedulesMatutino5);
+    
 
     if (pos == 1) {
       this.setState({
         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.turma = this.state.turmaSelecionada
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
           }
           return (schedule)
@@ -369,7 +403,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.turma = this.state.turmaSelecionada
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -381,7 +421,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.turma = this.state.turmaSelecionada
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -393,7 +439,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.turma = this.state.turmaSelecionada
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -405,7 +457,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.turma = this.state.turmaSelecionada
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -417,7 +475,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -428,7 +492,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesVespertino2: this.state.schedulesVespertino2.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -439,7 +509,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesVespertino3: this.state.schedulesVespertino3.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -450,7 +526,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesVespertino4: this.state.schedulesVespertino4.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -461,7 +543,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesVespertino5: this.state.schedulesVespertino5.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -472,7 +560,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesNoturno: this.state.schedulesNoturno.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -483,7 +577,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesNoturno2: this.state.schedulesNoturno2.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -494,7 +594,13 @@ class Grade extends React.Component {
       this.setState({
         schedulesNoturno3: this.state.schedulesNoturno3.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -505,13 +611,34 @@ class Grade extends React.Component {
       this.setState({
         schedulesNoturno4: this.state.schedulesNoturno4.map(schedule => {
           if (schedule.id === scheduleId) {
-            schedule.classes[classIndex] = this.state.selectedDisciplina
+            this.diminuirCreditos();
+            if (this.verificaCreditos() == 1)
+              return (schedule);
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
+            schedule.semestre = this.state.selectedOptionSemestre.value
+            schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
           return schedule
         })
       })
     }
+  }
+
+  async salvarGrade() {
+    await this.setState({ arrayQuadro:  [{mat1: this.state.schedulesMatutino, mat2: this.state.schedulesMatutino2,
+                                    mat3: this.state.schedulesMatutino3, mat4: this.state.schedulesMatutino4,
+                                    mat5: this.state.schedulesMatutino5,
+                                    vesp1: this.state.schedulesVespertino, vesp2: this.state.schedulesVespertino2,
+                                    vesp3: this.state.schedulesVespertino3, vesp4: this.state.schedulesVespertino4,
+                                    vesp5: this.state.schedulesVespertino5,
+                                    not1: this.state.schedulesNoturno, not2: this.state.schedulesNoturno2,
+                                    not3: this.state.schedulesNoturno3, not4: this.state.schedulesNoturno4
+                   }]})
+
+    console.log("primeiro horário matutino: ", this.state.arrayQuadro);
+    
   }
 
   render() {
@@ -544,8 +671,8 @@ class Grade extends React.Component {
               <div className={classes.cardView}>
                 <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 {this.state.carregouComponente ?
-                  <div style={{cursor: 'pointer'}} className={classes.card}>
-                    <p className={classes.disciplina}>{this.state.selectedDisciplina}</p>
+                  <div style={{ cursor: 'pointer' }} className={classes.card}>
+                    <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
                     <p className={classes.turma}>{this.state.selectedTurma}</p>
                   </div>
                   : <p className={classes.informativo}><i>{'Selecione a disciplina e a turma'}<br />{'para gerar o componente.'}</i></p>
@@ -576,10 +703,11 @@ class Grade extends React.Component {
                         <FormControlLabel value={item.nome}
                           className={classes.formcontrollabel}
                           control={
-                            <Radio color="primary" className={classes.radio} />
+                            <Radio color="primary" disabled={this.state.disabled[index]} onClick={() => this.setState({ index: index })}
+                              className={classes.radio} />
                           }
                           label={item.nome}
-                          onClick={() => self.handleChangeDisciplina(item, index)} />
+                          onClick={() => !this.state.disabled[index] ?  self.handleChangeDisciplina(item, index) : null} />
                       )
                     })}
                   </RadioGroup>
@@ -613,7 +741,7 @@ class Grade extends React.Component {
             </div>
             <div class='buttonsDiv'>
               <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
-              <Button onClick={null} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
+              <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
             </div>
           </div>
         </Drawer>
@@ -630,7 +758,7 @@ class Grade extends React.Component {
             style={{ width: '70%' }}
           >
             <thead>
-            <tr>
+              <tr>
                 <th colspan='7' class='text-center'>Matutino</th>
               </tr>
               <tr>
@@ -645,35 +773,35 @@ class Grade extends React.Component {
             </thead>
             <tbody>
 
-            {this.state.schedulesMatutino.map(schedule => (
-              <tr> <td>{schedule.label}</td>
-                {schedule.classes.map((_class, index) => (
-                  <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 1)}>
+              {this.state.schedulesMatutino.map(schedule => (
+                <tr> <td>{schedule.label}</td>
+                  {schedule.classes.map((_class, index) => (
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 1)}>
 
-                  {!_class ? '' : _class}
+                      {!_class ? '' : _class}
 
-                  {schedule.carregou[index] ?
+                      {schedule.carregou[index] ?
 
-                    <Delete />
-                  : null
-                  } 
+                        <Delete />
+                        : null
+                      }
 
-                  </td>
-                ))}
-              </tr>
-            ))
-            }
+                    </td>
+                  ))}
+                </tr>
+              ))
+              }
 
               {this.state.schedulesMatutino2.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 2)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 2)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
+                      {schedule.carregou[index] ?
 
-                      <Delete />
-                    : null
-                    } 
+                        <Delete />
+                        : null
+                      }
 
                     </td>
 
@@ -685,14 +813,14 @@ class Grade extends React.Component {
               {this.state.schedulesMatutino3.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 3)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 3)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -702,14 +830,14 @@ class Grade extends React.Component {
               {this.state.schedulesMatutino4.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 4)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 4)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -719,14 +847,14 @@ class Grade extends React.Component {
               {this.state.schedulesMatutino5.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 5)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 5)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -755,14 +883,14 @@ class Grade extends React.Component {
               {this.state.schedulesVespertino.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 6)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 6)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -772,14 +900,14 @@ class Grade extends React.Component {
               {this.state.schedulesVespertino2.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 7)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 7)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -789,14 +917,14 @@ class Grade extends React.Component {
               {this.state.schedulesVespertino3.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 8)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 8)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -806,14 +934,14 @@ class Grade extends React.Component {
               {this.state.schedulesVespertino4.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 9)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => { schedule.carregou[index] ? console.log("deletar posição: ", index) : this.setClass(schedule.id, index, 9) }}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+                        <Delete
+                        />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -823,14 +951,14 @@ class Grade extends React.Component {
               {this.state.schedulesVespertino5.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 10)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 10)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -842,7 +970,7 @@ class Grade extends React.Component {
             style={{ width: '70%' }}
           >
             <thead>
-            <tr>
+              <tr>
                 <th colspan='7' class='text-center'>Noturno</th>
               </tr>
               <tr>
@@ -859,14 +987,14 @@ class Grade extends React.Component {
               {this.state.schedulesNoturno.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 11)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 11)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -876,14 +1004,14 @@ class Grade extends React.Component {
               {this.state.schedulesNoturno2.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 12)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 12)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -893,14 +1021,14 @@ class Grade extends React.Component {
               {this.state.schedulesNoturno3.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 13)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 13)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
@@ -910,20 +1038,20 @@ class Grade extends React.Component {
               {this.state.schedulesNoturno4.map(schedule => (
                 <tr> <td>{schedule.label}</td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{cursor: 'pointer'}} onClick={() => this.setClass(schedule.id, index, 14)}>{!_class ? '' : _class}
+                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 14)}>{!_class ? '' : _class}
 
-                    {schedule.carregou[index] ?
-  
-                      <Delete />
-                    : null
-                    } 
-  
+                      {schedule.carregou[index] ?
+
+                        <Delete />
+                        : null
+                      }
+
                     </td>
                   ))}
                 </tr>
               ))
               }
-       
+
             </tbody>
           </Table>
         </main>
