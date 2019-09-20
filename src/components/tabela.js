@@ -43,7 +43,8 @@ import {
   Navbar,
   Nav,
   Form,
-  Button
+  Button,
+  InputGroup
 } from 'react-bootstrap';
 
 const tableIcons = {
@@ -88,6 +89,14 @@ class Tabela extends React.Component {
       showAlerta: false,
       arrayLaboratorios: [],
       habilitarBtn: true,
+      horasTotais: '',
+      ultimoClique: '',
+      primeiroClique: true,
+      primeiroClique2: true,
+      h1: false,
+      horasTeoricas: '',
+      horasPraticas: '',
+      idAtualizar: ''
     }
   }
 
@@ -103,8 +112,6 @@ class Tabela extends React.Component {
   }
 
   async componentDidMount() {
-    console.log("props que vem: ", this.props);
-
     let usuario = JSON.parse(localStorage.getItem('usuario'));
     await this.setState({ usuario: usuario })
 
@@ -113,16 +120,11 @@ class Tabela extends React.Component {
       id_usuario: this.state.usuario.id_usuario
     })
 
-    console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
-    
-
     this.setState({ id_curso: response.data[0].id_curso })
 
     const response2 = await api.post("/disciplina/buscarSemestre", {
-      id_course:  response.data[0].id_curso
+      id_course: response.data[0].id_curso
     })
-
-    console.log("response 2: ", response2.data[0].semestres)
 
     this.setState({ semestres: response2.data[0].semestres })
     var rows = [];
@@ -143,6 +145,91 @@ class Tabela extends React.Component {
 
   };
 
+  inserirHoras(rowData) {
+    console.log("row data: ", rowData);
+
+    this.setState({
+      horasTotais: parseInt(rowData.horas_totais),
+      idAtualizar: rowData.id_spa_curriculo_disciplina,
+      showModal: true,
+    })
+
+  }
+
+  handleHoras = async (event) => {
+    console.log("ultimo clique: ", this.state.ultimoClique);
+
+    if (this.state.h2) {
+      if (this.state.horasTotais == 0)
+        return;
+      let subtracao = this.state.horasTotais - 1
+      await this.setState({ horasTotais: subtracao, ultimoClique: event.target.value })
+      return;
+    }
+
+    if (this.state.primeiroClique) {
+      let horas = event.target.value;
+      this.setState({ ultimoClique: horas })
+      let subtracao = this.state.horasTotais - 1
+      await this.setState({ horasTotais: subtracao, primeiroClique: false, h1: true, horasPraticas: this.state.ultimoClique })
+    } else {
+      if (this.state.horasTotais == 0)
+        return;
+      if (parseInt(this.state.ultimoClique) < parseInt(event.target.value)) {
+        let subtracao = this.state.horasTotais - 1
+        await this.setState({ horasTotais: subtracao, ultimoClique: event.target.value, horasPraticas: event.target.value })
+      }
+      else {
+        let soma = this.state.horasTotais + 1
+        await this.setState({ horasTotais: soma, ultimoClique: event.target.value, horasPraticas: event.target.value })
+      }
+    }
+
+  }
+
+  handleHoras2 = async (e) => {
+    if (this.state.h1) {
+      if (this.state.horasTotais == 0)
+        return;
+      let subtracao = this.state.horasTotais - 1
+      await this.setState({ horasTotais: subtracao, ultimoClique: e.target.value, horasTeoricas: e.target.value })
+      return;
+    }
+
+    if (this.state.primeiroClique2) {
+      let horas = e.target.value;
+      this.setState({ ultimoClique: horas })
+      let subtracao = this.state.horasTotais - 1
+      await this.setState({ horasTotais: subtracao, primeiroClique2: false, h2: true, horasPraticas: this.state.ultimoClique })
+    } else {
+      if (this.state.horasTotais == 0)
+        return;
+      if (parseInt(this.state.ultimoClique) < parseInt(e.target.value)) {
+        let subtracao = this.state.horasTotais - 1
+        await this.setState({ horasTotais: subtracao, ultimoClique: e.target.value, horasTeoricas: e.target.value })
+      }
+      else {
+        let soma = this.state.horasTotais + 1
+        await this.setState({ horasTotais: soma, ultimoClique: e.target.value, horasTeoricas: e.target.value })
+      }
+    }
+
+  }
+
+  async cadastrar(){
+    await api.post("/disciplina/atualizarHorasTeP", {
+      horasPraticas: this.state.horasPraticas,
+      horasTeoricas: this.state.horasTeoricas,
+      idAtualizar: this.state.idAtualizar,
+    })
+
+    const response = await api.post("/disciplina/obter", {
+      id_course: this.state.id_curso, fase: this.state.selectedOption.value
+    })
+
+    await this.setState({ disciplinas: response.data, showModal: false });
+  }
+
   render() {
     const { selectedOption } = this.state;
     return (
@@ -154,21 +241,9 @@ class Tabela extends React.Component {
           style={{ marginBottom: 20 }}
         />
 
-        <Modal show={this.state.showAlerta} onHide={() => this.setState({ showAlerta: false })}>
-          <Modal.Header closeButton>
-            <Modal.Title>Alerta</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Esta disciplina não possui horas de aula prática</Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={() => this.setState({ showAlerta: false })}>
-              Fechar
-          </Button>
-          </Modal.Footer>
-        </Modal>
-
         <Modal
           show={this.state.showModal}
-          onHide={() => this.setState({ showModal: false })}
+          onHide={() => this.setState({ showModal: false, ultimoClique: '', primeiroClique: true, primeiroClique2: true, horasTeoricas: '', horasPraticas: '' })}
           size="m"
         >
           <Modal.Header closeButton>Cadastrar Laboratório</Modal.Header>
@@ -179,20 +254,16 @@ class Tabela extends React.Component {
               alignItems: 'center',
             }}
           >
-            <div style={{ marginTop: 5, marginBottom: 50 }}>
+            <div style={{ marginTop: 5, marginBottom: 50, }}>
               <Form>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Selecione o laboratório</Form.Label>
-                  <Select id="cadastro_turmas_input_1"
-                    onChange={this.handleChange}
-                    options={this.state.arrayLaboratorios}
-                    placeholder="Laboratório"
-                  />
-                  {/* <Form.Text className="text-muted">
-                      We'll never share your email with anyone else.
-                    </Form.Text> */}
+                <Form.Group controlId="formBasicEmail" style={{ textAlign: 'center' }}>
+                  <Form.Label>Horas Totais</Form.Label>
+                  <FormControl style={{ width: '50%', marginLeft: '25%', textAlign: 'center', alignItems: 'center' }} value={this.state.horasTotais + 'hrs'} />
                 </Form.Group>
-
+                <Form.Group controlId="formBasicEmail" style={{ marginTop: 5, marginBottom: 50, flexDirection: 'row', display: 'flex' }}>
+                  <FormControl onChange={this.handleHoras} type="number" max="4" placeholder="Horas Práticas" style={{ width: '30%', marginLeft: '10%', textAlign: 'center', alignItems: 'center' }} />
+                  <FormControl onChange={this.handleHoras2} type="number" max="4" placeholder="Horas Téoricas" style={{ width: '30%', marginLeft: '20%', textAlign: 'center', alignItems: 'center' }} />
+                </Form.Group>
                 <Modal.Footer>
                   <Button disabled={this.state.habilitarBtn} variant="success" onClick={() => this.cadastrar()}>
                     Cadastrar
@@ -212,12 +283,7 @@ class Tabela extends React.Component {
               icon: 'edit',
               tooltip: 'Save User',
               onClick: (event, rowData) => {
-                if (rowData.hr_aula_semanais_pratica > 0) {
-                  this.setState({ showModal: true })
-                } else {
-                  this.setState({ showAlerta: true })
-                }
-
+                this.inserirHoras(rowData)
               }
             }
           ]}
@@ -225,8 +291,9 @@ class Tabela extends React.Component {
             { title: "ID", field: "id_disciplina" },
             { title: "Código", field: "codigo" },
             { title: "Nome", field: "nome" },
-            { title: "Hrs/Teórica", field: "hr_aula_semanais_teorica" },
-            { title: "Hrs/Prática", field: "hr_aula_semanais_pratica" },
+            { title: "Hrs/Práticas", field: "horas_praticas" },
+            { title: "Hrs/Teóricas", field: "horas_teoricas" },
+            { title: "Créditos", field: "horas_totais" },
             // { title: "Laboratório", field: "botoes", actions: botoes },
 
           ]}
