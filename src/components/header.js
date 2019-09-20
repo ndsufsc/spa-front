@@ -69,7 +69,7 @@ export default function ButtonAppBar() {
           <Button color="inherit" onClick={() => redirecionar()} className={classes.botaoSair}>Sair</Button>
         </Toolbar>
       </AppBar>
-      <div className={header.root}>
+      {/*<div className={header.root}>
         <AppBar position="static" color="inherit" className={classes.appBar2}>
           <Toolbar>	
             <Typography variant="h6" className={header.title}>
@@ -83,7 +83,7 @@ export default function ButtonAppBar() {
             </Typography>
           </Toolbar>
         </AppBar>
-      </div>
+      </div>*/}
     </div>
   );
 }
