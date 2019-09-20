@@ -216,13 +216,16 @@ class Tabela extends React.Component {
 
   }
 
-  async cadastrar(){
-    await api.post("/disciplina/atualizarHorasTeP", {
-      horasPraticas: this.state.horasPraticas,
-      horasTeoricas: this.state.horasTeoricas,
-      idAtualizar: this.state.idAtualizar,
-    })
+  async cadastrar() {
 
+    if (this.state.horasPraticas > 0 && this.state.horasTeoricas > 0) {
+      await api.post("/disciplina/atualizarHorasTeP", {
+        horasPraticas: this.state.horasPraticas,
+        horasTeoricas: this.state.horasTeoricas,
+        idAtualizar: this.state.idAtualizar,
+        id_teorico_pratico: 3
+      })
+    }
     const response = await api.post("/disciplina/obter", {
       id_course: this.state.id_curso, fase: this.state.selectedOption.value
     })

@@ -99,7 +99,11 @@ class App extends React.Component {
       let usuario = JSON.parse(localStorage.getItem('usuario'));
       await this.setState({ step: usuario.etapa })
 
+      const response = await api.post('/login/obterSemestreAtual');
+      console.log("response: ", response.data);
+      
     }
+
   };
 
   render() {

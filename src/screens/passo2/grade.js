@@ -388,7 +388,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
@@ -406,7 +406,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
@@ -424,7 +424,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
@@ -442,7 +442,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
@@ -460,7 +460,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
@@ -478,7 +478,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -495,7 +495,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -512,7 +512,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -529,7 +529,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -546,7 +546,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -563,7 +563,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -580,7 +580,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -597,7 +597,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -614,7 +614,7 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
@@ -755,8 +755,8 @@ class Grade extends React.Component {
           <br />
           <br />
           <Table striped bordered hover
-            style={{ width: '70%' }}
-          >
+            style={{ width: '70%', textAlign: 'center' }}
+            >
             <thead>
               <tr>
                 <th colspan='7' class='text-center'>Matutino</th>
@@ -863,8 +863,8 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table striped bordered hover
-            style={{ width: '70%' }}
-          >
+            style={{ width: '70%', textAlign: 'center' }}
+            >
             <thead>
               <tr>
                 <th colspan='7' class='text-center'>Vespertino</th>
@@ -967,7 +967,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table striped bordered hover
-            style={{ width: '70%' }}
+            style={{ width: '70%', textAlign: 'center' }}
           >
             <thead>
               <tr>
