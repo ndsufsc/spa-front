@@ -78,10 +78,10 @@ class Revisao extends React.Component {
         <div className='tabelas'>
           <Tabela  />
         </div>
-        <div className='buttonsDiv'>
+        {/*<div className='buttonsDiv'>
           <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
           <Button onClick={() => this.redirecionar(this.props)} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-        </div>
+        </div>*/}
       </div>
     );
   }

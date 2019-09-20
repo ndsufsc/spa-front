@@ -200,22 +200,22 @@ class Grade extends React.Component {
       arrayLinhas: [1, 2, 3, 4, 5],
       arrayColunas: [1, 2, 3, 4, 5, 6],
       //matutino
-      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20',linha:1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' , carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10',linha:2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00',linha:3, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00',linha:4, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50',linha:5, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
+      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20',linha:1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' , carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10',linha:2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00',linha:3, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00',linha:4, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50',linha:5, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
       //vespertino
-      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6 ,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9 ,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
+      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6 ,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9 ,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10 , classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
       //noturno
-      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
-      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false], id_curso: '' }],
+      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
+      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14,classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '' ,carregou: [false, false, false, false, false, false] }],
       usuario: '',
       disabled: [false,false,false,false,false,false,false],
       index: '',
@@ -228,12 +228,16 @@ class Grade extends React.Component {
     
     await this.setState({ selectedOptionSemestre, selectedTurma: [], arrayAux: [] });
     
+    console.log("semestre: ", this.state.selectedOptionSemestre.value);
+    
 
     const response = await api.post("/disciplina/obter", {
       id_course: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
     this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false });
+
+    
 
     for (var i = 0; i < response.data.length; i++) {
       var nome = response.data[i].codigo;
@@ -242,10 +246,15 @@ class Grade extends React.Component {
       await this.setState({ disciplinas: [...this.state.disciplinas, { nome: nome, hrs_totais: response.data[i].horas_totais, id_curriculo_disciplina: response.data[i].id_spa_curriculo_disciplina }], carregouDisciplina: true })
     }
 
+    console.log("disciplinas: ", this.state.disciplinas);
+
   };
 
   //buscar turma
   async handleChangeDisciplina(item, index) {
+    console.log("item disciplina: ", item);
+    
+
     this.setState({ selectedTurma: [], arrayAux: [] })
 
     const response = await api.post("/disciplina/buscarCurso", {
@@ -263,6 +272,9 @@ class Grade extends React.Component {
     for (var i = 0; i < response2.data.length; i++) {
       await this.setState({ turmas: [...this.state.turmas, { id_turma: response2.data[i].id_turmas, turma: response2.data[i].codigo }], carregouTurma: true })
     }
+
+
+    console.log("turmas: ", this.state.selectedDisciplina);
     
     this.handleChangeComponente();
   };
@@ -280,6 +292,9 @@ class Grade extends React.Component {
 
   //mudar de turma
   async handleChangeTurma(item, index) {
+    console.log("item: ", item);
+    
+
     if (this.state.arrayAux.length > 0) {
       for (let i = 0; i <= this.state.arrayAux.length; i++) {
         if (this.state.arrayAux[index] == true) {
@@ -314,6 +329,9 @@ class Grade extends React.Component {
         id_usuario: usuario.id_usuario
       })
 
+      console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
+
+
       this.setState({ id_curso: response.data[0].id_curso })
 
       const response2 = await api.post("/disciplina/buscarSemestre", {
@@ -336,11 +354,14 @@ class Grade extends React.Component {
 
     this.state.arrayColunas[i] = this.state.selectedDisciplina
     this.forceUpdate();
+    console.log("meu array: ", this.state.arrayColunas[i]);
   }
 
   //diminui a quantidade de créditos
   diminuirCreditos() {
     this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1 , id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina}  })
+    console.log("selected disciplina: ", this.state.selectedDisciplina);
+
   }
 
   // verifica a quantidade de créditos
@@ -353,6 +374,11 @@ class Grade extends React.Component {
   }
 
   setClass(scheduleId, classIndex, pos) {
+    console.log("schedule m: ", this.state.schedulesMatutino);
+    console.log("schedule m2: ", this.state.schedulesMatutino2);
+    console.log("schedule m3: ", this.state.schedulesMatutino3);
+    console.log("schedule m4: ", this.state.schedulesMatutino4);
+    console.log("schedule m5: ", this.state.schedulesMatutino5);
     
 
     if (pos == 1) {
@@ -362,11 +388,10 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.carregou[classIndex] = true
           }
           return (schedule)
@@ -381,11 +406,10 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -400,11 +424,10 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -419,11 +442,10 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -438,11 +460,10 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.carregou[classIndex] = true
           }
           return schedule
@@ -457,10 +478,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -475,10 +495,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -493,10 +512,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -511,10 +529,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -529,10 +546,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -547,10 +563,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -565,10 +580,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -583,10 +597,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -601,10 +614,9 @@ class Grade extends React.Component {
             this.diminuirCreditos();
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0,7)
+            schedule.classes[classIndex] = this.state.selectedDisciplina.nome
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.id_curso = this.state.id_curso
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
           }
@@ -615,20 +627,16 @@ class Grade extends React.Component {
   }
 
   async salvarGrade() {
-    
     await this.setState({ arrayQuadro:  [{mat1: this.state.schedulesMatutino, mat2: this.state.schedulesMatutino2,
-      mat3: this.state.schedulesMatutino3, mat4: this.state.schedulesMatutino4,
-      mat5: this.state.schedulesMatutino5,
-      vesp1: this.state.schedulesVespertino, vesp2: this.state.schedulesVespertino2,
-      vesp3: this.state.schedulesVespertino3, vesp4: this.state.schedulesVespertino4,
-      vesp5: this.state.schedulesVespertino5,
-      not1: this.state.schedulesNoturno, not2: this.state.schedulesNoturno2,
-      not3: this.state.schedulesNoturno3, not4: this.state.schedulesNoturno4
-    }]})
-    
-    await api.post('/disciplina/salvarTurmas',{
-      vectorClasse: this.state.arrayQuadro[0]
-    })
+                                    mat3: this.state.schedulesMatutino3, mat4: this.state.schedulesMatutino4,
+                                    mat5: this.state.schedulesMatutino5,
+                                    vesp1: this.state.schedulesVespertino, vesp2: this.state.schedulesVespertino2,
+                                    vesp3: this.state.schedulesVespertino3, vesp4: this.state.schedulesVespertino4,
+                                    vesp5: this.state.schedulesVespertino5,
+                                    not1: this.state.schedulesNoturno, not2: this.state.schedulesNoturno2,
+                                    not3: this.state.schedulesNoturno3, not4: this.state.schedulesNoturno4
+                   }]})
+
     console.log("primeiro horário matutino: ", this.state.arrayQuadro);
     
   }
@@ -731,10 +739,10 @@ class Grade extends React.Component {
               }
 
             </div>
-            <div class='buttonsDiv'>
+            {/*<div class='buttonsDiv'>
               <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
               <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-            </div>
+            </div>*/}
           </div>
         </Drawer>
 
@@ -747,7 +755,7 @@ class Grade extends React.Component {
           <br />
           <br />
           <Table striped bordered hover
-            style={{ width: '70%', textAlign: 'center' }}
+            style={{ width: '70%' }}
           >
             <thead>
               <tr>
@@ -855,7 +863,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table striped bordered hover
-            style={{ width: '70%', textAlign: 'center'  }}
+            style={{ width: '70%' }}
           >
             <thead>
               <tr>
@@ -959,7 +967,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table striped bordered hover
-            style={{ width: '70%', textAlign: 'center'  }}
+            style={{ width: '70%' }}
           >
             <thead>
               <tr>

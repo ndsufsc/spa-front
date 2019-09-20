@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
     logoUFSC: {
       height: 50,
       paddingRight: 20,
+    },
+    botaoSalvar: {
+      marginRight: 10,
+    },
+    botaoSair: {
+      marginLeft: 30,
     }
   }),
 );
@@ -35,7 +41,7 @@ const headerStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
         zIndex: 100,
-    },
+    }
   }),
 );
 
@@ -58,7 +64,9 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Sistema de Planegamento Acadêmico
           </Typography>
-          <Button color="inherit" onClick={() => redirecionar()}>Sair</Button>
+          <Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>
+          <Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>
+          <Button color="inherit" onClick={() => redirecionar()} className={classes.botaoSair}>Sair</Button>
         </Toolbar>
       </AppBar>
       <div className={header.root}>
