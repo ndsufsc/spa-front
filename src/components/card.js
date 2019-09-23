@@ -56,10 +56,10 @@ class Card extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div style={{ cursor: 'pointer' }} className={this.props.teorica === 1 ? classes.cardTeorico : classes.cardPratico}>
+            <div style={{ cursor: 'pointer' }} className={this.props.teorica === true ? classes.cardTeorico : classes.cardPratico}>
                 <p className={classes.disciplina}>{this.props.nomeDisciplina}</p>
                 <p className={classes.turma}>{this.props.nomeTurma}</p>
-                <p className={classes.turma}>{this.props.teorica === 1 ? 'TEÓRICA' : 'PRÁTICA'}</p>
+                <p className={classes.turma}>{this.props.teorica === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
             </div>
         )
     }

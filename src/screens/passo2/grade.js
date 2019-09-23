@@ -362,9 +362,6 @@ class Grade extends React.Component {
         id_usuario: usuario.id_usuario
       })
 
-      console.log("RESPONSE BUSCAR CURSO: ", response.data[0].id_curso);
-
-
       this.setState({ id_curso: response.data[0].id_curso })
 
       const response2 = await api.post("/disciplina/buscarSemestre", {
@@ -401,6 +398,9 @@ class Grade extends React.Component {
         await this.setState({ boolean_tp: false })
       }
     }
+
+    console.log(this.state.boolean_tp);
+    
   }
 
   // verifica a quantidade de créditos
@@ -425,8 +425,8 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return (schedule)
         })
@@ -444,8 +444,8 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -463,8 +463,8 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -482,8 +482,8 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -501,8 +501,8 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -520,8 +520,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -538,8 +538,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -556,8 +556,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -574,8 +574,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -592,8 +592,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -610,8 +610,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -628,8 +628,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -646,8 +646,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
@@ -664,8 +664,8 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
-            schedule.boolean_tp[classIndex] = this.state.boolean_tp
             this.diminuirCreditos();
+            schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
           return schedule
         })
