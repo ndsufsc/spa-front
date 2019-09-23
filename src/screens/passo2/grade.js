@@ -1253,10 +1253,10 @@ class Grade extends React.Component {
               }
 
             </div>
-            <div class='buttonsDiv'>
+            {/*<div class='buttonsDiv'>
               <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
               <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-            </div>
+            </div>*/}
           </div>
         </Drawer>
 
