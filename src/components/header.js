@@ -62,7 +62,7 @@ export default function ButtonAppBar() {
         <Toolbar>
           <img src={logoUFSC} alt="UFSC" className={classes.logoUFSC} />	
           <Typography variant="h6" className={classes.title}>
-            Sistema de Planegamento Acadêmico
+            Sistema de Planejamento Acadêmico
           </Typography>
           <Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>
           <Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>
