@@ -265,7 +265,7 @@ class Grade extends React.Component {
       horas_praticas: '',
       horas_teoricas: '',
       boolean_hrs_praticas: false,
-      boolean_tp: false
+      boolean_tp: true
     }
   }
 
@@ -408,21 +408,32 @@ class Grade extends React.Component {
       await this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina } })
     }
 
+ 
+    
+
     if (this.state.boolean_tp == false && this.state.selectedDisciplina.horas_praticas != 0) {
       if (this.state.horas_praticas > 0) {
+        console.log("horas práticas");
         await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
       } else {
+        console.log("else 1");
         await this.setState({ boolean_tp: true })
       }
     } else if (this.state.boolean_tp == true && this.state.selectedDisciplina.horas_teoricas != 0) {
       if (this.state.horas_teoricas > 0) {
+        console.log("horas teoricas");
+
         await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
       } else {
+        console.log("else 2");
+        
         await this.setState({ boolean_tp: false })
       }
     }
 
-    console.log(this.state.boolean_tp);
+    // console.log(this.state.boolean_tp);
+    console.log(this.state.horas_teoricas); 
+    console.log(this.state.horas_praticas); 
     
   }
 
@@ -1154,10 +1165,10 @@ class Grade extends React.Component {
               }
 
             </div>
-            {/*<div class='buttonsDiv'>
+            <div class='buttonsDiv'>
               <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
               <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-            </div>*/}
+            </div>
           </div>
         </Drawer>
 
