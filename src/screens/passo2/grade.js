@@ -291,7 +291,7 @@ class Grade extends React.Component {
       usuario: '',
       disabled: [false, false, false, false, false, false, false],
       index: '',
-      arrayQuadro: '',
+      arrayQuadro: [{classes: []}],
       turmaSelecionada: '',
       horas_praticas: '',
       horas_teoricas: '',
@@ -777,12 +777,7 @@ class Grade extends React.Component {
   }
 
   async salvarGrade() {
-
-    for(let i = 0; i <this.state.schedulesMatutino.classes.length; i++){
-      this.setState({ arrayQuadro: [...this.state.arrayQuadro, this.state.schedulesMatutino[i].classes] })
-    }
-     
-    console.log("primeiro horário matutino: ", this.state.arrayQuadro);
+    
 
   }
 
@@ -1253,10 +1248,10 @@ class Grade extends React.Component {
               }
 
             </div>
-            {/*<div class='buttonsDiv'>
+            <div class='buttonsDiv'>
               <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
               <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-            </div>*/}
+            </div>
           </div>
         </Drawer>
 
