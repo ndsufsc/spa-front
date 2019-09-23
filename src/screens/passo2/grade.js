@@ -29,7 +29,13 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
-import { Table } from 'react-bootstrap'
+import { css } from '@emotion/core';
+
+//react bootstrap
+import { Table, Modal } from 'react-bootstrap'
+
+// load
+import { ClipLoader, BounceLoader } from 'react-spinners';
 
 //MATERIAL ICONS
 import { Delete } from '@material-ui/icons';
@@ -44,6 +50,12 @@ import api from '../../service/api';
 import { Link } from 'react-router-dom'
 
 const drawerWidth = "25%";
+//loading style
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const styles = theme => ({
   root: {
@@ -260,22 +272,22 @@ class Grade extends React.Component {
       arrayLinhas: [1, 2, 3, 4, 5],
       arrayColunas: [1, 2, 3, 4, 5, 6],
       //matutino
-      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', linha: 3, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', linha: 4, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', linha: 5, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
+      schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', linha: 3, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', linha: 4, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', linha: 5, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
       //vespertino
-      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
+      schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
       //noturno
-      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] }],
-      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false] },],
+      schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
+      schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0,0,0,0,0,0] }],
       usuario: '',
       disabled: [false, false, false, false, false, false, false],
       index: '',
@@ -284,7 +296,9 @@ class Grade extends React.Component {
       horas_praticas: '',
       horas_teoricas: '',
       boolean_hrs_praticas: false,
-      boolean_tp: true
+      boolean_tp: true,
+      showLoading: false,
+      turmaCodigo: ''
     }
   }
 
@@ -337,15 +351,21 @@ class Grade extends React.Component {
 
     console.log("response 3 das horas: ", response3.data);
     for (let j = 0; j < response3.data.length; j++) {
-      if (response3.data[j].horas_praticas != 0)
-        this.setState({ horas_praticas: response3.data[j].horas_praticas })
-      if (response3.data[j].horas_teoricas != 0)
-        this.setState({ horas_teoricas: response3.data[j].horas_teoricas })
+      if (response3.data[j].horas_praticas != 0 && response3.data[j].horas_praticas != null)
+        await this.setState({ horas_praticas: response3.data[j].horas_praticas })
+      if (response3.data[j].horas_teoricas != 0 && response3.data[j].horas_praticas != null)
+        await this.setState({ horas_teoricas: response3.data[j].horas_teoricas })
+    } 
 
-    }
+    await this.setState({ showLoading: true });
 
-    // console.log("horas teóricas: ", this.state.horas_teoricas);
-    // console.log("horas práticas: ", this.state.horas_praticas);
+    const sleep = m => new Promise(r => setTimeout(r, m));
+
+    await Promise.all([
+      setTimeout(() => this.setState({ showLoading: false }), 2000),
+    ]);
+
+    await sleep(2250);
 
     if (this.state.horas_praticas != null) {
       this.setState({ boolean_hrs_praticas: true })
@@ -383,7 +403,7 @@ class Grade extends React.Component {
     }
     this.state.selectedTurma[index] = item.turma;
     await this.setState({ carregouGerar: true })
-    this.setState({ turmaSelecionada: item.id_turma })
+    this.setState({ turmaSelecionada: item.id_turma, turmaCodigo: item.turma })
     this.state.arrayAux[index] = true;
     this.forceUpdate();
     this.handleChangeComponente();
@@ -427,11 +447,7 @@ class Grade extends React.Component {
       await this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina } })
     }
 
-    
-    console.log("horas práticas: ", this.state.horas_praticas);
-    console.log("horas teóricas: ", this.state.horas_teoricas);
-
-    if (this.state.boolean_tp == false && this.state.horas_praticas != 0  && this.state.horas_teoricas != 0) {
+    if (this.state.boolean_tp == false && this.state.horas_praticas != 0 && this.state.horas_teoricas != 0) {
       if (this.state.horas_praticas > 0) {
         console.log("horas práticas");
         await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
@@ -446,14 +462,19 @@ class Grade extends React.Component {
         await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
       } else {
         console.log("else 2");
-        
+      }
+
+      if(this.state.horas_teoricas == 0){
+        await this.setState({ boolean_tp: false })
+      }
+      if(this.state.horas_praticas == 0){
         await this.setState({ boolean_tp: false })
       }
     }
 
-    // console.log(this.state.boolean_tp);
-    console.log(this.state.horas_teoricas); 
-    console.log(this.state.horas_praticas); 
+    console.log(this.state.boolean_tp);
+    console.log("hrs teóricas depois: ", this.state.horas_teoricas); 
+    console.log("hrs práticas depois: ",this.state.horas_praticas); 
     
   }
 
@@ -462,11 +483,14 @@ class Grade extends React.Component {
     if (this.state.selectedDisciplina.horas_totais <= 0) {
       this.state.disabled[this.state.index] = true
       alert("Horas totais de créditos preenchidas");
+      this.setState({ boolean_tp: true })
       return 1;
     }
   }
 
   setClass(scheduleId, classIndex, pos) {
+    console.log(this.state.turmaCodigo);
+    
 
     if (pos == 1) {
       this.setState({
@@ -479,6 +503,7 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -498,6 +523,7 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -517,6 +543,7 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -536,6 +563,7 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -555,6 +583,7 @@ class Grade extends React.Component {
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -574,6 +603,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -592,6 +622,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -610,6 +641,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -628,6 +660,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -646,6 +679,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -664,6 +698,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -682,6 +717,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -700,6 +736,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -718,6 +755,7 @@ class Grade extends React.Component {
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.turma = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
+            schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
             schedule.boolean_tp[classIndex] = this.state.boolean_tp
           }
@@ -756,6 +794,33 @@ class Grade extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Header />
         </AppBar>
+        {/* Modal loading */}
+        <Modal
+          show={this.state.showLoading}
+          onHide={this.handleClose}
+          size="sm"
+          style={{marginTop: '5%'}}
+        >
+          <Modal.Header closeButton>Carregando...</Modal.Header>
+          <Modal.Body
+            style={{
+              // background: 'transparent',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{ marginTop: 50, marginBottom: 50 }}>
+              <BounceLoader
+                css={override}
+                sizeUnit={'px'}
+                size={60}
+                color={'#123b7a'}
+                loading={this.state.loading}
+              />
+
+            </div>
+          </Modal.Body>
+        </Modal>
         
         <main className={classes.content}>
 
@@ -788,7 +853,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 1)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={this.state.selectedTurma} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
                         null
@@ -806,7 +871,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 2)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -826,7 +891,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 3)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -845,7 +910,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 4)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -864,7 +929,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 5)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -903,7 +968,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 6)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -922,7 +987,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 7)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -941,7 +1006,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 8)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -976,7 +1041,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 10)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -1015,7 +1080,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 11)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -1034,7 +1099,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 12)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -1053,7 +1118,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 13)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
@@ -1072,7 +1137,7 @@ class Grade extends React.Component {
                   {schedule.classes.map((_class, index) => (
                     <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 14)}>
 
-                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
+                      {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
