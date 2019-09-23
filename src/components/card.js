@@ -8,7 +8,7 @@ const styles = theme => ({
     cardTeorico: {
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: '#d32f2f',
+        backgroundColor: '#2196f3',
         width: 140,
         minHeight: 55,
         borderRadius: 5,
@@ -16,12 +16,13 @@ const styles = theme => ({
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         alignSelf: 'center',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        padding: 5,
     },
     cardPratico: {
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: '#7b1fa2',
+        backgroundColor: '#0d47a1',
         width: 140,
         minHeight: 55,
         borderRadius: 5,
@@ -29,7 +30,8 @@ const styles = theme => ({
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         alignSelf: 'center',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        padding: 5,
     },
     disciplina: {
         color: '#fff',

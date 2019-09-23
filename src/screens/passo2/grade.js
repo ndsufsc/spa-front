@@ -153,9 +153,6 @@ const styles = theme => ({
     marginLeft: 5,
     flexDirection: 'row',
   },
-  delete: {
-
-  },
   cardsRestantes: {
     fontFamily: 'Roboto',
     fontWeight: 500,
@@ -176,7 +173,7 @@ const styles = theme => ({
   cardTeorico: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#d32f2f',
+    backgroundColor: '#2196f3',
     width: 200,
     minHeight: 90,
     borderRadius: 5,
@@ -188,7 +185,7 @@ const styles = theme => ({
   cardPratico: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#7b1fa2',
+    backgroundColor: '#0d47a1',
     width: 200,
     minHeight: 90,
     borderRadius: 5,
@@ -230,7 +227,8 @@ const styles = theme => ({
     cursor: 'pointer', 
     backgroundColor: '#E7E7E7', 
     borderRadius: 5, 
-    height: 55, 
+    height: 55,
+    width: 140,
   },
   tdHora: {
     color: '#707070',
@@ -761,14 +759,12 @@ class Grade extends React.Component {
         
         <main className={classes.content}>
 
-          <div>
-            <center><strong>CADASTRO DE TURMAS</strong><br/>Engenharia de Computação<br/><i>1º Semestre</i></center>
+          <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 25}}>
+            <h4 style={{fontSize: 18, color: '#000'}}>Engenharia de Computação</h4>
+            <h4 style={{fontSize: 18, color: '#000'}}><i>1º Semestre</i></h4>
           </div>
-
-          <br />
-          <br />
           <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
+            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
           >
             <thead>
               <tr style={{backgroundColor: '#FAFAFA'}}>
@@ -884,7 +880,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
+            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
           >
             <thead>
               <tr style={{backgroundColor: '#FAFAFA'}}>
@@ -996,7 +992,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
+            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
           >
             <thead>
               <tr style={{backgroundColor: '#FAFAFA'}}>
