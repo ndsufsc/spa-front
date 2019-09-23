@@ -56,8 +56,6 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor: 'blue',
-
   },
   drawerPaper: {
     width: drawerWidth,
@@ -65,7 +63,8 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    marginTop: '8%'
+    marginTop: 80,
+    width: '75%',
   },
   toolbar: theme.mixins.toolbar,
   spacer: {
@@ -144,24 +143,6 @@ const styles = theme => ({
     marginRight: 20,
     marginBottom: 10,
   },
-  disciplina: {
-    color: '#fff',
-    fontFamily: 'Roboto',
-    fontWeight: 700,
-    textAlign: 'center',
-    margin: 0,
-    padding: 0,
-    fontSize: 14,
-  },
-  turma: {
-    color: '#fff',
-    fontFamily: 'Roboto',
-    fontWeight: 400,
-    textAlign: 'center',
-    margin: 0,
-    padding: 0,
-    fontSize: 12,
-  },
   infoCardDiv: {
     display: 'flex',
     flex: 1,
@@ -191,6 +172,48 @@ const styles = theme => ({
     textAlign: 'center',
     margin: 0,
     padding: 0,
+  },
+  cardTeorico: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#d32f2f',
+    width: 200,
+    minHeight: 90,
+    borderRadius: 5,
+    boxShadow: "1px 1px 3px #9E9E9E",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  cardPratico: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#7b1fa2',
+    width: 200,
+    minHeight: 90,
+    borderRadius: 5,
+    boxShadow: "1px 1px 3px #9E9E9E",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  disciplina: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 700,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+    fontSize: 14,
+  },
+  turma: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 400,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+    fontSize: 12,
   },
 })
 
@@ -702,114 +725,17 @@ class Grade extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Header />
         </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          anchor="right"
-        >
-
-
-          <div className={classes.spacer}></div>
-
-          <div className={classes.contentdrawer}>
-
-            <div className={classes.generator}>
-
-              <div className={classes.cardView}>
-                <div className={classes.infoCardDiv}>
-                  <p className={classes.cardsRestantes}>RESTANTES: <b>{this.state.selectedDisciplina.horas_totais}</b></p>
-                  <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
-                </div>
-                {this.state.carregouComponente ?
-                  <Card nomeDisciplina={this.state.selectedDisciplina.nome} nomeTurma={this.state.selectedTurma} teorica={1} />
-                  : <div style={{ cursor: 'pointer' }} className={classes.card}>
-                    <p className={classes.disciplina}>Selecione a Disciplina</p>
-                    <p className={classes.turma}>Selecione a Turma</p>
-                    <p className={classes.turma}>TIPO</p>
-                  </div>
-                }
-              </div>
-
-              <Select id="cadastro_turmas_input_1"
-                value={selectedOptionSemestre}
-                onChange={this.handleChangeSemestre}
-                options={this.state.array}
-                className={classes.select}
-                placeholder={'Semestre'}
-              />
-
-
-              {this.state.carregouDisciplina ?
-                <FormControl component="fieldset" className={classes.formControl}>
-                  <FormLabel component="legend">Selecione a disciplina:</FormLabel>
-                  <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
-                    className={classes.group}
-                    value={null}
-                    onChange={null}
-                  >
-                    {this.state.disciplinas.map((item, index) => {
-                      return (
-                        <FormControlLabel value={item.nome}
-                          className={classes.formcontrollabel}
-                          control={
-                            <Radio color="primary" disabled={this.state.disabled[index]} onClick={() => this.setState({ index: index })}
-                              className={classes.radio} />
-                          }
-                          label={item.nome}
-                          onClick={() => !this.state.disabled[index] ? self.handleChangeDisciplina(item, index) : null} />
-                      )
-                    })}
-                  </RadioGroup>
-                </FormControl>
-                : null
-              }
-
-              {this.state.carregouTurma ?
-                <FormControl component="fieldset" className={classes.formControl}>
-                  <FormLabel component="legend">Selecione a turma: </FormLabel>
-                  <FormGroup>
-                    {
-                      this.state.turmas.map(function (item, index) {
-                        return (
-                          <FormControlLabel
-                            control={
-                              <Checkbox onChange={() => self.handleChangeTurma(item, index)} value={item.turma} color="primary" className={classes.checkbox} />
-                            }
-                            label={item.turma}
-                            className={classes.formcontrollabel}
-                          />
-                        )
-                      })
-                    }
-                  </FormGroup>
-                  <FormHelperText>Para turmas compartilhadas selecione ambas antes de criar o componente.</FormHelperText>
-                </FormControl>
-                : null
-              }
-
-            </div>
-            {/*<div class='buttonsDiv'>
-              <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
-              <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
-            </div>*/}
-          </div>
-        </Drawer>
-
+        
         <main className={classes.content}>
 
-          <div id="under_header">
-            <center><strong>Cadastro de turmas - Engenharia de Computação - 1 semestre</strong></center>
+          <div>
+            <center><strong>CADASTRO DE TURMAS</strong><br/>Engenharia de Computação<br/><i>1º Semestre</i></center>
           </div>
 
           <br />
           <br />
           <Table striped bordered hover
-            style={{ width: '70%', textAlign: 'center' }}
+            style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
           >
             <thead>
               <tr>
@@ -925,7 +851,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table striped bordered hover
-            style={{ width: '70%', textAlign: 'center' }}
+            style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
           >
             <thead>
               <tr>
@@ -1036,7 +962,7 @@ class Grade extends React.Component {
             </tbody>
           </Table>
           <Table striped bordered hover
-            style={{ width: '70%', textAlign: 'center' }}
+            style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
           >
             <thead>
               <tr>
@@ -1132,6 +1058,108 @@ class Grade extends React.Component {
             </tbody>
           </Table>
         </main>
+
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          anchor="right"
+        >
+
+
+          <div className={classes.spacer}></div>
+
+          <div className={classes.contentdrawer}>
+
+            <div className={classes.generator}>
+
+              <div className={classes.cardView}>
+                <div className={classes.infoCardDiv}>
+                  <p className={classes.cardsRestantes}>RESTANTES: <b>{this.state.selectedDisciplina.horas_totais}</b></p>
+                  <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
+                </div>
+                {this.state.carregouComponente ?
+                  <div style={{ cursor: 'pointer' }} className={1 === 1 ? classes.cardTeorico : classes.cardPratico}>
+                      <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
+                      <p className={classes.turma}>{this.state.selectedTurma}</p>
+                      <p className={classes.turma}>{1 === 1 ? 'TEÓRICA' : 'PRÁTICA'}</p>
+                  </div>
+                  : <div style={{ cursor: 'pointer' }} className={classes.card}>
+                    <p className={classes.disciplina}>Selecione a Disciplina</p>
+                    <p className={classes.turma}>Selecione a Turma</p>
+                    <p className={classes.turma}>TIPO</p>
+                  </div>
+                }
+              </div>
+
+              <Select id="cadastro_turmas_input_1"
+                value={selectedOptionSemestre}
+                onChange={this.handleChangeSemestre}
+                options={this.state.array}
+                className={classes.select}
+                placeholder={'Semestre'}
+              />
+
+
+              {this.state.carregouDisciplina ?
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Selecione a disciplina:</FormLabel>
+                  <RadioGroup
+                    aria-label="gender"
+                    name="gender1"
+                    className={classes.group}
+                    value={null}
+                    onChange={null}
+                  >
+                    {this.state.disciplinas.map((item, index) => {
+                      return (
+                        <FormControlLabel value={item.nome}
+                          className={classes.formcontrollabel}
+                          control={
+                            <Radio color="primary" disabled={this.state.disabled[index]} onClick={() => this.setState({ index: index })}
+                              className={classes.radio} />
+                          }
+                          label={item.nome}
+                          onClick={() => !this.state.disabled[index] ? self.handleChangeDisciplina(item, index) : null} />
+                      )
+                    })}
+                  </RadioGroup>
+                </FormControl>
+                : null
+              }
+
+              {this.state.carregouTurma ?
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Selecione a turma: </FormLabel>
+                  <FormGroup>
+                    {
+                      this.state.turmas.map(function (item, index) {
+                        return (
+                          <FormControlLabel
+                            control={
+                              <Checkbox onChange={() => self.handleChangeTurma(item, index)} value={item.turma} color="primary" className={classes.checkbox} />
+                            }
+                            label={item.turma}
+                            className={classes.formcontrollabel}
+                          />
+                        )
+                      })
+                    }
+                  </FormGroup>
+                  <FormHelperText>Para turmas compartilhadas selecione ambas antes de criar o componente.</FormHelperText>
+                </FormControl>
+                : null
+              }
+
+            </div>
+            {/*<div class='buttonsDiv'>
+              <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
+              <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button>
+            </div>*/}
+          </div>
+        </Drawer>
 
       </div>
     );
