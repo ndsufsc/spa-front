@@ -447,6 +447,8 @@ class Grade extends React.Component {
       await this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina } })
     }
 
+    
+
     if (this.state.boolean_tp == false && this.state.horas_praticas != 0 && this.state.horas_teoricas != 0) {
       if (this.state.horas_praticas > 0) {
         console.log("horas práticas");
@@ -466,10 +468,19 @@ class Grade extends React.Component {
 
       if(this.state.horas_teoricas == 0){
         await this.setState({ boolean_tp: false })
+        console.log(this.state.selectedDisciplina.horas_totais);
+        
+        this.verificaCreditos();
       }
       if(this.state.horas_praticas == 0){
         await this.setState({ boolean_tp: false })
+        console.log(this.state.selectedDisciplina.horas_totais);
+
+        this.verificaCreditos();
       }
+      
+
+    
     }
 
     console.log(this.state.boolean_tp);
@@ -766,19 +777,11 @@ class Grade extends React.Component {
   }
 
   async salvarGrade() {
-    await this.setState({
-      arrayQuadro: [{
-        mat1: this.state.schedulesMatutino, mat2: this.state.schedulesMatutino2,
-        mat3: this.state.schedulesMatutino3, mat4: this.state.schedulesMatutino4,
-        mat5: this.state.schedulesMatutino5,
-        vesp1: this.state.schedulesVespertino, vesp2: this.state.schedulesVespertino2,
-        vesp3: this.state.schedulesVespertino3, vesp4: this.state.schedulesVespertino4,
-        vesp5: this.state.schedulesVespertino5,
-        not1: this.state.schedulesNoturno, not2: this.state.schedulesNoturno2,
-        not3: this.state.schedulesNoturno3, not4: this.state.schedulesNoturno4
-      }]
-    })
 
+    for(let i = 0; i <this.state.schedulesMatutino.classes.length; i++){
+      this.setState({ arrayQuadro: [...this.state.arrayQuadro, this.state.schedulesMatutino[i].classes] })
+    }
+     
     console.log("primeiro horário matutino: ", this.state.arrayQuadro);
 
   }
@@ -1177,10 +1180,10 @@ class Grade extends React.Component {
                   <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 </div>
                 {this.state.carregouComponente ?
-                  <div style={{ cursor: 'pointer' }} className={1 === 1 ? classes.cardTeorico : classes.cardPratico}>
+                  <div style={{ cursor: 'pointer' }} className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}>
                       <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
                       <p className={classes.turma}>{this.state.selectedTurma}</p>
-                      <p className={classes.turma}>{1 === 1 ? 'TEÓRICA' : 'PRÁTICA'}</p>
+                      <p className={classes.turma}>{this.state.boolean_tp === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
                   </div>
                   : <div style={{ cursor: 'pointer' }} className={classes.card}>
                     <p className={classes.disciplina}>Selecione a Disciplina</p>
