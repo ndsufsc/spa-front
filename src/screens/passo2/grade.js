@@ -215,6 +215,27 @@ const styles = theme => ({
     padding: 0,
     fontSize: 12,
   },
+  th: {
+    width: 140,
+    backgroundColor: 'transparent',
+    textTransform: 'uppercase',
+    color: '#3F51B5',
+  },
+  thHorario: {
+    width: 120,
+    textTransform: 'uppercase',
+    color: '#3F51B5',
+  },
+  tdDrop: { 
+    cursor: 'pointer', 
+    backgroundColor: '#E7E7E7', 
+    borderRadius: 5, 
+    height: 55, 
+  },
+  tdHora: {
+    color: '#707070',
+    textTransform: 'uppercase',
+  }
 })
 
 class Grade extends React.Component {
@@ -408,10 +429,11 @@ class Grade extends React.Component {
       await this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina } })
     }
 
- 
     
+    console.log("horas práticas: ", this.state.horas_praticas);
+    console.log("horas teóricas: ", this.state.horas_teoricas);
 
-    if (this.state.boolean_tp == false && this.state.selectedDisciplina.horas_praticas != 0) {
+    if (this.state.boolean_tp == false && this.state.horas_praticas != 0  && this.state.horas_teoricas != 0) {
       if (this.state.horas_praticas > 0) {
         console.log("horas práticas");
         await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
@@ -419,7 +441,7 @@ class Grade extends React.Component {
         console.log("else 1");
         await this.setState({ boolean_tp: true })
       }
-    } else if (this.state.boolean_tp == true && this.state.selectedDisciplina.horas_teoricas != 0) {
+    } else if (this.state.boolean_tp == true && this.state.horas_teoricas != 0) {
       if (this.state.horas_teoricas > 0) {
         console.log("horas teoricas");
 
@@ -745,35 +767,35 @@ class Grade extends React.Component {
 
           <br />
           <br />
-          <Table striped bordered hover
+          <Table borderless
             style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
           >
             <thead>
-              <tr>
-                <th colspan='7' class='text-center'>Matutino</th>
+              <tr style={{backgroundColor: '#FAFAFA'}}>
+                <th></th>
+                <th colspan='6' class='text-center' style={{color: '#707070'}}>MATUTINO</th>
               </tr>
               <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
+                <th className={classes.thHorario}>Horários</th>
+                <th className={classes.th}>Segunda</th>
+                <th className={classes.th}>Terça</th>
+                <th className={classes.th}>Quarta</th>
+                <th className={classes.th}>Quinta</th>
+                <th className={classes.th}>Sexta</th>
+                <th className={classes.th}>Sábado</th>
               </tr>
             </thead>
             <tbody>
 
               {this.state.schedulesMatutino.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 1)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 1)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={this.state.selectedTurma} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
-
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -784,15 +806,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesMatutino2.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 2)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 2)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -804,15 +826,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesMatutino3.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 3)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 3)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -823,15 +845,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesMatutino4.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 4)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 4)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -842,15 +864,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesMatutino5.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 5)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 5)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -861,34 +883,35 @@ class Grade extends React.Component {
               }
             </tbody>
           </Table>
-          <Table striped bordered hover
+          <Table borderless
             style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
           >
             <thead>
-              <tr>
-                <th colspan='7' class='text-center'>Vespertino</th>
+              <tr style={{backgroundColor: '#FAFAFA'}}>
+                <th></th>
+                <th colspan='6' class='text-center' style={{color: '#707070'}}>VESPERTINO</th>
               </tr>
               <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
+                <th className={classes.thHorario}>Horários</th>
+                <th className={classes.th}>Segunda</th>
+                <th className={classes.th}>Terça</th>
+                <th className={classes.th}>Quarta</th>
+                <th className={classes.th}>Quinta</th>
+                <th className={classes.th}>Sexta</th>
+                <th className={classes.th}>Sábado</th>
               </tr>
             </thead>
             <tbody>
               {this.state.schedulesVespertino.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 6)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 6)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -899,15 +922,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesVespertino2.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 7)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 7)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -918,15 +941,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesVespertino3.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 8)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 8)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -937,12 +960,12 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesVespertino4.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => { schedule.carregou[index] ? console.log("deletar posição: ", index) : this.setClass(schedule.id, index, 9) }}>{!_class ? '' : _class}
+                    <td className={classes.tdDrop} onClick={() => { schedule.carregou[index] ? console.log("deletar posição: ", index) : this.setClass(schedule.id, index, 9) }}>{!_class ? '' : _class}
 
                       {schedule.carregou[index] ?
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -953,15 +976,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesVespertino5.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 10)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 10)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -972,34 +995,35 @@ class Grade extends React.Component {
               }
             </tbody>
           </Table>
-          <Table striped bordered hover
+          <Table borderless
             style={{ width: '100%', textAlign: 'center', backgroundColor: '#fff' }}
           >
             <thead>
-              <tr>
-                <th colspan='7' class='text-center'>Noturno</th>
+              <tr style={{backgroundColor: '#FAFAFA'}}>
+                <th></th>
+                <th colspan='6' class='text-center' style={{color: '#707070'}}>NOTURNO</th>
               </tr>
               <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
+                <th className={classes.thHorario}>Horários</th>
+                <th className={classes.th}>Segunda</th>
+                <th className={classes.th}>Terça</th>
+                <th className={classes.th}>Quarta</th>
+                <th className={classes.th}>Quinta</th>
+                <th className={classes.th}>Sexta</th>
+                <th className={classes.th}>Sábado</th>
               </tr>
             </thead>
             <tbody>
               {this.state.schedulesNoturno.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 11)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 11)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -1010,15 +1034,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesNoturno2.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 12)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 12)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -1029,15 +1053,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesNoturno3.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 13)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 13)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
@@ -1048,15 +1072,15 @@ class Grade extends React.Component {
               }
 
               {this.state.schedulesNoturno4.map(schedule => (
-                <tr> <td>{schedule.label}</td>
+                <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                   {schedule.classes.map((_class, index) => (
-                    <td style={{ cursor: 'pointer' }} onClick={() => this.setClass(schedule.id, index, 14)}>
+                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 14)}>
 
                       {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={'000000'} teorica={schedule.boolean_tp[index]} />}
 
                       {schedule.carregou[index] ?
 
-                        <Close color="action" style={{ fontSize: 20 }} />
+                        null
                         : null
                       }
 
