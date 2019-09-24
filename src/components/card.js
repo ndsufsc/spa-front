@@ -1,32 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from "@material-ui/core/styles"
+import { Close } from '@material-ui/icons';
 
 
 const styles = theme => ({
     cardTeorico: {
         display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#d32f2f',
-        width: 100,
-        minHeight: 45,
+        flexDirection: 'row',
+        backgroundColor: '#2196f3',
+        width: 140,
+        minHeight: 55,
         borderRadius: 5,
         boxShadow: "1px 1px 3px #9E9E9E",
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
         alignSelf: 'center',
+        cursor: 'pointer',
+        padding: 5,
     },
     cardPratico: {
         display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#7b1fa2',
-        width: 100,
-        minHeight: 45,
+        flexDirection: 'row',
+        backgroundColor: '#0d47a1',
+        width: 140,
+        minHeight: 55,
         borderRadius: 5,
         boxShadow: "1px 1px 3px #9E9E9E",
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
         alignSelf: 'center',
+        cursor: 'pointer',
+        padding: 5,
     },
     disciplina: {
         color: '#fff',
@@ -56,10 +61,14 @@ class Card extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div style={{ cursor: 'pointer' }} className={this.props.teorica === 1 ? classes.cardTeorico : classes.cardPratico}>
-                <p className={classes.disciplina}>{this.props.nomeDisciplina}</p>
-                <p className={classes.turma}>{this.props.nomeTurma}</p>
-                <p className={classes.turma}>{this.props.teorica === 1 ? 'TEÓRICA' : 'PRÁTICA'}</p>
+            <div className={this.props.teorica == true ? classes.cardTeorico : classes.cardPratico}>
+                <div />
+                <div>
+                    <p className={classes.disciplina}>{this.props.nomeDisciplina}</p>
+                    <p className={classes.turma}>{this.props.nomeTurma}</p>
+                    <p className={classes.turma}>{this.props.teorica === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
+                </div>
+                <Close style={{ fontSize: 20, color: '#fff' }} />
             </div>
         )
     }

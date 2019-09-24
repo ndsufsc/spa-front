@@ -8,23 +8,22 @@ import api from '../service/api';
 
 //MATERIAL UI COMPONENTES
 import MaterialTable from "material-table";
-import {
-  AddBox,
-  ArrowUpward,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  Clear,
-  DeleteOutline,
-  Edit,
-  FilterList,
-  FirstPage,
-  LastPage,
-  Remove,
-  SaveAlt,
-  Search,
-  ViewColumn
-} from "@material-ui/icons";
+
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
 import Select from 'react-select'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -71,6 +70,29 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  select: {
+    width: '100%',
+  },
+  divtabela: {
+    width: '65%',
+    marginLeft: '5%',
+    marginRight: '5%',
+  },
+  divSelect: {
+    width: '25%',
+    marginLeft: '5%',
+    display: 'flex',
+    justifyContent: 'center',
+    flex: 1,
+    alignItems: 'center',
+  },
+  main: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: 50,
+  }
 })
 
 class Tabela extends React.Component {
@@ -235,15 +257,9 @@ class Tabela extends React.Component {
 
   render() {
     const { selectedOption } = this.state;
+    const { classes } = this.props;
     return (
-      <div>
-        <Select id="cadastro_turmas_input_1"
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={this.state.array}
-          style={{ marginBottom: 20 }}
-        />
-
+      <div>        
         <Modal
           show={this.state.showModal}
           onHide={() => this.setState({ showModal: false, ultimoClique: '', primeiroClique: true, primeiroClique2: true, horasTeoricas: '', horasPraticas: '' })}
@@ -276,38 +292,52 @@ class Tabela extends React.Component {
             </div>
           </Modal.Body>
         </Modal>
+        
+        <div className={classes.main}>
+          <div className={classes.divSelect} style={{zIndex: 200}}>
+            <Select id="cadastro_turmas_input_1"
+              value={selectedOption}
+              onChange={this.handleChange}
+              options={this.state.array}
+              className={classes.select}
+              placeholder="Selecione o Semestre"
+            />
+          </div>
 
-        <MaterialTable
-          icons={tableIcons}
-          rowsPerPage={10}
-          actions={[
-            {
-              header: 'Laboratório',
-              icon: 'edit',
-              tooltip: 'Save User',
-              onClick: (event, rowData) => {
-                this.inserirHoras(rowData)
-              }
-            }
-          ]}
-          columns={[
-            { title: "ID", field: "id_disciplina" },
-            { title: "Código", field: "codigo" },
-            { title: "Nome", field: "nome" },
-            { title: "Hrs/Práticas", field: "horas_praticas" },
-            { title: "Hrs/Teóricas", field: "horas_teoricas" },
-            { title: "Créditos", field: "horas_totais" },
-            // { title: "Laboratório", field: "botoes", actions: botoes },
+          <div className={classes.divtabela} style={{zIndex:1}}>
+            <MaterialTable
+              className={classes.tabela}
+              icons={tableIcons}
+              columns={[
+                { title: "ID", field: "id_disciplina" },
+                { title: "Código", field: "codigo" },
+                { title: "Nome", field: "nome" },
+                { title: "Hrs/Práticas", field: "horas_praticas" },
+                { title: "Hrs/Teóricas", field: "horas_teoricas" },
+                { title: "Créditos", field: "horas_totais" },
+                // { title: "Laboratório", field: "botoes", actions: botoes },
 
-          ]}
-          localization={{
-            header: {
-              actions: 'Laboratório'
-            },
-          }}
-          data={this.state.disciplinas}
-          title="Disciplinas Ofertadas"
-        />
+              ]}
+              actions={[
+                {
+                  header: 'Laboratório',
+                  icon: Edit,
+                  tooltip: 'Editar Laboratório',
+                  onClick: (event, rowData) => {
+                    this.inserirHoras(rowData)
+                  }
+                }
+              ]}
+              localization={{
+                header: {
+                  actions: 'Laboratório'
+                },
+              }}
+              data={this.state.disciplinas}
+              title=""
+            />
+          </div>
+        </div>
       </div >
     )
   }
