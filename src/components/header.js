@@ -49,13 +49,13 @@ const headerStyles = makeStyles((theme: Theme) =>
 
 export default function ButtonAppBar() {
   function redirecionar () {
-    // localStorage.removeItem('login');
-    // localStorage.removeItem('usuario');
-    this.props.history.push('/')
+    localStorage.clear();
+    window.location.href = '/';
   }
   
   const classes = useStyles();
   const header = headerStyles();
+
   return (
     <div className= {classes.root}>
       <AppBar position="static" className={classes.appBar}>
