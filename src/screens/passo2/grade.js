@@ -463,30 +463,24 @@ class Grade extends React.Component {
 
     if (this.state.boolean_tp == false && this.state.horas_praticas != 0 && this.state.horas_teoricas != 0) {
       if (this.state.horas_praticas > 0) {
-        console.log("horas práticas");
         await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
       } else {
-        console.log("else 1");
         await this.setState({ boolean_tp: true })
       }
     } else if (this.state.boolean_tp == true && this.state.horas_teoricas != 0) {
       if (this.state.horas_teoricas > 0) {
-        console.log("horas teoricas");
 
         await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
       } else {
-        console.log("else 2");
       }
 
       if (this.state.horas_teoricas == 0) {
         await this.setState({ boolean_tp: false })
-        console.log(this.state.selectedDisciplina.horas_totais);
 
         this.verificaCreditos();
       }
       if (this.state.horas_praticas == 0) {
         await this.setState({ boolean_tp: false })
-        console.log(this.state.selectedDisciplina.horas_totais);
 
         this.verificaCreditos();
       }
@@ -494,10 +488,6 @@ class Grade extends React.Component {
 
 
     }
-
-    console.log(this.state.boolean_tp);
-    console.log("hrs teóricas depois: ", this.state.horas_teoricas);
-    console.log("hrs práticas depois: ", this.state.horas_praticas);
 
   }
 
@@ -512,8 +502,6 @@ class Grade extends React.Component {
   }
 
   setClass(scheduleId, classIndex, pos) {
-    console.log(this.state.turmaCodigo);
-
 
     if (pos == 1) {
       this.setState({
@@ -810,7 +798,8 @@ class Grade extends React.Component {
     let arrayTeste = [];
     arrayTeste = [this.state.arrayQuadroMatutino, this.state.arrayQuadroMatutino2, this.state.arrayQuadroMatutino3, this.state.arrayQuadroMatutino4, this.state.arrayQuadroMatutino5];
 
-    console.log("array Quadro : ", arrayTeste);
+    console.log("array teste: ", arrayTeste);
+    
 
   }
 
