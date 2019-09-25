@@ -245,7 +245,10 @@ const styles = theme => ({
   tdHora: {
     color: '#707070',
     textTransform: 'uppercase',
-  }
+  },
+  botaoSalvar: {
+    marginRight: 10,
+  },
 })
 
 class Grade extends React.Component {
@@ -823,7 +826,9 @@ class Grade extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <Header />
+          <Header botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
+                  botaoSalvarContinuar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
+          />
         </AppBar>
         {/* Modal loading */}
         <Modal
