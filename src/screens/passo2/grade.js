@@ -782,11 +782,11 @@ class Grade extends React.Component {
   async salvarGrade() {
 
     for (let i = 0; i < 6; i++) {
-      await this.setState({ arrayQuadroMatutino: { classes: [...this.state.arrayQuadroMatutino.classes, this.state.schedulesMatutino[0].classes[i]], semestre: this.state.schedulesMatutino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino.id_curriculo_disciplina, this.state.schedulesMatutino[0].id_curriculo_disciplina[i]] } })
-      await this.setState({ arrayQuadroMatutino2: { classes: [...this.state.arrayQuadroMatutino2.classes, this.state.schedulesMatutino2[0].classes[i]] } })
-      await this.setState({ arrayQuadroMatutino3: { classes: [...this.state.arrayQuadroMatutino3.classes, this.state.schedulesMatutino3[0].classes[i]] } })
-      await this.setState({ arrayQuadroMatutino4: { classes: [...this.state.arrayQuadroMatutino4.classes, this.state.schedulesMatutino4[0].classes[i]] } })
-      await this.setState({ arrayQuadroMatutino5: { classes: [...this.state.arrayQuadroMatutino5.classes, this.state.schedulesMatutino5[0].classes[i]] } })
+      await this.setState({ arrayQuadroMatutino: { classes: [...this.state.arrayQuadroMatutino.classes, this.state.schedulesMatutino[0].classes[i]], semestre: this.state.schedulesMatutino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino.id_curriculo_disciplina, this.state.schedulesMatutino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino.linha } })
+      await this.setState({ arrayQuadroMatutino2: { classes: [...this.state.arrayQuadroMatutino2.classes, this.state.schedulesMatutino2[0].classes[i]],  semestre: this.state.schedulesMatutino2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino2.id_curriculo_disciplina, this.state.schedulesMatutino2[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino2[0].linha } })
+      await this.setState({ arrayQuadroMatutino3: { classes: [...this.state.arrayQuadroMatutino3.classes, this.state.schedulesMatutino3[0].classes[i]],  semestre: this.state.schedulesMatutino3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino3.id_curriculo_disciplina, this.state.schedulesMatutino3[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino3[0].linha } })
+      await this.setState({ arrayQuadroMatutino4: { classes: [...this.state.arrayQuadroMatutino4.classes, this.state.schedulesMatutino4[0].classes[i]],  semestre: this.state.schedulesMatutino4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino4.id_curriculo_disciplina, this.state.schedulesMatutino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino4[0].linha } })
+      await this.setState({ arrayQuadroMatutino5: { classes: [...this.state.arrayQuadroMatutino5.classes, this.state.schedulesMatutino5[0].classes[i]] },  semestre: this.state.schedulesMatutino5[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino5[0].id_curriculo_disciplina, this.state.schedulesMatutino5[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino5[0].linha })
       await this.setState({ arrayQuadroVespertino: { classes: [...this.state.arrayQuadroVespertino.classes, this.state.schedulesVespertino[0].classes[i]] } })
       await this.setState({ arrayQuadroVespertino2: { classes: [...this.state.arrayQuadroVespertino2.classes, this.state.schedulesVespertino2[0].classes[i]] } })
       await this.setState({ arrayQuadroVespertino3: { classes: [...this.state.arrayQuadroVespertino3.classes, this.state.schedulesVespertino3[0].classes[i]] } })
@@ -804,6 +804,14 @@ class Grade extends React.Component {
     console.log("array teste: ", arrayTeste);
     
 
+    // await api.post('/disciplina/salvarTurmas', {
+    //   vetorGrade: arrayTeste,
+    //   id_semestre: this.state.selectedOptionSemestre.value
+    // })
+
+    
+
+
   }
 
   render() {
@@ -816,7 +824,7 @@ class Grade extends React.Component {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Header botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
-                  botaoSalvarContinuar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
+            botaoSalvarContinuar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
           />
         </AppBar>
         {/* Modal loading */}
