@@ -820,51 +820,12 @@ class Grade extends React.Component {
 
     console.log("array teste: ", vetorGrade);
 
-    let i = 0;
-    for (i = 0; i < 6; i++) {
-      let j = 0;
-      let id_semestre = 2;
-
-      for (j = 0; j < vetorGrade.length; j++) {
-
-          // if (vetorGrade[i].classes[j] == vetorGrade[i].classes[j + 1] && vetorGrade[i].classes[j] != null)
-          // { qtd_aulas++; }
-          
-      
-          if (vetorGrade[j].id_curriculo_disciplina[i] != null) {  
-            console.log("entrando aqui!");
-            
-            let qtd_aulas = 0;
-
-            // while (j<vetorGrade.length) {
-            //     qtd_aulas++;
-            //     if (vetorGrade[j].id_curriculo_disciplina[i] != vetorGrade[j + 1].id_curriculo_disciplina[i] || vetorGrade[j].turma[i] != vetorGrade[j + 1].turma[i]) {
-            //         break;
-            //     }
-            //     j++;
-            // }
-
-            var post = {
-                id_sala: 1,
-                id_professor: 1,
-                id_semestre: `${id_semestre}`,
-                id_turma: `${vetorGrade[j].turma[i]}`,
-                id_curriculo_disciplina: `${vetorGrade[j].id_curriculo_disciplina[i]}`,
-                id_horario_inicio: `${vetorGrade[j].linha}`,
-                dia_semana: i+2,
-                qtde_aulas: qtd_aulas,
-                teorico: 3,
-            };
-            console.log(post);
-          }
-        }
-      }
     
 
-    // await api.post('/disciplina/salvarTurmas', {
-    //   vetorGrade: vetorGrade,
-    //   id_semestre: this.state.selectedOptionSemestre.value
-    // })
+    await api.post('/disciplina/salvarTurmas', {
+      vetorGrade: vetorGrade,
+      id_semestre: this.state.selectedOptionSemestre.value
+    })
 
     
 
