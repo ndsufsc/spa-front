@@ -812,8 +812,7 @@ class Grade extends React.Component {
       this.setState({ arrayQuadroNoturno2: { classes: [...this.state.arrayQuadroNoturno2.classes, this.state.schedulesNoturno2[0].classes[i]], semestre: this.state.schedulesNoturno2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno2.id_curriculo_disciplina, this.state.schedulesNoturno2[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno2[0].linha,  turma: [...this.state.arrayQuadroNoturno2.turma, this.state.schedulesNoturno2[0].turma[i]] } })
       this.setState({ arrayQuadroNoturno3: { classes: [...this.state.arrayQuadroNoturno3.classes, this.state.schedulesNoturno3[0].classes[i]], semestre: this.state.schedulesNoturno3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno3.id_curriculo_disciplina, this.state.schedulesNoturno3[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno3[0].linha,  turma: [...this.state.arrayQuadroVespertino5.turma, this.state.schedulesNoturno3[0].turma[i]] } })
       this.setState({ arrayQuadroNoturno4: { classes: [...this.state.arrayQuadroNoturno4.classes, this.state.schedulesNoturno4[0].classes[i]], semestre: this.state.schedulesNoturno4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno4.id_curriculo_disciplina, this.state.schedulesNoturno4[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno4[0].linha,  turma: [...this.state.arrayQuadroNoturno4.turma, this.state.schedulesNoturno4[0].turma[i]] } })
-      await console.log("");
-      
+     await console.log("") 
     }
 
     var vetorGrade = [];
