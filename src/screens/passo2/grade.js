@@ -416,7 +416,7 @@ class Grade extends React.Component {
         }
       }
     }
-    this.state.selectedTurma.nome[index] = item.turma;
+    this.state.selectedTurma[index] = item.turma;
     await this.setState({ carregouGerar: true })
     this.setState({ turmaSelecionada: item.id_turma, turmaCodigo: item.turma })
     this.state.arrayAux[index] = true;
@@ -512,13 +512,8 @@ class Grade extends React.Component {
           if (schedule.id === scheduleId) {
             if (this.verificaCreditos() == 1)
               return (schedule);
-<<<<<<< HEAD
-            schedule.classes[classIndex] = this.state.selectedTurma.nome.substring(0, 7)
-            schedule.turma = this.state.turmaSelecionada
-=======
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.turma[classIndex] = this.state.turmaSelecionada
->>>>>>> 8276fcea7389d602216ec5a48ddbaff5b1155763
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
