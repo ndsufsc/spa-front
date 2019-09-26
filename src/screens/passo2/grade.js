@@ -812,8 +812,7 @@ class Grade extends React.Component {
       this.setState({ arrayQuadroNoturno2: { classes: [...this.state.arrayQuadroNoturno2.classes, this.state.schedulesNoturno2[0].classes[i]], semestre: this.state.schedulesNoturno2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno2.id_curriculo_disciplina, this.state.schedulesNoturno2[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno2[0].linha,  turma: [...this.state.arrayQuadroNoturno2.turma, this.state.schedulesNoturno2[0].turma[i]] } })
       this.setState({ arrayQuadroNoturno3: { classes: [...this.state.arrayQuadroNoturno3.classes, this.state.schedulesNoturno3[0].classes[i]], semestre: this.state.schedulesNoturno3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno3.id_curriculo_disciplina, this.state.schedulesNoturno3[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno3[0].linha,  turma: [...this.state.arrayQuadroVespertino5.turma, this.state.schedulesNoturno3[0].turma[i]] } })
       this.setState({ arrayQuadroNoturno4: { classes: [...this.state.arrayQuadroNoturno4.classes, this.state.schedulesNoturno4[0].classes[i]], semestre: this.state.schedulesNoturno4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno4.id_curriculo_disciplina, this.state.schedulesNoturno4[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno4[0].linha,  turma: [...this.state.arrayQuadroNoturno4.turma, this.state.schedulesNoturno4[0].turma[i]] } })
-      await console.log("");
-      
+     await console.log("") 
     }
 
     var vetorGrade = [];
@@ -821,51 +820,12 @@ class Grade extends React.Component {
 
     console.log("array teste: ", vetorGrade);
 
-    let i = 0;
-    for (i = 0; i < 6; i++) {
-      let j = 0;
-      let id_semestre = 2;
-
-      for (j = 0; j < vetorGrade.length; j++) {
-
-          // if (vetorGrade[i].classes[j] == vetorGrade[i].classes[j + 1] && vetorGrade[i].classes[j] != null)
-          // { qtd_aulas++; }
-          
-      
-          if (vetorGrade[j].id_curriculo_disciplina[i] != null) {  
-            console.log("entrando aqui!");
-            
-            let qtd_aulas = 0;
-
-            // while (j<vetorGrade.length) {
-            //     qtd_aulas++;
-            //     if (vetorGrade[j].id_curriculo_disciplina[i] != vetorGrade[j + 1].id_curriculo_disciplina[i] || vetorGrade[j].turma[i] != vetorGrade[j + 1].turma[i]) {
-            //         break;
-            //     }
-            //     j++;
-            // }
-
-            var post = {
-                id_sala: 1,
-                id_professor: 1,
-                id_semestre: `${id_semestre}`,
-                id_turma: `${vetorGrade[j].turma[i]}`,
-                id_curriculo_disciplina: `${vetorGrade[j].id_curriculo_disciplina[i]}`,
-                id_horario_inicio: `${vetorGrade[j].linha}`,
-                dia_semana: i+2,
-                qtde_aulas: qtd_aulas,
-                teorico: 3,
-            };
-            console.log(post);
-          }
-        }
-      }
     
 
-    // await api.post('/disciplina/salvarTurmas', {
-    //   vetorGrade: vetorGrade,
-    //   id_semestre: this.state.selectedOptionSemestre.value
-    // })
+    await api.post('/disciplina/salvarTurmas', {
+      vetorGrade: vetorGrade,
+      id_semestre: this.state.selectedOptionSemestre.value
+    })
 
     
 
