@@ -294,20 +294,20 @@ class Grade extends React.Component {
       usuario: '',
       disabled: [false, false, false, false, false, false, false],
       index: '',
-      arrayQuadroMatutino: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroMatutino2: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroMatutino3: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroMatutino4: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroMatutino5: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroVespertino: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroVespertino2: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroVespertino3: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroVespertino4: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroVespertino5: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroNoturno: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroNoturno2: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroNoturno3: { classes: [], id_curriculo_disciplina: [] },
-      arrayQuadroNoturno4: { classes: [], id_curriculo_disciplina: [] },
+      arrayQuadroMatutino: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroMatutino2: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroMatutino3: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroMatutino4: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroMatutino6: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroVespertino: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroVespertino2: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroVespertino3: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroVespertino4: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroVespertino5: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroNoturno: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroNoturno2: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroNoturno3: { classes: [], id_curriculo_disciplina: [], turma: [] },
+      arrayQuadroNoturno4: { classes: [], id_curriculo_disciplina: [], turma: [] },
       horas_praticas: '',
       horas_teoricas: '',
       boolean_hrs_praticas: false,
@@ -513,7 +513,7 @@ class Grade extends React.Component {
             if (this.verificaCreditos() == 1)
               return (schedule);
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
@@ -533,7 +533,7 @@ class Grade extends React.Component {
             if (this.verificaCreditos() == 1)
               return (schedule);
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
@@ -553,7 +553,7 @@ class Grade extends React.Component {
             if (this.verificaCreditos() == 1)
               return (schedule);
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
@@ -573,7 +573,7 @@ class Grade extends React.Component {
             if (this.verificaCreditos() == 1)
               return (schedule);
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
@@ -593,7 +593,7 @@ class Grade extends React.Component {
             if (this.verificaCreditos() == 1)
               return (schedule);
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
             schedule.carregou[classIndex] = true
@@ -615,7 +615,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -634,7 +634,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -653,7 +653,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -672,7 +672,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -691,7 +691,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -710,7 +710,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -729,7 +729,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -748,7 +748,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -767,7 +767,7 @@ class Grade extends React.Component {
             schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
-            schedule.turma = this.state.turmaSelecionada
+            schedule.turma[classIndex] = this.state.turmaSelecionada
             schedule.carregou[classIndex] = true
             schedule.turmaCodigo[classIndex] = this.state.turmaCodigo
             this.diminuirCreditos();
@@ -780,39 +780,88 @@ class Grade extends React.Component {
   }
 
   async salvarGrade() {
+    
+    console.log("schedules matutino5 : ", this.state.schedulesMatutino5);
+    
+    
+    for(let i = 0; i < 3; i++){
+      this.setState({ arrayQuadroMatutino: { classes: [...this.state.arrayQuadroMatutino.classes, this.state.schedulesMatutino4[0].classes[i]] },  id_curriculo_disciplina: [...this.state.arrayQuadroMatutino.id_curriculo_disciplina, this.state.schedulesMatutino4[0].id_curriculo_disciplina[i]], semestre: this.state.schedulesMatutino4[0].semestre, linha: this.state.schedulesMatutino4[0].linha, turma: [...this.state.arrayQuadroMatutino.turma, this.state.schedulesMatutino4[0].turma[i]] })
+    }
 
-    console.log("m1: ", this.state.schedulesMatutino[0]);
-    console.log("m2: ", this.state.schedulesMatutino2[0]);
-    console.log("m3: ", this.state.schedulesMatutino3[0]);
-    console.log("m4: ", this.state.schedulesMatutino4[0]);
-    console.log("m5: ", this.state.schedulesMatutino5[0]);
+    console.log("array quadro matutino 5: ", this.state.arrayQuadroMatutino6);
     
 
-    // for (let i = 0; i < 6; i++) {
-    //   await this.setState({ arrayQuadroMatutino: { classes: [...this.state.arrayQuadroMatutino.classes, this.state.schedulesMatutino[0].classes[i]], semestre: this.state.schedulesMatutino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino.id_curriculo_disciplina, this.state.schedulesMatutino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino.linha } })
-    //   await this.setState({ arrayQuadroMatutino2: { classes: [...this.state.arrayQuadroMatutino2.classes, this.state.schedulesMatutino2[0].classes[i]],  semestre: this.state.schedulesMatutino2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino2.id_curriculo_disciplina, this.state.schedulesMatutino2[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino2[0].linha } })
-    //   await this.setState({ arrayQuadroMatutino3: { classes: [...this.state.arrayQuadroMatutino3.classes, this.state.schedulesMatutino3[0].classes[i]],  semestre: this.state.schedulesMatutino3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino3.id_curriculo_disciplina, this.state.schedulesMatutino3[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino3[0].linha } })
-    //   await this.setState({ arrayQuadroMatutino4: { classes: [...this.state.arrayQuadroMatutino4.classes, this.state.schedulesMatutino4[0].classes[i]],  semestre: this.state.schedulesMatutino4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino4.id_curriculo_disciplina, this.state.schedulesMatutino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino4[0].linha } })
-    //   await this.setState({ arrayQuadroMatutino5: { classes: [...this.state.arrayQuadroMatutino5.classes, this.state.schedulesMatutino5[0].classes[i]] },  semestre: this.state.schedulesMatutino5[0].semestre, id_curriculo_disciplina: [...this.state.schedulesMatutino5[0].id_curriculo_disciplina, this.state.schedulesMatutino5[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroMatutino5[0].linha })
-    //   await this.setState({ arrayQuadroVespertino: { classes: [...this.state.arrayQuadroVespertino.classes, this.state.schedulesVespertino[0].classes[i]],  semestre: this.state.arrayQuadroVespertino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino.id_curriculo_disciplina, this.state.arrayQuadroVespertino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroVespertino.linha } })
-    //   await this.setState({ arrayQuadroVespertino2: { classes: [...this.state.arrayQuadroVespertino2.classes, this.state.schedulesVespertino2[0].classes[i]],semestre: this.state.arrayQuadroVespertino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino.id_curriculo_disciplina, this.state.arrayQuadroVespertino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroVespertino.linha  } })
-    //   await this.setState({ arrayQuadroVespertino3: { classes: [...this.state.arrayQuadroVespertino3.classes, this.state.schedulesVespertino3[0].classes[i]], semestre: this.state.arrayQuadroVespertino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino.id_curriculo_disciplina, this.state.arrayQuadroVespertino[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroVespertino.linha } })
-    //   await this.setState({ arrayQuadroVespertino4: { classes: [...this.state.arrayQuadroVespertino4.classes, this.state.schedulesVespertino4[0].classes[i]] } })
-    //   await this.setState({ arrayQuadroVespertino5: { classes: [...this.state.arrayQuadroVespertino5.classes, this.state.schedulesVespertino5[0].classes[i]] } })
-    //   await this.setState({ arrayQuadroNoturno: { classes: [...this.state.arrayQuadroNoturno.classes, this.state.schedulesNoturno[0].classes[i]] } })
-    //   await this.setState({ arrayQuadroNoturno2: { classes: [...this.state.arrayQuadroNoturno2.classes, this.state.schedulesNoturno2[0].classes[i]] } })
-    //   await this.setState({ arrayQuadroNoturno3: { classes: [...this.state.arrayQuadroNoturno3.classes, this.state.schedulesNoturno[0].classes[i]] } })
-    //   await this.setState({ arrayQuadroNoturno4: { classes: [...this.state.arrayQuadroNoturno4.classes, this.state.schedulesNoturno4[0].classes[i]] } })
-    // }
 
-    // let arrayTeste = [];
-    // arrayTeste = [this.state.arrayQuadroMatutino, this.state.arrayQuadroMatutino2, this.state.arrayQuadroMatutino3, this.state.arrayQuadroMatutino4, this.state.arrayQuadroMatutino5];
+    for (let i = 0; i < 6; i++) {
+      //matutino
+       this.setState({ arrayQuadroMatutino: { classes: [...this.state.arrayQuadroMatutino.classes, this.state.schedulesMatutino[0].classes[i]], semestre: this.state.schedulesMatutino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino.id_curriculo_disciplina, this.state.schedulesMatutino[0].id_curriculo_disciplina[i]], linha: this.state.schedulesMatutino[0].linha, turma: [...this.state.arrayQuadroMatutino.turma, this.state.schedulesMatutino[0].turma[i]] } })
+       this.setState({ arrayQuadroMatutino2: { classes: [...this.state.arrayQuadroMatutino2.classes, this.state.schedulesMatutino2[0].classes[i]],  semestre: this.state.schedulesMatutino2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino2.id_curriculo_disciplina, this.state.schedulesMatutino2[0].id_curriculo_disciplina[i]], linha: this.state.schedulesMatutino2[0].linha, turma: [...this.state.arrayQuadroMatutino2.turma, this.state.schedulesMatutino2[0].turma[i]] } })
+       this.setState({ arrayQuadroMatutino3: { classes: [...this.state.arrayQuadroMatutino3.classes, this.state.schedulesMatutino3[0].classes[i]],  semestre: this.state.schedulesMatutino3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino3.id_curriculo_disciplina, this.state.schedulesMatutino3[0].id_curriculo_disciplina[i]], linha: this.state.schedulesMatutino3[0].linha, turma: [...this.state.arrayQuadroMatutino3.turma, this.state.schedulesMatutino3[0].turma[i]] } })
+       this.setState({ arrayQuadroMatutino4: { classes: [...this.state.arrayQuadroMatutino4.classes, this.state.schedulesMatutino4[0].classes[i]],  semestre: this.state.schedulesMatutino4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino4.id_curriculo_disciplina, this.state.schedulesMatutino4[0].id_curriculo_disciplina[i]], linha: this.state.schedulesMatutino4[0].linha, turma: [...this.state.arrayQuadroMatutino4.turma, this.state.schedulesMatutino4[0].turma[i]] } })
+       this.setState({ arrayQuadroMatutino6: { classes: [...this.state.arrayQuadroMatutino6.classes, this.state.schedulesMatutino5[0].classes[i]],  semestre: this.state.schedulesMatutino5[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroMatutino6.id_curriculo_disciplina, this.state.schedulesMatutino5[0].id_curriculo_disciplina[i]], linha: this.state.schedulesMatutino5[0].linha, turma: [...this.state.arrayQuadroMatutino6.turma, this.state.schedulesMatutino5[0].turma[i]] } })
 
-    // console.log("array teste: ", arrayTeste);
+      //vespertino
+       this.setState({ arrayQuadroVespertino: { classes: [...this.state.arrayQuadroVespertino.classes, this.state.schedulesVespertino[0].classes[i]], semestre: this.state.schedulesVespertino[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino.id_curriculo_disciplina, this.state.schedulesVespertino[0].id_curriculo_disciplina[i]], linha: this.state.schedulesVespertino[0].linha,  turma: [...this.state.arrayQuadroVespertino.turma, this.state.schedulesVespertino[0].turma[i]]  } })
+       this.setState({ arrayQuadroVespertino2: { classes: [...this.state.arrayQuadroVespertino2.classes, this.state.schedulesVespertino2[0].classes[i]], semestre: this.state.schedulesVespertino2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino2.id_curriculo_disciplina, this.state.schedulesVespertino2[0].id_curriculo_disciplina[i]], linha: this.state.schedulesVespertino2[0].linha,  turma: [...this.state.arrayQuadroVespertino2.turma, this.state.schedulesVespertino2[0].turma[i]]  }  })
+       this.setState({ arrayQuadroVespertino3: { classes: [...this.state.arrayQuadroVespertino3.classes, this.state.schedulesVespertino3[0].classes[i]], semestre: this.state.schedulesVespertino3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino3.id_curriculo_disciplina, this.state.schedulesVespertino3[0].id_curriculo_disciplina[i]], linha: this.state.schedulesVespertino3[0].linha,  turma: [...this.state.arrayQuadroVespertino3.turma, this.state.schedulesVespertino3[0].turma[i]]  } })
+       this.setState({ arrayQuadroVespertino4: { classes: [...this.state.arrayQuadroVespertino4.classes, this.state.schedulesVespertino4[0].classes[i]],  semestre: this.state.schedulesVespertino4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino4.id_curriculo_disciplina, this.state.schedulesVespertino4[0].id_curriculo_disciplina[i]], linha: this.state.schedulesVespertino4[0].linha,  turma: [...this.state.arrayQuadroVespertino4.turma, this.state.schedulesVespertino4[0].turma[i]]   } })
+       this.setState({ arrayQuadroVespertino5: { classes: [...this.state.arrayQuadroVespertino5.classes, this.state.schedulesVespertino5[0].classes[i]],  semestre: this.state.schedulesVespertino5[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroVespertino5.id_curriculo_disciplina, this.state.schedulesVespertino5[0].id_curriculo_disciplina[i]], linha: this.state.schedulesVespertino5[0].linha,  turma: [...this.state.arrayQuadroVespertino5.turma, this.state.schedulesVespertino5[0].turma[i]]  } })
+      
+       // //noturno
+      await this.setState({ arrayQuadroNoturno: { classes: [...this.state.arrayQuadroNoturno.classes, this.state.schedulesNoturno[0].classes[i]], semestre: this.state.schedulesNoturno[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno.id_curriculo_disciplina, this.state.schedulesNoturno[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno[0].linha,  turma: [...this.state.arrayQuadroNoturno.turma, this.state.schedulesNoturno[0].turma[i]] } })
+      await this.setState({ arrayQuadroNoturno2: { classes: [...this.state.arrayQuadroNoturno2.classes, this.state.schedulesNoturno2[0].classes[i]], semestre: this.state.schedulesNoturno2[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno2.id_curriculo_disciplina, this.state.schedulesNoturno2[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno2[0].linha,  turma: [...this.state.arrayQuadroNoturno2.turma, this.state.schedulesNoturno2[0].turma[i]] } })
+      await this.setState({ arrayQuadroNoturno3: { classes: [...this.state.arrayQuadroNoturno3.classes, this.state.schedulesNoturno[0].classes[i]], semestre: this.state.arrayQuadroNoturno3[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno3.id_curriculo_disciplina, this.state.arrayQuadroNoturno3[0].id_curriculo_disciplina[i]], linha: this.state.arrayQuadroNoturno3[0].linha,  turma: [...this.state.arrayQuadroVespertino5.turma, this.state.arrayQuadroNoturno3[0].turma[i]] } })
+      await this.setState({ arrayQuadroNoturno4: { classes: [...this.state.arrayQuadroNoturno4.classes, this.state.schedulesNoturno4[0].classes[i]], semestre: this.state.schedulesNoturno4[0].semestre, id_curriculo_disciplina: [...this.state.arrayQuadroNoturno4.id_curriculo_disciplina, this.state.schedulesNoturno4[0].id_curriculo_disciplina[i]], linha: this.state.schedulesNoturno4[0].linha,  turma: [...this.state.arrayQuadroNoturno4.turma, this.state.schedulesNoturno4[0].turma[i]] } })
+    }
+
+    var vetorGrade = [];
+    vetorGrade = [this.state.arrayQuadroMatutino, this.state.arrayQuadroMatutino2, this.state.arrayQuadroMatutino3, this.state.arrayQuadroMatutino4, this.state.arrayQuadroMatutino6, this.state.arrayQuadroVespertino, this.state.arrayQuadroVespertino2, this.state.arrayQuadroVespertino3, this.state.arrayQuadroVespertino4, this.state.arrayQuadroVespertino5];
+
+    console.log("array teste: ", vetorGrade);
+
+    let i = 0;
+    for (i = 0; i < 6; i++) {
+      let j = 0;
+      let id_semestre = 2;
+
+      for (j = 0; j < vetorGrade.length; j++) {
+
+          // if (vetorGrade[i].classes[j] == vetorGrade[i].classes[j + 1] && vetorGrade[i].classes[j] != null)
+          // { qtd_aulas++; }
+          
+      
+          if (vetorGrade[j].id_curriculo_disciplina[i] != null) {  
+            console.log("entrando aqui!");
+            
+            let qtd_aulas = 0;
+
+            // while (j<vetorGrade.length) {
+            //     qtd_aulas++;
+            //     if (vetorGrade[j].id_curriculo_disciplina[i] != vetorGrade[j + 1].id_curriculo_disciplina[i] || vetorGrade[j].turma[i] != vetorGrade[j + 1].turma[i]) {
+            //         break;
+            //     }
+            //     j++;
+            // }
+
+            var post = {
+                id_sala: 1,
+                id_professor: 1,
+                id_semestre: `${id_semestre}`,
+                id_turma: `${vetorGrade[j].turma[i]}`,
+                id_curriculo_disciplina: `${vetorGrade[j].id_curriculo_disciplina[i]}`,
+                id_horario_inicio: `${vetorGrade[j].linha}`,
+                dia_semana: i+2,
+                qtde_aulas: qtd_aulas,
+                teorico: 3,
+            };
+            console.log(post);
+          }
+        }
+      }
     
 
     // await api.post('/disciplina/salvarTurmas', {
-    //   vetorGrade: arrayTeste,
+    //   vetorGrade: vetorGrade,
     //   id_semestre: this.state.selectedOptionSemestre.value
     // })
 
