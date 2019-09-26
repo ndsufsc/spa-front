@@ -263,7 +263,7 @@ class Grade extends React.Component {
       disciplinas: [],
       turmas: [],
       selectedDisciplina: { nome: '', hrs_totais: '', id_curriculo_disciplina: '', id_disciplina: '' },
-      selectedTurma: '',
+      selectedTurma: {nome: '', id_turma: ''},
       itemChecked: false,
       index: '',
       arrayAux: [],
@@ -413,7 +413,7 @@ class Grade extends React.Component {
         }
       }
     }
-    this.state.selectedTurma[index] = item.turma;
+    this.state.selectedTurma.nome[index] = item.turma;
     await this.setState({ carregouGerar: true })
     this.setState({ turmaSelecionada: item.id_turma, turmaCodigo: item.turma })
     this.state.arrayAux[index] = true;
@@ -521,7 +521,7 @@ class Grade extends React.Component {
           if (schedule.id === scheduleId) {
             if (this.verificaCreditos() == 1)
               return (schedule);
-            schedule.classes[classIndex] = this.state.selectedDisciplina.nome.substring(0, 7)
+            schedule.classes[classIndex] = this.state.selectedTurma.nome.substring(0, 7)
             schedule.turma = this.state.turmaSelecionada
             schedule.id_curriculo_disciplina[classIndex] = this.state.selectedDisciplina.id_curriculo_disciplina
             schedule.semestre = this.state.selectedOptionSemestre.value
@@ -1210,7 +1210,7 @@ class Grade extends React.Component {
                 {this.state.carregouComponente ?
                   <div style={{ cursor: 'pointer' }} className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}>
                     <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
-                    <p className={classes.turma}>{this.state.selectedTurma}</p>
+                    <p className={classes.turma}>{this.state.selectedTurma.nome}</p>
                     <p className={classes.turma}>{this.state.boolean_tp === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
                   </div>
                   : <div style={{ cursor: 'pointer' }} className={classes.card}>

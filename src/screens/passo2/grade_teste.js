@@ -411,7 +411,7 @@ class Grade extends React.Component {
         <main className={classes.content}>
 
           <div id="under_header">
-            <center><strong>Cadastro de turmas - Engenharia de Computação - 1 semestre</strong></center>
+            <center><strong>Cadastro de turmas - Engenharia de Computação - 2 semestre</strong></center>
           </div>
 
           <br />
