@@ -20,12 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
     logoUFSC: {
       height: 50,
       paddingRight: 20,
-    },
-    botaoSalvar: {
-      marginRight: 10,
-    },
-    botaoSair: {
-      marginLeft: 30,
     }
   }),
 );
@@ -47,7 +41,7 @@ const headerStyles = makeStyles((theme: Theme) =>
 
 
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   function redirecionar () {
     localStorage.clear();
     window.location.href = '/';
@@ -64,8 +58,10 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Sistema de Planejamento Acadêmico
           </Typography>
-          <Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>
-          <Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>
+          <div>
+            {props.botaoSalvar}
+            {props.botaoSalvarContinuar}
+          </div>
           <Button color="inherit" onClick={() => redirecionar()} className={classes.botaoSair}>Sair</Button>
         </Toolbar>
       </AppBar>

@@ -25,8 +25,10 @@ const styles = theme => ({
     fontSize: 16,
     color: '#000',
     marginTop: 20,
-
-  }
+  },
+  botaoSalvar: {
+    marginRight: 10,
+  },
 })
 
 class Revisao extends React.Component {
@@ -67,7 +69,8 @@ class Revisao extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Header />
+        <Header botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
+                botaoSalvarContinuar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}/>
         <div className='introducao'>
           <h4 className={classes.h4}>Revisar e alterar informações das disciplinas ofertadas</h4>
           <p>Nesta etapa você pode revisar as informações das disciplinas em cada semestre e alterar alguns campos como
