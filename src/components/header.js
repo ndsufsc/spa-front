@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import logoUFSC from '../assets/img/logoufsc.svg';
+import { Link, Redirect } from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,7 +36,7 @@ const headerStyles = makeStyles((theme: Theme) =>
       fontSize: 15,
     },
     appBar: {
-        zIndex: 100,
+      zIndex: 100,
     }
   }),
 );
@@ -42,19 +44,25 @@ const headerStyles = makeStyles((theme: Theme) =>
 
 
 export default function ButtonAppBar(props) {
+<<<<<<< HEAD
   function redirecionar () {
     localStorage.clear();
     window.location.href = '/';
+=======
+  function redirecionar() {
+    // localStorage.removeItem('login');
+    // localStorage.removeItem('usuario');
+    this.props.history.push('/')
+>>>>>>> 1c2e8fb19e2632bd2219311019b1dd0f478fa27e
   }
-  
   const classes = useStyles();
   const header = headerStyles();
 
   return (
-    <div className= {classes.root}>
+    <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <img src={logoUFSC} alt="UFSC" className={classes.logoUFSC} />	
+          <img src={logoUFSC} alt="UFSC" className={classes.logoUFSC} />
           <Typography variant="h6" className={classes.title}>
             Sistema de Planejamento Acadêmico
           </Typography>
@@ -62,7 +70,10 @@ export default function ButtonAppBar(props) {
             {props.botaoSalvar}
             {props.botaoSalvarContinuar}
           </div>
-          <Button color="inherit" onClick={() => redirecionar()} className={classes.botaoSair}>Sair</Button>
+          <Link to="/" >
+            <Button  size="medium" color="inherit" >Sair</Button>
+          </Link>
+
         </Toolbar>
       </AppBar>
       {/*<div className={header.root}>

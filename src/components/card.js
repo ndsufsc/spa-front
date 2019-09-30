@@ -68,7 +68,8 @@ class Card extends React.Component {
                     <p className={classes.turma}>{this.props.nomeTurma}</p>
                     <p className={classes.turma}>{this.props.teorica === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
                 </div>
-                <Close style={{ fontSize: 20, color: '#fff' }} />
+                <Close onClick={() => console.log("clicou")
+                } style={{ fontSize: 20, color: '#fff' }} />
             </div>
         )
     }
