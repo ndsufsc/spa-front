@@ -103,13 +103,15 @@ class Tabela extends React.Component {
       usuario: '',
       semestres: '',
       selectedOption: null,
+      // array select
       array: '',
+      arrayLaboratorios: '',
+
       id_curso: '',
       disciplinas: [],
       numberRowPerPage: 5,
       showModal: false,
       showAlerta: false,
-      arrayLaboratorios: [],
       habilitarBtn: true,
       horasTotais: '',
       ultimoClique: '',
@@ -118,7 +120,8 @@ class Tabela extends React.Component {
       h1: false,
       horasTeoricas: '',
       horasPraticas: '',
-      idAtualizar: ''
+      idAtualizar: '',
+      modalLaboratorio: false
     }
   }
 
@@ -156,11 +159,17 @@ class Tabela extends React.Component {
     }
   }
 
-  handleChange = async selectedOption => {
-    await this.setState({ selectedOption });
-
+  handleChange = async (e, n) => {
+    if(n == 1)
+      await this.setState({ selectedOption: e.value });
+    else{
+      await this.setState({ selectedOption2: e });
+      //seto o id para o laboratório que vou colocar na tabela de cu
+      console.log("laboratórios: ", this.state.selectedOption2);
+      
+    }
     const response = await api.post("/disciplina/obter", {
-      id_course: this.state.id_curso, fase: this.state.selectedOption.value
+      id_course: this.state.id_curso, fase: this.state.selectedOption
     })
 
     await this.setState({ disciplinas: response.data, habilitarBtn: false });
@@ -238,6 +247,15 @@ class Tabela extends React.Component {
 
   }
 
+  async buscarLaboratorios() {
+    const response = await api.get('/salas/buscarTodosLaboratorios');
+    console.log("response: ", response.data);
+
+    for (let i = 0; i < response.data.length; i++) {
+      this.setState({ arrayLaboratorios: [...this.state.arrayLaboratorios, { value: response.data[i].id_salas, label: response.data[i].nome }] })
+    }
+  }
+
   async cadastrar() {
 
     if (this.state.horasPraticas > 0 && this.state.horasTeoricas > 0) {
@@ -252,20 +270,44 @@ class Tabela extends React.Component {
       id_course: this.state.id_curso, fase: this.state.selectedOption.value
     })
 
+
+
     await this.setState({ disciplinas: response.data, showModal: false });
+
+    if (this.state.horasPraticas > 0) {
+      this.buscarLaboratorios();
+      this.setState({ modalLaboratorio: true })
+    }
+  }
+
+  async cadastrarLaboratorio(){
+    console.log("id atualizar: ", this.state.idAtualizar);
+    console.log("laboratorio slecionado: ", this.state.selectedOption2.label);
+
+    const idLaboratorio = await api.post("/disciplina/buscarLab", {
+      descricao: this.state.selectedOption2.label
+    })
+
+    console.log("idLaborotorio do id do lab: ", idLaboratorio.data[0].id_tipo_sala);
+    
+    await api.post("/disciplina/attTipoSala", {
+      id_curriculo_disciplina: this.state.idAtualizar,
+      idLaboratorio: idLaboratorio.data[0].id_tipo_sala
+    })
+    
   }
 
   render() {
     const { selectedOption } = this.state;
     const { classes } = this.props;
     return (
-      <div>        
+      <div>
         <Modal
           show={this.state.showModal}
           onHide={() => this.setState({ showModal: false, ultimoClique: '', primeiroClique: true, primeiroClique2: true, horasTeoricas: '', horasPraticas: '' })}
           size="m"
         >
-          <Modal.Header closeButton>Cadastrar Laboratório</Modal.Header>
+          <Modal.Header closeButton>Cadastrar Horas</Modal.Header>
           <Modal.Body
             style={{
               background: 'transparent',
@@ -292,19 +334,50 @@ class Tabela extends React.Component {
             </div>
           </Modal.Body>
         </Modal>
-        
+
+        <Modal
+          show={this.state.modalLaboratorio}
+          onHide={() => this.setState({ modalLaboratorio: false })}
+          size="m"
+        >
+          <Modal.Header closeButton>Cadastrar Laboratório</Modal.Header>
+          <Modal.Body
+            style={{
+              background: 'transparent',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{ marginTop: 5, marginBottom: 50, }}>
+              <Form>
+                <Select id="cadastro_turmas_input_1"
+                  onChange={(e) => this.handleChange(e, 2)}
+                  options={this.state.arrayLaboratorios}
+                  className={classes.select}
+                  placeholder="Selecione o Semestre"
+                />
+              </Form>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button disabled={this.state.habilitarBtn} variant="success" onClick={() => this.cadastrarLaboratorio()}>
+              Cadastrar Laboratório
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
         <div className={classes.main}>
-          <div className={classes.divSelect} style={{zIndex: 200}}>
+          <div className={classes.divSelect} style={{ zIndex: 200 }}>
             <Select id="cadastro_turmas_input_1"
               value={selectedOption}
-              onChange={this.handleChange}
+              onChange={(e) => this.handleChange(e,1)}
               options={this.state.array}
               className={classes.select}
               placeholder="Selecione o Semestre"
             />
           </div>
 
-          <div className={classes.divtabela} style={{zIndex:1}}>
+          <div className={classes.divtabela} style={{ zIndex: 1 }}>
             <MaterialTable
               className={classes.tabela}
               icons={tableIcons}

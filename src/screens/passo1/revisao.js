@@ -51,8 +51,6 @@ class Revisao extends React.Component {
       this.setState({ step: response.data })
     }
 
-    console.log("teste!");
-
   }
   async redirecionar(props) {
 
@@ -64,13 +62,23 @@ class Revisao extends React.Component {
 
     props.history.push('/index')
   }
+  
+  async passarEtapa(){
+    //chamar rota para passar para próxima etapa
+    await api.post('/disciplina/atualizarEtapa', {
+      etapa: 1,
+      id_usuario: this.state.usuario.id_usuario
+    })
+
+    this.props.history.push('/index')
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <div>
         <Header botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
-                botaoSalvarContinuar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}/>
+                botaoSalvarContinuar={<Button onClick={() => this.passarEtapa()} size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}/>
         <div className='introducao'>
           <h4 className={classes.h4}>Revisar e alterar informações das disciplinas ofertadas</h4>
           <p>Nesta etapa você pode revisar as informações das disciplinas em cada semestre e alterar alguns campos como
