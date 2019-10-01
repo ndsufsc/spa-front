@@ -307,45 +307,56 @@ export default class GradeConsulta extends Component {
             }
 
             for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].id_horario_inicio == 1) {
+
+                if (response.data[i].id_horario_inicio == 1 && response.data[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
                             schedule.classes[i] = response.data[i].id_curriculo_disciplina
                             return (schedule)
                         })
                     })
+                    response.data[i].qtde_aulas--;
+                    response.data[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 2) {
+                if (response.data[i].id_horario_inicio == 2 && response.data[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
                             schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
                             return (schedule)
                         })
                     })
+                    response.data[i].qtde_aulas--;
+                    response.data[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 3) {
+                if (response.data[i].id_horario_inicio == 3 && response.data[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
                             schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
                             return (schedule)
                         })
                     })
+                    response.data[i].qtde_aulas--;
+                    response.data[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 4) {
+                if (response.data[i].id_horario_inicio == 4 && response.data[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
                             schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
                             return (schedule)
                         })
                     })
+                    response.data[i].qtde_aulas--;
+                    response.data[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 5) {
+                if (response.data[i].id_horario_inicio == 5 && response.data[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
                             schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
                             return (schedule)
                         })
                     })
+                    response.data[i].qtde_aulas--;
+                    response.data[i].id_horario_inicio++;
                 }
 
                 //     for (let i = 0; i < response.data.length - 1; i++) {
