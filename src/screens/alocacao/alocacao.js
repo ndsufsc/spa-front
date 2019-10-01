@@ -1,3 +1,33 @@
+import React from 'react';
+
+//COMPONENTES MATERIAL UI
+import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
+
+//COMPONENTES
+import Header from '../../components/header';
+import Tabela from '../../components/tabela';
+import api from '../../service/api';
+
+//ROTEAMENTO
+import { Link, Redirect } from 'react-router-dom'
+
+const styles = theme => ({
+    button: {
+      marginRight: 20,
+    },
+    h4: {
+      fontFamily: 'Roboto',
+      fontSize: 16,
+      color: '#000',
+      marginTop: 20,
+    },
+    botaoSalvar: {
+      marginRight: 10,
+    },
+  })
+
 class Alocacao extends React.Component {
 
     constructor() {
@@ -7,171 +37,191 @@ class Alocacao extends React.Component {
         arraySalas: { id_salas: [], id_tipo_sala: [], sigla: [], capacidade: [] },
       }
     }
+
+    componentDidMount = async () => {
+
+        if (localStorage.getItem('login') == 'on') {
+
+            const response = await api.post("/disciplina/obterTurmasAlocacao")
+
+            for (var i = 0; i < response.data.length; i++) {
+
+
+
+            }
+
+            const response2 = await api.post("/disciplina/buscarSalas")
+
+            for (var i = 0; i < response2.data.length; i++) {
+
+                //this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })
+                //this.setState({ carregou: true })
+
+            }
+
+        }
+
+    };
+
+    render() {
+        return(
+            <div>oi</div>
+        );
+    }
+
 }
 
-componentDidMount = async () => {
-    if (localStorage.getItem('login') == 'on') {
-      const response = await api.post("/disciplina/obterTurmasAlocacao")
-
-      this.setState({ id_curso: response.data[0].id_curso })
-
-      const response2 = await api.post("/disciplina/buscarSalas")
-
-      await this.setState({ qtdeSemestre: response2.data[0].semestres, })
-      var rows = [];
-      for (var i = 1; i <= this.state.qtdeSemestre; i++) {
-        this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })
-        this.setState({ carregou: true })
-      }
-
-    }
-};
+Alocacao.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  
+  export default withStyles(styles)(Alocacao);
 
 
-for ($l=0; $l<$j; $l++) // For para passar por todas as salas
-        {
+// for ($l=0; $l<$j; $l++) // For para passar por todas as salas
+//         {
         
-            if ( ($turma["$k"]["alunos"] == $sala["$l"]["capacidade"]) && ($turma["$k"]["tipo"] == $sala["$l"]["tipo"]) && ( ( !isset($turma["$k"]["sala"]) ) || ($turma["$k"]["sobra"] > ($turma["$k"]["alunos"] - $sala["$l"]["capacidade"]) ) ) ) // Caso a quantidade de alunos for menor que a capacidade da sala, e a sala for do mesmo tipo que a turma, e ou a turma não tem sala ou a sobra da antiga sala for maior que a sobra da nova sala
-            {
+//             if ( ($turma["$k"]["alunos"] == $sala["$l"]["capacidade"]) && ($turma["$k"]["tipo"] == $sala["$l"]["tipo"]) && ( ( !isset($turma["$k"]["sala"]) ) || ($turma["$k"]["sobra"] > ($turma["$k"]["alunos"] - $sala["$l"]["capacidade"]) ) ) ) // Caso a quantidade de alunos for menor que a capacidade da sala, e a sala for do mesmo tipo que a turma, e ou a turma não tem sala ou a sobra da antiga sala for maior que a sobra da nova sala
+//             {
                 
-                $control=0; // Define variável de controle para saber se a sala já foi alocada
+//                 $control=0; // Define variável de controle para saber se a sala já foi alocada
                 
-                for ($m=0; $m<$i; $m++) // Verifica todas as turmas para verificar se a sala já foi alocada no mesmo horário
-                {
+//                 for ($m=0; $m<$i; $m++) // Verifica todas as turmas para verificar se a sala já foi alocada no mesmo horário
+//                 {
                     
-                    if ( ( ($turma["$m"]["dia"] == $turma["$k"]["dia"]) && ( ( ($turma["$m"]["inicio"] < $turma["$k"]["fim"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) || ($turma["$m"]["inicio"] < $turma["$k"]["inicio"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) ) ) ) && ($turma["$m"]["sala"]==$sala["$l"]["cod_sala"]) ) // Verifica se as turmas são no mesmo horário, no mesmo dia e na mesma sala
-                    {
+//                     if ( ( ($turma["$m"]["dia"] == $turma["$k"]["dia"]) && ( ( ($turma["$m"]["inicio"] < $turma["$k"]["fim"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) || ($turma["$m"]["inicio"] < $turma["$k"]["inicio"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) ) ) ) && ($turma["$m"]["sala"]==$sala["$l"]["cod_sala"]) ) // Verifica se as turmas são no mesmo horário, no mesmo dia e na mesma sala
+//                     {
                         
-                        if( ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]) < ($sala["$l"]["capacidade"] - $turma["$m"]["alunos"]) ) // Caso a subtração da capacidade da sala pela turma nova for menor que a capacidade da sala pela turma antiga, significa que a sala é mais adequada para a turma nova, então é trocado de sala
-                        {
+//                         if( ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]) < ($sala["$l"]["capacidade"] - $turma["$m"]["alunos"]) ) // Caso a subtração da capacidade da sala pela turma nova for menor que a capacidade da sala pela turma antiga, significa que a sala é mais adequada para a turma nova, então é trocado de sala
+//                         {
                             
-                            $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
-                            $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
-                            $turma["$m"]["sala"] = NULL;
-                            $turma["$m"]["sobra"] = NULL;
-                            $k=$m; //
-                            break;
+//                             $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
+//                             $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
+//                             $turma["$m"]["sala"] = NULL;
+//                             $turma["$m"]["sobra"] = NULL;
+//                             $k=$m; //
+//                             break;
                             
-                        } else // Caso a sala seja melhor para a turma antiga, a variável de controle é colocada em 1, para verificar que a turma ainda não tem uma sala
-                        {
+//                         } else // Caso a sala seja melhor para a turma antiga, a variável de controle é colocada em 1, para verificar que a turma ainda não tem uma sala
+//                         {
                         
-                            $control=1;
-                            break;
+//                             $control=1;
+//                             break;
                         
-                        }
+//                         }
                             
-                    }
+//                     }
                     
-                }
+//                 }
                 
-                if ($control==0) // Caso a variável de controle não for alterada, a turma pode alocar a sala
-                {
+//                 if ($control==0) // Caso a variável de controle não for alterada, a turma pode alocar a sala
+//                 {
                     
-                    $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
-                    $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
+//                     $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
+//                     $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
                     
-                }
+//                 }
                 
                 
-            }
+//             }
             
-        }
+//         }
         
-        if (!isset($turma["$k"]["sala"])) // Caso não for alocada nenhuma sala, deve-se procurar salas com capacidades maiores do que a quantidade de alunos na turma
-        {
+//         if (!isset($turma["$k"]["sala"])) // Caso não for alocada nenhuma sala, deve-se procurar salas com capacidades maiores do que a quantidade de alunos na turma
+//         {
             
-            for ($l=0; $l<$j; $l++)  // For para passar por todas as salas
-            {
+//             for ($l=0; $l<$j; $l++)  // For para passar por todas as salas
+//             {
         
-                if ( ($turma["$k"]["alunos"] < $sala["$l"]["capacidade"]) && ($turma["$k"]["tipo"] == $sala["$l"]["tipo"]) && ( ( !isset($turma["$k"]["sala"]) ) || ($turma["$k"]["sobra"] > ($turma["$k"]["alunos"] - $sala["$l"]["capacidade"]) ) ) ) // Caso a quantidade de alunos for menor que a capacidade da sala, e a sala for do mesmo tipo que a turma, e ou a turma não tem sala ou a sobra da antiga sala for maior que a sobra da nova sala
-                {
+//                 if ( ($turma["$k"]["alunos"] < $sala["$l"]["capacidade"]) && ($turma["$k"]["tipo"] == $sala["$l"]["tipo"]) && ( ( !isset($turma["$k"]["sala"]) ) || ($turma["$k"]["sobra"] > ($turma["$k"]["alunos"] - $sala["$l"]["capacidade"]) ) ) ) // Caso a quantidade de alunos for menor que a capacidade da sala, e a sala for do mesmo tipo que a turma, e ou a turma não tem sala ou a sobra da antiga sala for maior que a sobra da nova sala
+//                 {
                     
-                    $control=0; // Define variável de controle para saber se a sala já foi alocada
+//                     $control=0; // Define variável de controle para saber se a sala já foi alocada
                 
-                    for ($m=0; $m<$k; $m++) // Verifica todas as turmas para verificar se a sala já foi alocada no mesmo horário
-                    {
+//                     for ($m=0; $m<$k; $m++) // Verifica todas as turmas para verificar se a sala já foi alocada no mesmo horário
+//                     {
 
-                        if ( ( ($turma["$m"]["dia"] == $turma["$k"]["dia"]) && ( ( ($turma["$m"]["inicio"] < $turma["$k"]["fim"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) || ($turma["$m"]["inicio"] < $turma["$k"]["inicio"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) ) ) ) && ($turma["$m"]["sala"] == $sala["$l"]["cod_sala"]) ) // Verifica se as turmas são no mesmo horário, no mesmo dia e na mesma sala
-                        {
+//                         if ( ( ($turma["$m"]["dia"] == $turma["$k"]["dia"]) && ( ( ($turma["$m"]["inicio"] < $turma["$k"]["fim"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) || ($turma["$m"]["inicio"] < $turma["$k"]["inicio"] && $turma["$m"]["fim"] > $turma["$k"]["inicio"]) ) ) ) && ($turma["$m"]["sala"] == $sala["$l"]["cod_sala"]) ) // Verifica se as turmas são no mesmo horário, no mesmo dia e na mesma sala
+//                         {
                             
-                            if( ( $sala["$l"]["capacidade"] - $turma["$k"]["alunos"]) < ($sala["$l"]["capacidade"] - $turma["$m"]["alunos"]) ) // Caso a subtração da capacidade da sala pela turma nova for menor que a capacidade da sala pela turma antiga, significa que a sala é mais adequada para a turma nova, então é trocado de sala
-                            {
+//                             if( ( $sala["$l"]["capacidade"] - $turma["$k"]["alunos"]) < ($sala["$l"]["capacidade"] - $turma["$m"]["alunos"]) ) // Caso a subtração da capacidade da sala pela turma nova for menor que a capacidade da sala pela turma antiga, significa que a sala é mais adequada para a turma nova, então é trocado de sala
+//                             {
 
-                                $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
-                                $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
-                                $turma["$m"]["sala"] = NULL;
-                                $turma["$m"]["sobra"] = NULL;
-                                $k=$m; //
-                                break;
+//                                 $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
+//                                 $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
+//                                 $turma["$m"]["sala"] = NULL;
+//                                 $turma["$m"]["sobra"] = NULL;
+//                                 $k=$m; //
+//                                 break;
 
-                            } else // Caso a sala seja melhor para a turma antiga, a variável de controle é colocada em 1, para verificar que a turma ainda não tem uma sala
-                            {
+//                             } else // Caso a sala seja melhor para a turma antiga, a variável de controle é colocada em 1, para verificar que a turma ainda não tem uma sala
+//                             {
 
-                                $control=1;
-                                break;
+//                                 $control=1;
+//                                 break;
 
-                            }
+//                             }
 
-                        }
+//                         }
 
-                    }
+//                     }
                 
-                    if ($control==0)
-                    {
+//                     if ($control==0)
+//                     {
 
-                        $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
-                        $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
+//                         $turma["$k"]["sala"] = $sala["$l"]["cod_sala"];
+//                         $turma["$k"]["sobra"] = ($sala["$l"]["capacidade"] - $turma["$k"]["alunos"]);
 
-                    }
+//                     }
         
-                }
+//                 }
                 
-            }
+//             }
            
-        }
+//         }
         
-    }
+//     }
 
-    ///////////////////////////////////
+//     ///////////////////////////////////
 
-    // TABELAS DAS TURMAS E DAS SALAS
+//     // TABELAS DAS TURMAS E DAS SALAS
 
-    ///////////////////////////////////
+//     ///////////////////////////////////
 
-    echo ("<table style='float:left' border='1'><th>COD</th><th>DIA</th><th>INICIO</th><th>FIM</th><th>ALUNOS</th><th>SALA</th><th>TIPO</th><th>SOBRA</th>");
+//     echo ("<table style='float:left' border='1'><th>COD</th><th>DIA</th><th>INICIO</th><th>FIM</th><th>ALUNOS</th><th>SALA</th><th>TIPO</th><th>SOBRA</th>");
 
-    for ($k=0; $k<$i; $k++) {
+//     for ($k=0; $k<$i; $k++) {
         
-        echo("<tr><td><center>");
-        echo($turma["$k"]["cod_turma"]);
-        echo("</center></td><td><center>");
-        echo($turma["$k"]["dia"]);
-        echo("</center</td><td><center>");
-        echo($turma["$k"]["inicio"]);
-        echo("</center></td><td><center>");
-        echo($turma["$k"]["fim"]);
-        echo("</center></td><td><center>");
-        echo($turma["$k"]["alunos"]);
-        echo("</center></td><td><center>");
-        echo($turma["$k"]["sala"]);
-        echo("</center></td><td><center>");
-        echo($turma["$k"]["tipo"]);
-        echo("</center></td><td><center>");
-        echo($turma["$k"]["sobra"]);
-        echo("</center></td></tr>");
+//         echo("<tr><td><center>");
+//         echo($turma["$k"]["cod_turma"]);
+//         echo("</center></td><td><center>");
+//         echo($turma["$k"]["dia"]);
+//         echo("</center</td><td><center>");
+//         echo($turma["$k"]["inicio"]);
+//         echo("</center></td><td><center>");
+//         echo($turma["$k"]["fim"]);
+//         echo("</center></td><td><center>");
+//         echo($turma["$k"]["alunos"]);
+//         echo("</center></td><td><center>");
+//         echo($turma["$k"]["sala"]);
+//         echo("</center></td><td><center>");
+//         echo($turma["$k"]["tipo"]);
+//         echo("</center></td><td><center>");
+//         echo($turma["$k"]["sobra"]);
+//         echo("</center></td></tr>");
         
-    }
+//     }
 
-    echo ("<table style='margin-left:81%; position: fixed' border='1'><th>COD</th><th>CAPACIDADE</th><th>TIPO</th>");
+//     echo ("<table style='margin-left:81%; position: fixed' border='1'><th>COD</th><th>CAPACIDADE</th><th>TIPO</th>");
 
-    for ($l=0; $l<$j; $l++) {
+//     for ($l=0; $l<$j; $l++) {
         
-        echo("<tr><td><center>");
-        echo($sala["$l"]["cod_sala"]);
-        echo("</center></td><td><center>");
-        echo($sala["$l"]["capacidade"]);
-        echo("</center></td><td><center>");
-        echo($sala["$l"]["tipo"]);
-        echo("</center></td></tr>");
+//         echo("<tr><td><center>");
+//         echo($sala["$l"]["cod_sala"]);
+//         echo("</center></td><td><center>");
+//         echo($sala["$l"]["capacidade"]);
+//         echo("</center></td><td><center>");
+//         echo($sala["$l"]["tipo"]);
+//         echo("</center></td></tr>");
         
-    }
+//     }

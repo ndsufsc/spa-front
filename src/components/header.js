@@ -44,16 +44,10 @@ const headerStyles = makeStyles((theme: Theme) =>
 
 
 export default function ButtonAppBar(props) {
-<<<<<<< HEAD
-  function redirecionar () {
-    localStorage.clear();
-    window.location.href = '/';
-=======
   function redirecionar() {
     // localStorage.removeItem('login');
     // localStorage.removeItem('usuario');
     this.props.history.push('/')
->>>>>>> 1c2e8fb19e2632bd2219311019b1dd0f478fa27e
   }
   const classes = useStyles();
   const header = headerStyles();
@@ -76,7 +70,7 @@ export default function ButtonAppBar(props) {
 
         </Toolbar>
       </AppBar>
-      {/*<div className={header.root}>
+      <div className={header.root}>
         <AppBar position="static" color="inherit" className={classes.appBar2}>
           <Toolbar>	
             <Typography variant="h6" className={header.title}>
@@ -90,7 +84,7 @@ export default function ButtonAppBar(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-      </div>*/}
+      </div>
     </div>
   );
 }
