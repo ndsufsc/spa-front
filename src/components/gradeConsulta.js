@@ -291,9 +291,8 @@ export default class GradeConsulta extends Component {
     async setClass(scheduleId, classIndex, pos) {
         const response = await api.post('/disciplina/verificarPreCadastro');
 
-        console.log("scheduleId: ", scheduleId);
-        console.log("classIndex: ", classIndex);
-        console.log("pos: ", pos);
+        console.log("response: ", response.data);
+        
 
         var qtde = 0;
 
