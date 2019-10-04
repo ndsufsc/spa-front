@@ -275,6 +275,7 @@ class Grade extends React.Component {
       carregouMatutino: false,
       arrayLinhas: [1, 2, 3, 4, 5],
       arrayColunas: [1, 2, 3, 4, 5, 6],
+      mostraClose: false,
       //matutino
       schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
       schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
@@ -982,6 +983,10 @@ class Grade extends React.Component {
     })
   }
 
+  handleMouseHover = () => {
+      var atual = this.state.mostraClose
+      this.setState({mostraClose: !atual})
+  }
 
   render() {
 
@@ -1376,7 +1381,11 @@ class Grade extends React.Component {
                   <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 </div>
                 {this.state.carregouComponente ?
-                  <div style={{ cursor: 'pointer' }} className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}>
+                  <div id="iconDrawer" 
+                       style={{ cursor: 'pointer' }} 
+                       className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}
+                       onMouseEnter={this.handleMouseHover}
+                       onMouseLeave={this.handleMouseHover}>
                     <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
                     <p className={classes.turma}>{this.state.selectedTurma}</p>
                     <p className={classes.turma}>{this.state.boolean_tp === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
