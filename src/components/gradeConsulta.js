@@ -5,7 +5,7 @@ import { Table } from 'react-bootstrap'
 
 //Componentes
 import Card from '../components/card';
-
+import ModalGrade from '../components/Modais/modalGrade'
 //api
 import api from '../service/api';
 
@@ -205,6 +205,7 @@ const classes = theme => ({
     },
 })
 
+
 export default class GradeConsulta extends Component {
 
     constructor(props) {
@@ -228,253 +229,297 @@ export default class GradeConsulta extends Component {
             schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
             carregou: false,
             carregou1: true,
-
             scheduleMatutinoR: [],
+            arrayTurmasSalvas: '',
+            close: false,
+            teste: '',
+            openModalGrade: false
         }
     }
 
     async componentDidMount() {
-        const response = await api.post('/disciplina/verificarPreCadastro');
+        this.setClass(0, 0, 1);
+    }
 
-        console.log("response do verificar pre cadastro: ", response.data);
+    closeModal(){
+        console.log("teste");
+        
+        this.setState({ openModalGrade: false })
+    }
 
+    teste(){
+        return(
+            <ModalGrade show={this.state.openModalGrade} close={this.closeModal}/>
+        )
+    }
 
-        for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i].id_horario_inicio == 1) {
-                if (response.data[i].qtde_aulas == 4) {
-                    let arrayAux = [];
-                    arrayAux.push(response.data[i])
-                    await this.setState({ schedulesMatutinoR: arrayAux, carregou: true })
-                    if (response.data[i].dia_semana == 2)
-                        this.setClass(1, 4, 1);
-                    if (response.data[i].dia_semana == 3)
-                        this.setClass(2, 4, 2);
+    verificarPosicao(scheduleId, classIndex, pos) {
+        if (pos == 1) {
+            this.state.schedulesMatutino.map(schedule => {
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        this.setState({ openModalGrade: true, teste: this.teste() })
+                    } else {
+                        return (schedule)
+                    }
                 }
-            }
-            if (response.data[i].id_horario_inicio == 2) {
-                if (response.data[i].qtde_aulas == 4) {
-                    let arrayAux = [];
-                    arrayAux.push(response.data[i])
-                    await this.setState({ schedulesMatutinoR: arrayAux, carregou: true })
-                    this.setClass(1, 4, 1)
+            })
+        }
+        if (pos == 2) {
+            this.state.schedulesMatutino2.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
                 }
-            }
-            if (response.data[i].id_horario_inicio == 3) {
-                if (response.data[i].qtde_aulas == 4) {
-                    let arrayAux = [];
-                    arrayAux.push(response.data[i])
-                    await this.setState({ schedulesMatutinoR: arrayAux, carregou: true })
-                    this.setClass(1, 4, 1)
+            })
+        }
+        if (pos == 3) {
+            this.state.schedulesMatutino3.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
                 }
-            }
-            if (response.data[i].id_horario_inicio == 4) {
-                if (response.data[i].qtde_aulas == 4) {
-                    let arrayAux = [];
-                    arrayAux.push(response.data[i])
-                    await this.setState({ schedulesMatutinoR: arrayAux, carregou: true })
-                    this.setClass(1, 4, 1)
+            })
+        }
+        if (pos == 4) {
+            this.state.schedulesMatutino4.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
                 }
-            }
-            if (response.data[i].id_horario_inicio == 5) {
-                if (response.data[i].qtde_aulas == 4) {
-                    let arrayAux = [];
-                    arrayAux.push(response.data[i])
-                    await this.setState({ schedulesMatutinoR: arrayAux, carregou: true })
-                    this.setClass(1, 4, 1)
+            })
+        }
+        if (pos == 5) {
+            this.state.schedulesMatutino5.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
                 }
-            }
+            })
+        }
+        if (pos == 6) {
+            this.state.schedulesVespertino.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 7) {
+            this.state.schedulesVespertino2.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 8) {
+            this.state.schedulesVespertino3.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 9) {
+            this.state.schedulesVespertino4.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 10) {
+            this.state.schedulesVespertino5.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 11) {
+            this.state.schedulesNoturno.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 12) {
+            this.state.schedulesNoturno2.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 13) {
+            this.state.schedulesNoturno3.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
+        }
+        if (pos == 14) {
+            this.state.schedulesNoturno4.map(schedule => {
+                console.log(schedule);
+                if (schedule.id === scheduleId) {
+                    if (schedule.classes[classIndex] != null) {
+                        alert("Este horário já está preenchido")
+                        return (schedule);
+                    } else {
+                        return (schedule)
+                    }
+                }
+            })
         }
 
     }
 
-
     async setClass(scheduleId, classIndex, pos) {
-        const response = await api.post('/disciplina/verificarPreCadastro');
+        const response = await api.post('/disciplina/carregarTurmasSalvas', {
+            id_semestre: 1,
+            fase: 1,
+            id_course: 12
+        })
 
-        console.log("response: ", response.data);
-        
+        this.setState({ arrayTurmasSalvas: response.data })
+
+        var arrayTurmasSalvas = this.state.arrayTurmasSalvas;
 
         var qtde = 0;
 
         if (pos == 1) {
 
-            for (let i = 0; i < response.data.length - 1; i++) {
-                if (response.data[i].id_horario_inicio == 1) {
-                    if (response.data[i].qtde_aulas == 1 && response.data[i + 1].qtde_aulas == 1 && response.data[i].id_curriculo_disciplina == response.data[i + 1].id_curriculo_disciplina)
-                        qtde++;
-                }
-            }
-
-            for (let i = 0; i < response.data.length; i++) {
-
-                if (response.data[i].id_horario_inicio == 1 && response.data[i].qtde_aulas > 0) {
+            for (let i = 0; i < arrayTurmasSalvas.length; i++) {
+                if (arrayTurmasSalvas[i].id_horario_inicio == 1 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
-                            schedule.classes[i] = response.data[i].id_curriculo_disciplina
+
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+
                             return (schedule)
                         })
                     })
-                    response.data[i].qtde_aulas--;
-                    response.data[i].id_horario_inicio++;
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 2 && response.data[i].qtde_aulas > 0) {
+                if (arrayTurmasSalvas[i].id_horario_inicio == 2 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
-                            schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             return (schedule)
                         })
                     })
-                    response.data[i].qtde_aulas--;
-                    response.data[i].id_horario_inicio++;
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 3 && response.data[i].qtde_aulas > 0) {
+                if (arrayTurmasSalvas[i].id_horario_inicio == 3 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
-                            schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             return (schedule)
                         })
                     })
-                    response.data[i].qtde_aulas--;
-                    response.data[i].id_horario_inicio++;
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 4 && response.data[i].qtde_aulas > 0) {
+                if (arrayTurmasSalvas[i].id_horario_inicio == 4 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
-                            schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             return (schedule)
                         })
                     })
-                    response.data[i].qtde_aulas--;
-                    response.data[i].id_horario_inicio++;
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
                 }
-                if (response.data[i].id_horario_inicio == 5 && response.data[i].qtde_aulas > 0) {
+                if (arrayTurmasSalvas[i].id_horario_inicio == 5 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
-                            schedule.classes[response.data[i].dia_semana-2] = response.data[i].id_curriculo_disciplina
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             return (schedule)
                         })
                     })
-                    response.data[i].qtde_aulas--;
-                    response.data[i].id_horario_inicio++;
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
                 }
-
-                //     for (let i = 0; i < response.data.length - 1; i++) {
-                //         if (response.data[i].qtde_aulas == 4) {
-                //             for (let j = 0; j < 4; j++) {
-                //                 if (j == 0) {
-                //                     this.setState({
-                //                         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
-                //                             for (let j = 0; j < classIndex; j++) {
-                //                                 if (response.data[i].dia_semana == 2)
-                //                                     schedule.classes[0] = response.data[i].id_curriculo_disciplina
-
-                //                             }
-                //                             return (schedule)
-                //                         })
-                //                     })
-                //                 }
-                //                 if (j == 1) {
-                //                     this.setState({
-                //                         schedulesMatutino2: this.state.schedulesMatutino.map(schedule => {
-                //                             if (schedule.id === scheduleId) {
-                //                                 if (response.data[i].dia_semana == 2)
-                //                                     schedule.classes[0] = response.data[i].id_curriculo_disciplina
-
-                //                             }
-                //                             return (schedule)
-                //                         })
-                //                     })
-                //                 }
-                //                 if (j == 2) {
-                //                     this.setState({
-                //                         schedulesMatutino3: this.state.schedulesMatutino.map(schedule => {
-                //                             for (let j = 0; j < classIndex; j++) {
-                //                                 if (response.data[i].dia_semana == 2)
-                //                                     schedule.classes[0] = response.data[i].id_curriculo_disciplina
-
-                //                             }
-                //                             return (schedule)
-                //                         })
-                //                     })
-                //                 }
-                //                 if (j == 3) {
-                //                     this.setState({
-                //                         schedulesMatutino4: this.state.schedulesMatutino.map(schedule => {
-                //                             for (let j = 0; j < classIndex; j++) {
-                //                                 if (response.data[i].dia_semana == 2)
-                //                                     schedule.classes[0] = response.data[i].id_curriculo_disciplina
-
-                //                             }
-                //                             return (schedule)
-                //                         })
-                //                     })
-                //                 }
-
-                //             }
-                //         }
-                //     }
-                // }
-                // if (pos == 2) {
-                //     console.log("entrou na 2");
-                //     for (let i = 0; i < response.data.length; i++) {
-                //         if (response.data[i].id_horario_inicio == 1) {
-                //             if (response.data[i].qtde_aulas == 4) {
-                //                 for (let j = 0; j < 4; j++) {
-                //                     if (j == 0) {
-                //                         this.setState({
-                //                             schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
-                //                                 if (response.data[i].dia_semana == 3) {
-                //                                     console.log("entrando aqui");
-
-                //                                     schedule.classes[1] = response.data[i].id_curriculo_disciplina
-                //                                 }
-
-                //                                 return (schedule)
-                //                             })
-                //                         })
-                //                     }
-                //                     if (j == 1) {
-                //                         this.setState({
-                //                             schedulesMatutino2: this.state.schedulesMatutino.map(schedule => {
-                //                                 if (response.data[i].dia_semana == 3)
-                //                                     schedule.classes[1] = response.data[i].id_curriculo_disciplina
-
-                //                                 return (schedule)
-                //                             })
-                //                         })
-                //                     }
-                //                     if (j == 2) {
-                //                         this.setState({
-                //                             schedulesMatutino3: this.state.schedulesMatutino.map(schedule => {
-                //                                 if (response.data[i].dia_semana == 3)
-                //                                     schedule.classes[1] = response.data[i].id_curriculo_disciplina
-
-                //                                 return (schedule)
-                //                             })
-                //                         })
-                //                     }
-                //                     if (j == 3) {
-                //                         this.setState({
-                //                             schedulesMatutino4: this.state.schedulesMatutino.map(schedule => {
-                //                                 if (response.data[i].dia_semana == 3)
-                //                                     schedule.classes[1] = response.data[i].id_curriculo_disciplina
-
-                //                                 return (schedule)
-                //                             })
-                //                         })
-                //                     }
-
-                //                 }
-                //             }
-                //         }
-                //     }
             }
+            console.log("MATUTINO 1: ", this.state.schedulesMatutino);
+
         }
     }
 
     render() {
         return (
             <div>
+                {this.state.teste}
                 <Table borderless
                     style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
                 >
@@ -499,9 +544,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesMatutino.map(schedule => (
                             <tr><td className={classes.tdHora}><b>7:30 - 8:20</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 1)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
                                             null
@@ -517,9 +562,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesMatutino2.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 2)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 2)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -537,9 +582,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesMatutino3.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 3)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 3)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -556,9 +601,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesMatutino4.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 4)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 4)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -575,9 +620,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesMatutino5.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 5)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 5)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -614,9 +659,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesVespertino.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 6)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 6)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -633,9 +678,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesVespertino2.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 7)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 7)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -652,9 +697,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesVespertino3.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 8)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 8)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -671,7 +716,7 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesVespertino4.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => { schedule.carregou[index] ? console.log("deletar posição: ", index) : this.setClass(schedule.id, index, 9) }}>{!_class ? '' : _class}
+                                    <td className={classes.tdDrop} onClick={() => { schedule.carregou[index] ? console.log("deletar posição: ", index) : this.verificarPosicao(schedule.id, index, 9) }}>{!_class ? '' : _class}
 
                                         {schedule.carregou[index] ?
                                             null
@@ -687,9 +732,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesVespertino5.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 10)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 10)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -726,9 +771,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesNoturno.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 11)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 11)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -745,9 +790,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesNoturno2.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 12)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 12)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -764,9 +809,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesNoturno3.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 13)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 13)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 
@@ -783,9 +828,9 @@ export default class GradeConsulta extends Component {
                         {this.state.schedulesNoturno4.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => this.setClass(schedule.id, index, 14)}>
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 14)}>
 
-                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.boolean_tp[index]} />}
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
 

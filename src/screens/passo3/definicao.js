@@ -20,6 +20,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Tabela from '../../components/tabela';
+import Button from '@material-ui/core/Button';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 //COMPONENTES
 import Header from '../../components/header';
@@ -27,12 +36,23 @@ import api from '../../service/api';
 
 //ROTEAMENTO
 import { Link } from 'react-router-dom'
+//MATERIAL ICONS
+import { Delete } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
+// load
+import { ClipLoader, BounceLoader } from 'react-spinners';
+//react bootstrap
+
+import { Table, Modal } from 'react-bootstrap'
+//COMPONENTES CRIADOS
+import GradeConsulta from '../../components/gradeConsulta';
+
 
 const drawerWidth = "25%";
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    // display: 'flex',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -47,12 +67,186 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    alignItems: 'center',
-    marginTop: '20%',
-    justifyContent: 'center',
     padding: theme.spacing(3),
+    marginTop: 80,
+    width: '75%',
   },
   toolbar: theme.mixins.toolbar,
+  spacer: {
+    marginTop: 80,
+  },
+  select: {
+    width: '90%',
+    alignSelf: 'center',
+  },
+  select2: {
+    marginTop: '4%',
+    width: '90%',
+    alignSelf: 'center',
+  },
+  cardView: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#E7E7E7',
+    minHeight: 130,
+    width: '90%',
+    marginTop: 0,
+    marginBottom: 20,
+    paddingBottom: 10,
+    alignSelf: 'center',
+    borderRadius: 5,
+    cursor: 'default'
+  },
+  informativo: {
+    fontFamily: 'Roboto',
+    color: '#707070',
+    textAlign: 'center',
+    marginBottom: -5,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#757575',
+    width: 200,
+    minHeight: 90,
+    borderRadius: 5,
+    boxShadow: "1px 1px 3px #9E9E9E",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  checkbox: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  formControl: {
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    marginTop: 10,
+  },
+  group: {
+    margin: theme.spacing(1, 0),
+  },
+  radio: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  fab: {
+    margin: theme.spacing(1),
+    width: '90%',
+    alignSelf: 'center',
+  },
+  formcontrollabel: {
+    fontFamily: 'Roboto',
+  },
+  contentdrawer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  generator: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  button: {
+    marginRight: 20,
+    marginBottom: 10,
+  },
+  infoCardDiv: {
+    display: 'flex',
+    flex: 1,
+    cursor: 'pointer',
+    justifyContent: 'space-between',
+    marginRight: 5,
+    marginTop: 5,
+    marginLeft: 5,
+    flexDirection: 'row',
+  },
+  cardsRestantes: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 14,
+    color: '#000',
+    marginTop: 5,
+    marginLeft: 5,
+  },
+  codigodisciplina: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 300,
+    fontSize: 12,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+  },
+  cardTeorico: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#2196f3',
+    width: 200,
+    minHeight: 90,
+    borderRadius: 5,
+    boxShadow: "1px 1px 3px #9E9E9E",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  cardPratico: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#0d47a1',
+    width: 200,
+    minHeight: 90,
+    borderRadius: 5,
+    boxShadow: "1px 1px 3px #9E9E9E",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  disciplina: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 700,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+    fontSize: 14,
+  },
+  turma: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontWeight: 400,
+    textAlign: 'center',
+    margin: 0,
+    padding: 0,
+    fontSize: 12,
+  },
+  th: {
+    width: 140,
+    backgroundColor: 'transparent',
+    textTransform: 'uppercase',
+    color: '#3F51B5',
+  },
+  thHorario: {
+    width: 120,
+    textTransform: 'uppercase',
+    color: '#3F51B5',
+  },
+  tdDrop: {
+    cursor: 'pointer',
+    backgroundColor: '#E7E7E7',
+    borderRadius: 5,
+    height: 55,
+    width: 140,
+  },
+  tdHora: {
+    color: '#707070',
+    textTransform: 'uppercase',
+  },
+  botaoSalvar: {
+    marginRight: 10,
+  },
 })
 
 class Definicao extends React.Component {
@@ -70,7 +264,10 @@ class Definicao extends React.Component {
       disciplinas: [],
       turmas: [],
       selectedDisciplina: '',
+      selectedProfessor: '',
       selectedTurma: '',
+      arrayProfessores: '',
+      arrayP: [],
     }
   }
 
@@ -92,15 +289,25 @@ class Definicao extends React.Component {
 
   };
 
+
+  handleChangeProfessor = async selectedOptionProfessor => {
+    await this.setState({ selectedOptionProfessor });
+
+    this.setState({ selectedProfessor: selectedOptionProfessor.label });
+    this.handleChangeComponente();
+
+
+  };
+
   async handleChangeDisciplina(item, index) {
 
     const response = await api.post("/disciplina/buscarTurmas", {
       id_disciplina: item.id_disciplina
     })
-    
-    this.setState({selectedDisciplina: item.nome});
 
-    this.setState({turmas: '', carregouTurma: false});
+    this.setState({ selectedDisciplina: item.nome });
+
+    this.setState({ turmas: '', carregouTurma: false });
 
     for (var i = 0; i < response.data.length; i++) {
       await this.setState({ turmas: [...this.state.turmas, { id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma }], carregouTurma: true })
@@ -112,17 +319,17 @@ class Definicao extends React.Component {
 
   async handleDelete() {
 
-    this.setState({selectedDisciplina: ''});
-    this.setState({selectedTurma: ''});
-    
-    await this.setState({carregouComponente: false})
-    await this.setState({carregouGerar: false})
-    await this.setState({carregouTurma: false})
+    this.setState({ selectedDisciplina: '' });
+    this.setState({ selectedTurma: '' });
+
+    await this.setState({ carregouComponente: false })
+    await this.setState({ carregouGerar: false })
+    await this.setState({ carregouTurma: false })
 
   };
 
   async handleChangeTurma(item) {
-    this.setState({selectedTurma: [...this.state.selectedTurma, item.turma]});
+    this.setState({ selectedTurma: [...this.state.selectedTurma, item.turma] });
     await this.setState({ carregouGerar: true })
 
   };
@@ -136,34 +343,54 @@ class Definicao extends React.Component {
   componentDidMount = async () => {
     if (localStorage.getItem('login') == 'on') {
       var usuario = JSON.parse(localStorage.getItem('usuario'))
+      this.setState({ usuario: usuario })
 
-      this.setState({ id_curso: usuario.id_curso });
-
-      const response = await api.post("/disciplina/buscarSemestre", {
-        id_course: usuario.id_curso
+      const response = await api.post("/disciplina/buscarCurso", {
+        id_usuario: usuario.id_usuario
       })
 
-      await this.setState({ qtdeSemestre: response.data[0].semestres, })
+      this.setState({ id_curso: response.data[0].id_curso })
+
+      const response2 = await api.post("/disciplina/buscarSemestre", {
+        id_course: response.data[0].id_curso
+      })
+
+      await this.setState({ qtdeSemestre: response2.data[0].semestres, })
       var rows = [];
       for (var i = 1; i <= this.state.qtdeSemestre; i++) {
-        this.setState({ array: [...this.state.array, { value: i, label: i }] })
+        this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })
         this.setState({ carregou: true })
       }
+
+      const responseProfessor = await api.post("/disciplina/buscaProfessores", {
+        id_departamento: this.state.usuario.id_departamento
+      })
+
+      await this.setState({ arrayProfessores: responseProfessor.data })
+
+      this.state.arrayProfessores.map((item => {
+        this.setState({ arrayP: [...this.state.arrayP, { label: item.nome, value: item.id_professor }] })
+      }))
+
+      console.log("array professores: ", this.state.arrayProfessores);
 
     }
 
   };
 
   render() {
+    
 
-    const { selectedOptionSemestre } = this.state;
+    const { selectedOptionSemestre, selectedOptionProfessor } = this.state;
     const self = this;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <Header />
+          <Header botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
+            botaoSalvarContinuar={<Button onClick={() => this.salvarGrade()} size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
+          />
         </AppBar>
         <Drawer
           className={classes.drawer}
@@ -174,56 +401,84 @@ class Definicao extends React.Component {
           anchor="right"
         >
 
-          <div style={{ marginTop: 150 + 'px' }}></div>
 
-          {this.state.carregouComponente ?
-            <div style={{display:'flex', flexDirection: 'row'}}><div>{this.state.selectedTurma + ' - ' + this.state.selectedDisciplina}</div>
-              <button onClick={() => self.handleDelete()}>X</button></div>
-            : null
-          }
+          <div className={classes.spacer}></div>
 
-          <Select id="cadastro_turmas_input_1"
-            value={selectedOptionSemestre}
-            onChange={this.handleChangeSemestre}
-            options={this.state.array}
-          />
+          <div className={classes.contentdrawer}>
 
+            <div className={classes.generator}>
 
-          {this.state.carregouDisciplina ?
-            this.state.disciplinas.map(function (item, index) {
-              return (
-                <div
-                  style={{ flexDirection: 'row', display: 'flex', marginTop: 10 }}
-                >
-                  <input style={{ marginRight: 10 }} onClick={() => self.handleChangeDisciplina(item, index)} name="input" value={index} type="radio" />
-                  <p>{item.nome}</p>
+              <div className={classes.cardView}>
+                <div className={classes.infoCardDiv}>
+                  <p className={classes.cardsRestantes}>RESTANTES: <b>{this.state.selectedDisciplina.horas_totais}</b></p>
+                  <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 </div>
-              )
-            })
-            : null
-          }
+                {this.state.carregouComponente ?
+                  <div style={{ cursor: 'pointer' }} className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}>
+                    <p className={classes.disciplina}>{this.state.selectedProfessor}</p>
+                    <p className={classes.turma}>{this.state.selectedTurma}</p>
+                  </div>
+                  : <div style={{ cursor: 'pointer' }} className={classes.card}>
+                    <p className={classes.disciplina}>Selecione o Professor</p>
+                  </div>
+                }
+              </div>
 
-          {this.state.carregouTurma ?
-            this.state.turmas.map(function (item) {
-              return (
-                <div> <input onClick={() => self.handleChangeTurma(item)} type="checkbox" />
-                  <p >{item.turma}</p></div>
-              )
-            })
-            : null
-          }
+              <Select id="cadastro_turmas_input_1"
+                value={selectedOptionSemestre}
+                onChange={this.handleChangeSemestre}
+                options={this.state.array}
+                className={classes.select}
+                placeholder={'Selecione o semestre'}
+              />
 
-          {this.state.carregouGerar ?
-            <div><button onClick={() => self.handleChangeComponente()}>Gerar Componente</button></div>
-            : null
-          }
+              <Select id="cadastro_turmas_input_2"
+                // value={selectedOptionSemestre}
+                onChange={this.handleChangeProfessor}
+                options={this.state.arrayP}
+                className={classes.select2}
+                placeholder={'Selecione o professor'}
+              />
 
 
+              {this.state.carregouDisciplina ?
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Selecione a disciplina:</FormLabel>
+                  <RadioGroup
+                    aria-label="gender"
+                    name="gender1"
+                    className={classes.group}
+                    value={null}
+                    onChange={null}
+                  >
+                    {this.state.disciplinas.map((item, index) => {
+                      return (
+                        <FormControlLabel value={item.nome}
+                          className={classes.formcontrollabel}
+                          control={
+                            <Radio color="primary" disabled={this.state.disabled[index]} onClick={() => this.setState({ index: index })}
+                              className={classes.radio} />
+                          }
+                          label={item.nome}
+                          onClick={() => !this.state.disabled[index] ? self.handleChangeDisciplina(item, index) : null} />
+                      )
+                    })}
+                  </RadioGroup>
+                </FormControl>
+                : null
+              }
 
 
+            </div>
+            <div class='buttonsDiv'>
+              {/* <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
+              <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button> */}
+            </div>
+          </div>
         </Drawer>
 
         <main className={classes.content}>
+          <GradeConsulta />
 
         </main>
 

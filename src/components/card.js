@@ -60,6 +60,7 @@ class Card extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const self = this.props;
         return (
             <div className={this.props.teorica == true ? classes.cardTeorico : classes.cardPratico}>
                 <div />
@@ -68,8 +69,8 @@ class Card extends React.Component {
                     <p className={classes.turma}>{this.props.nomeTurma}</p>
                     <p className={classes.turma}>{this.props.teorica === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
                 </div>
-                <Close onClick={() => console.log("clicou")
-                } style={{ fontSize: 20, color: '#fff' }} />
+                <Close 
+                 style={{ fontSize: 20, color: '#fff' }} />
             </div>
         )
     }
