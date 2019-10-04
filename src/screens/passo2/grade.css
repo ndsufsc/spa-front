@@ -57,3 +57,22 @@
 .celulas {
 	width: 100px
 }
+
+#iconDrawer {
+    animation-name: keyframes1;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 10%;
+    animation-delay: -0.75s;
+    animation-duration: .25s;
+}
+ 
+@keyframes keyframes1 {
+    0% {
+        transform: rotate(-1deg);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: rotate(1.5deg);
+        animation-timing-function: ease-out;
+    }
+}
