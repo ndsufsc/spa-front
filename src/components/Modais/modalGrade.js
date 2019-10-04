@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap'
 
 export default class Modais extends Component {
+
+    componentWillMount() {
+        
+    }
+ 
     render() {
         const self = this.props
         return (
@@ -26,8 +31,6 @@ export default class Modais extends Component {
                             <p>
                                 Oi
                             </p>
-                            />
-
                         </div>
                     </Modal.Body>
                 </Modal>

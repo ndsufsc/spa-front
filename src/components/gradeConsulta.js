@@ -208,12 +208,7 @@ const styles = theme => ({
     },
 })
 
-<<<<<<< HEAD
-
-export default class GradeConsulta extends Component {
-=======
 class GradeConsulta extends React.Component {
->>>>>>> 12014df74e1b2c51b5d3afdc4a6b633abdbd6038
 
     constructor(props) {
         super(props);
@@ -248,16 +243,22 @@ class GradeConsulta extends React.Component {
         this.setClass(0, 0, 1);
     }
 
-    closeModal(){
-        console.log("teste");
-        
-        this.setState({ openModalGrade: false })
+    closeModal = async () => {
+        await this.setState({ openModalGrade: false})
+        await this.setState({ teste: this.teste()})
+
     }
 
-    teste(){
-        return(
-            <ModalGrade show={this.state.openModalGrade} close={this.closeModal}/>
+    teste(schedule) {
+        return (
+            <ModalGrade show={this.state.openModalGrade}  schedule={schedule} close={this.closeModal} />
         )
+    }
+
+    async setar(schedule){
+        await this.setState({ openModalGrade: true })
+        this.setState({ teste: this.teste(schedule) })
+
     }
 
     verificarPosicao(scheduleId, classIndex, pos) {
@@ -265,7 +266,7 @@ class GradeConsulta extends React.Component {
             this.state.schedulesMatutino.map(schedule => {
                 if (schedule.id === scheduleId) {
                     if (schedule.classes[classIndex] != null) {
-                        this.setState({ openModalGrade: true, teste: this.teste() })
+                        this.setar(schedule)
                     } else {
                         return (schedule)
                     }
@@ -527,6 +528,7 @@ class GradeConsulta extends React.Component {
         const { classes } = this.props;
         return (
             <div>
+                {/* modal teste */}
                 {this.state.teste}
                 <Table borderless
                     style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
@@ -861,7 +863,7 @@ class GradeConsulta extends React.Component {
 
 
 GradeConsulta.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(GradeConsulta);
