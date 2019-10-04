@@ -597,9 +597,7 @@ class GradeConsulta extends React.Component {
                         }
                     </tbody>
                 </Table>
-                <Table borderless
-                    style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-                >
+                <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
                     <thead>
                         <tr style={{ backgroundColor: '#FAFAFA' }}>
                             <th></th>
