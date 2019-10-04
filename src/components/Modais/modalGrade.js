@@ -4,8 +4,13 @@ import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap'
 
 export default class Modais extends Component {
+    state={
 
-    componentWillMount() {
+    }
+
+
+    async componentWillReceiveProps(props) {
+        console.log("props schedule: ", props.schedule);
         
     }
  
@@ -16,7 +21,7 @@ export default class Modais extends Component {
                 <Modal
                     show={self.show}
                     onHide={() => self.close()}
-                    size="sm"
+                    size="lg"
                     style={{ marginTop: '5%' }}
                 >
                     <Modal.Header closeButton>Carregando...</Modal.Header>
