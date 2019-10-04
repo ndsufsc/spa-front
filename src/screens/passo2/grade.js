@@ -929,6 +929,53 @@ class Grade extends React.Component {
     vetorGrade = [this.state.arrayQuadroMatutino, this.state.arrayQuadroMatutino2, this.state.arrayQuadroMatutino3, this.state.arrayQuadroMatutino4, this.state.arrayQuadroMatutino6, this.state.arrayQuadroVespertino, this.state.arrayQuadroVespertino2, this.state.arrayQuadroVespertino3, this.state.arrayQuadroVespertino4, this.state.arrayQuadroVespertino5, this.state.arrayQuadroNoturno, this.state.arrayQuadroNoturno2, this.state.arrayQuadroNoturno3, this.state.arrayQuadroNoturno4];
 
 
+    // let i = 0;
+    // for (i = 0; i < 6; i++) {
+    //   let j = 0;
+    //   let id_semestre = 2;
+    //   let aux = 0;
+
+    //   for (j = 0; j < vetorGrade.length; j++) {
+    //     if (vetorGrade[j].id_curriculo_disciplina[i] != null) {
+
+    //       if (aux == 0) {
+    //         let qtd_aulas = 0;
+
+    //         let k = 0;
+    //         for (k = j; k < vetorGrade.length - 1; k++) {
+    //           qtd_aulas++;
+    //           aux++;
+
+    //           if ((vetorGrade[k].id_curriculo_disciplina[i] != vetorGrade[k + 1].id_curriculo_disciplina[i])) {
+
+    //             break;
+    //           }
+    //           if (k == vetorGrade.length) {
+    //             if ((vetorGrade[k - 1].id_curriculo_disciplina[i] != vetorGrade[k].id_curriculo_disciplina[i])) {
+    //               break;
+    //             }
+    //           }
+    //         }
+    //         aux--;
+
+    //         var post = {
+    //           id_sala: 1,
+    //           id_professor: 1,
+    //           id_semestre: `${id_semestre}`,
+    //           id_turma: `${vetorGrade[j].turma[i]}`,
+    //           id_curriculo_disciplina: `${vetorGrade[j].id_curriculo_disciplina[i]}`,
+    //           id_horario_inicio: `${vetorGrade[j].linha}`,
+    //           dia_semana: i + 2,
+    //           qtde_aulas: qtd_aulas,
+    //           teorico: `${vetorGrade[j].tipo_aula[i]}`,
+    //         };
+    //         console.log("post: ", { post });
+
+    //       }
+    //     }
+    //   }
+    // }
+
     await api.post('/disciplina/salvarTurmas', {
       vetorGrade: vetorGrade,
       id_semestre: this.state.selectedOptionSemestre.value
