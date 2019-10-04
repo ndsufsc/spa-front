@@ -1030,9 +1030,8 @@ class Grade extends React.Component {
             <h4 style={{ fontSize: 18, color: '#000' }}>Engenharia de Computação</h4>
             <h4 style={{ fontSize: 18, color: '#000' }}><i>1º Semestre</i></h4>
           </div>
-          <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-          >
+          {/*
+          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1146,9 +1145,7 @@ class Grade extends React.Component {
               }
             </tbody>
           </Table>
-          <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-          >
+          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1258,9 +1255,7 @@ class Grade extends React.Component {
               }
             </tbody>
           </Table>
-          <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-          >
+          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1355,6 +1350,7 @@ class Grade extends React.Component {
 
             </tbody>
           </Table>
+          */}
           <GradeConsulta />
         </main>
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //react bootstrap
 import { Table } from 'react-bootstrap'
@@ -9,9 +9,12 @@ import ModalGrade from '../components/Modais/modalGrade'
 //api
 import api from '../service/api';
 
+import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
+
 const drawerWidth = "25%";
 
-const classes = theme => ({
+const styles = theme => ({
     root: {
         // display: 'flex',
     },
@@ -205,8 +208,12 @@ const classes = theme => ({
     },
 })
 
+<<<<<<< HEAD
 
 export default class GradeConsulta extends Component {
+=======
+class GradeConsulta extends React.Component {
+>>>>>>> 12014df74e1b2c51b5d3afdc4a6b633abdbd6038
 
     constructor(props) {
         super(props);
@@ -517,6 +524,7 @@ export default class GradeConsulta extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <div>
                 {this.state.teste}
@@ -850,3 +858,10 @@ export default class GradeConsulta extends Component {
         )
     }
 }
+
+
+GradeConsulta.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(GradeConsulta);
