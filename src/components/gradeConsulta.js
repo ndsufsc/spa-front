@@ -208,12 +208,7 @@ const styles = theme => ({
     },
 })
 
-<<<<<<< HEAD
-
-export default class GradeConsulta extends Component {
-=======
 class GradeConsulta extends React.Component {
->>>>>>> 12014df74e1b2c51b5d3afdc4a6b633abdbd6038
 
     constructor(props) {
         super(props);
