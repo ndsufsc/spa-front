@@ -33,8 +33,8 @@ class Alocacao extends React.Component {
     constructor() {
       super()
       this.state = {
-        arrayTurmas: { id_turma: [], codigo: [], dia_semana: [], inicio: [], qtde_aulas: [], qtde_alunos: [], id_tipo_sala: [], tipo_aula: [] },
-        arraySalas: { id_salas: [], id_tipo_sala: [], sigla: [], capacidade: [] },
+        arrayTurmas: [],
+        arraySalas: [],
       }
     }
 
@@ -46,7 +46,7 @@ class Alocacao extends React.Component {
 
             for (var i = 0; i < response.data.length; i++) {
 
-
+              this.setState({ arrayTurmas: [...this.state.arrayTurmas, response.data[i]] })
 
             }
 
@@ -54,8 +54,7 @@ class Alocacao extends React.Component {
 
             for (var i = 0; i < response2.data.length; i++) {
 
-                //this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })
-                //this.setState({ carregou: true })
+              this.setState({ arraySalas: [...this.state.arraySalas, response2.data[i]] })
 
             }
 
@@ -65,9 +64,68 @@ class Alocacao extends React.Component {
 
     render() {
         return(
-            <div>oi</div>
+
+          <div>
+
+          <table style={{ float: 'right' }} border={'1'}><th>COD</th><th>DIA</th><th>INICIO</th><th>QUANTIDADE AULA</th><th>ALUNOS</th><th>SALA</th><th>TIPO</th><th>TIPO SALA</th>
+
+          {  this.state.arrayTurmas.map(function (item, index) {
+
+            return (
+              
+              <tr><td><center>
+              {item.codigo}
+              </center></td><td><center>
+              {item.dia_semana}
+              </center></td><td><center>
+              {item.descricao}
+              </center></td><td><center>
+              {item.qtde_aulas}
+              </center></td><td><center>
+              {item.qtde_alunos}
+              </center></td><td><center>
+              {item.id_sala}
+              </center></td><td><center>
+              {item.teorico}
+              </center></td><td><center>
+              {item.id_tipo_sala}
+              </center></td></tr>
+
+            )
+
+          })
+              
+          }
+
+          </table>
+             
+          <table border={'1'}><th>COD</th><th>CAPACIDADE</th><th>TIPO</th>
+        
+          {  this.state.arraySalas.map(function (item, index) {
+
+            return (
+              
+              <tr><td><center>
+              {item.sigla}
+              </center></td><td><center>
+              {item.capacidade}
+              </center></td><td><center>
+              {item.id_tipo_sala}
+              </center></td></tr>
+
+            )
+
+          })
+            
+          }
+
+          </table>
+
+          </div>
+
         );
-    }
+
+    };
 
 }
 
@@ -179,49 +237,5 @@ Alocacao.propTypes = {
 //             }
            
 //         }
-        
-//     }
-
-//     ///////////////////////////////////
-
-//     // TABELAS DAS TURMAS E DAS SALAS
-
-//     ///////////////////////////////////
-
-//     echo ("<table style='float:left' border='1'><th>COD</th><th>DIA</th><th>INICIO</th><th>FIM</th><th>ALUNOS</th><th>SALA</th><th>TIPO</th><th>SOBRA</th>");
-
-//     for ($k=0; $k<$i; $k++) {
-        
-//         echo("<tr><td><center>");
-//         echo($turma["$k"]["cod_turma"]);
-//         echo("</center></td><td><center>");
-//         echo($turma["$k"]["dia"]);
-//         echo("</center</td><td><center>");
-//         echo($turma["$k"]["inicio"]);
-//         echo("</center></td><td><center>");
-//         echo($turma["$k"]["fim"]);
-//         echo("</center></td><td><center>");
-//         echo($turma["$k"]["alunos"]);
-//         echo("</center></td><td><center>");
-//         echo($turma["$k"]["sala"]);
-//         echo("</center></td><td><center>");
-//         echo($turma["$k"]["tipo"]);
-//         echo("</center></td><td><center>");
-//         echo($turma["$k"]["sobra"]);
-//         echo("</center></td></tr>");
-        
-//     }
-
-//     echo ("<table style='margin-left:81%; position: fixed' border='1'><th>COD</th><th>CAPACIDADE</th><th>TIPO</th>");
-
-//     for ($l=0; $l<$j; $l++) {
-        
-//         echo("<tr><td><center>");
-//         echo($sala["$l"]["cod_sala"]);
-//         echo("</center></td><td><center>");
-//         echo($sala["$l"]["capacidade"]);
-//         echo("</center></td><td><center>");
-//         echo($sala["$l"]["tipo"]);
-//         echo("</center></td></tr>");
         
 //     }
