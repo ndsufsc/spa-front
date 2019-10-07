@@ -437,8 +437,6 @@ class Grade extends React.Component {
   }
 
   attRestante(v){
-    console.log("atualizar horas totais: ", v);
-    
     this.setState({ horas_totais_t: v })
   }
 
@@ -926,6 +924,12 @@ class Grade extends React.Component {
     }
   }
 
+  armazenarSchedule(schedule){
+    this.setState({ schedulesMatutino: schedule });
+    console.log("schedules matutino: ", this.state.schedulesMatutino);
+    
+  }
+
   async salvarGrade() {
 
     for (let i = 0; i < 6; i++) {
@@ -1033,7 +1037,7 @@ class Grade extends React.Component {
             <h4 style={{ fontSize: 18, color: '#000' }}><i>1º Semestre</i></h4>
           </div>
  
-          {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
+           {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1146,7 +1150,7 @@ class Grade extends React.Component {
               ))
               }
             </tbody>
-          </Table>  */}
+          </Table>   */}
           {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
@@ -1363,6 +1367,8 @@ class Grade extends React.Component {
               index={this.state.index}
               atualizarRadio={(t) => this.disableRadio(t)}
               atualizarRestante={(v) => this.attRestante(v)}
+              salvarGrade={(schedule) => this.armazenarSchedule(schedule)}
+              turmaSelecionada={this.state.turmaSelecionada}
             />
             :
             <GradeConsulta
@@ -1373,6 +1379,8 @@ class Grade extends React.Component {
               index={this.state.index}
               atualizarRadio={(t) =>this.disableRadio(t)}
               atualizarRestante={(v) => this.attRestante(v)}
+              salvarGrade={(schedule) => this.armazenarSchedule(schedule)}
+              turmaSelecionada={this.state.turmaSelecionada}
             />
           }
         </main>
