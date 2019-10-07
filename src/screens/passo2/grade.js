@@ -457,19 +457,31 @@ class Grade extends React.Component {
   //diminui a quantidade de créditos
   async diminuirCreditos() {
 
+    console.log("HORAS PRÁTICAS: ", this.state.horas_praticas);
+    console.log("HORAS TEÓRICAS: ", this.state.horas_teoricas);
+
     if (this.state.selectedDisciplina.horas_totais != 0) {
+      console.log("entrando1");
+
       await this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina } })
     }
 
-
-
     if (this.state.boolean_tp == false && this.state.horas_praticas != 0 && this.state.horas_teoricas != 0) {
+      console.log("entrando2");
       if (this.state.horas_praticas > 0) {
+
         await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
+
+
       } else {
+        console.log("entrando 3");
+        
         await this.setState({ boolean_tp: true })
+
       }
     } else if (this.state.boolean_tp == true && this.state.horas_teoricas != 0) {
+      console.log("entrando4");
+
       if (this.state.horas_teoricas > 0) {
 
         await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
@@ -477,11 +489,15 @@ class Grade extends React.Component {
       }
 
       if (this.state.horas_teoricas == 0) {
+        console.log("entrando5");
+
         await this.setState({ boolean_tp: false })
 
         this.verificaCreditos();
       }
       if (this.state.horas_praticas == 0) {
+        console.log("entrando6");
+
         await this.setState({ boolean_tp: false })
 
         this.verificaCreditos();
@@ -984,8 +1000,8 @@ class Grade extends React.Component {
   }
 
   handleMouseHover = () => {
-      var atual = this.state.mostraClose
-      this.setState({mostraClose: !atual})
+    var atual = this.state.mostraClose
+    this.setState({ mostraClose: !atual })
   }
 
   render() {
@@ -1035,7 +1051,7 @@ class Grade extends React.Component {
             <h4 style={{ fontSize: 18, color: '#000' }}>Engenharia de Computação</h4>
             <h4 style={{ fontSize: 18, color: '#000' }}><i>1º Semestre</i></h4>
           </div>
-          {/*
+{/* 
           <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
@@ -1149,8 +1165,8 @@ class Grade extends React.Component {
               ))
               }
             </tbody>
-          </Table>
-          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
+          </Table> */}
+          {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1354,9 +1370,24 @@ class Grade extends React.Component {
               }
 
             </tbody>
-          </Table>
-          */}
-          <GradeConsulta />
+          </Table> */}
+                   
+          {this.state.semestre != null ?
+            <GradeConsulta
+              disciplina={this.state.selectedDisciplina}
+              turmaCodigo={this.state.turmaCodigo}
+              horas_praticas={this.state.horas_praticas}
+              horas_teoricas={this.state.horas_teoricas}
+              semestre={this.state.selectedOptionSemestre.value}
+            />
+            :
+            <GradeConsulta
+              disciplina={this.state.selectedDisciplina}
+              turmaCodigo={this.state.turmaCodigo}
+              horas_praticas={this.state.horas_praticas}
+              horas_teoricas={this.state.horas_teoricas}
+            />
+          }
         </main>
 
         <Drawer
@@ -1381,11 +1412,11 @@ class Grade extends React.Component {
                   <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 </div>
                 {this.state.carregouComponente ?
-                  <div id="iconDrawer" 
-                       style={{ cursor: 'pointer' }} 
-                       className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}
-                       onMouseEnter={this.handleMouseHover}
-                       onMouseLeave={this.handleMouseHover}>
+                  <div id="iconDrawer"
+                    style={{ cursor: 'pointer' }}
+                    className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}
+                    onMouseEnter={this.handleMouseHover}
+                    onMouseLeave={this.handleMouseHover}>
                     <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
                     <p className={classes.turma}>{this.state.selectedTurma}</p>
                     <p className={classes.turma}>{this.state.boolean_tp === true ? 'TEÓRICA' : 'PRÁTICA'}</p>

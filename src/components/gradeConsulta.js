@@ -213,29 +213,34 @@ class GradeConsulta extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', linha: 3, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', linha: 4, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', linha: 5, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', linha: 3, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', linha: 4, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', linha: 5, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
             //vespertino
-            schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
             //noturno
-            schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
-            schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
             carregou: false,
             carregou1: true,
             scheduleMatutinoR: [],
             arrayTurmasSalvas: '',
             close: false,
             teste: '',
-            openModalGrade: false
+            openModalGrade: false,
+            selectedDisciplina: '',
+            boolean_tp: true,
+            horas_praticas: '',
+            horas_teoricas: '',
+            horas_totais: ''
         }
     }
 
@@ -243,34 +248,102 @@ class GradeConsulta extends React.Component {
         this.setClass(0, 0, 1);
     }
 
+    async componentDidUpdate(prevProps) {
+        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas) {
+            if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
+                this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina})
+            }
+        }
+    }
+
     closeModal = async () => {
-        await this.setState({ openModalGrade: false})
-        await this.setState({ teste: this.teste()})
+        await this.setState({ openModalGrade: false })
+        await this.setState({ teste: this.teste() })
 
     }
 
-    teste(schedule) {
+    teste(schedule, pos) {
+        console.log("schedule: ", schedule);
+
         return (
-            <ModalGrade show={this.state.openModalGrade}  schedule={schedule} close={this.closeModal} />
+            <ModalGrade show={this.state.openModalGrade} schedule={schedule} pos={pos} close={this.closeModal} />
         )
     }
 
-    async setar(schedule){
+    async setar(schedule, pos) {
         await this.setState({ openModalGrade: true })
-        this.setState({ teste: this.teste(schedule) })
+        this.setState({ teste: this.teste(schedule, pos) })
+
+    }
+
+    verificaCreditos() {
+        if (this.state.selectedDisciplina.horas_totais <= 0) {
+            this.state.disabled[this.state.index] = true
+            alert("Horas totais de créditos preenchidas");
+            this.setState({ boolean_tp: true })
+            return 1;
+        }
+    }
+
+    async diminuirCreditos() {
+        
+        if (this.state.selectedDisciplina.horas_totais != 0) {
+            
+            await this.setState({ selectedDisciplina: { nome: this.props.disciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.props.disciplina.id_curriculo_disciplina } })
+        }
+        if (this.state.boolean_tp == false && this.state.horas_praticas >= 0 && this.state.horas_teoricas >= 0) {
+            if (this.state.horas_praticas > 0) {
+                await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
+            } else {
+                await this.setState({ boolean_tp: true })
+                
+            }
+        } else if (this.state.boolean_tp == true && this.state.horas_teoricas != 0) {
+            if (this.state.horas_teoricas > 0) {
+                await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
+            } else {
+            }
+
+            if (this.state.horas_teoricas == 0) {
+                await this.setState({ boolean_tp: false })
+                this.verificaCreditos();
+            }
+            if (this.state.horas_praticas == 0) {
+                await this.setState({ boolean_tp: false })
+                this.verificaCreditos();
+            }
+        }
 
     }
 
     verificarPosicao(scheduleId, classIndex, pos) {
+        const self = this.props;
         if (pos == 1) {
-            this.state.schedulesMatutino.map(schedule => {
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        this.setar(schedule)
-                    } else {
+            this.setState({
+                scheduleMatutino: this.state.schedulesMatutino.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                        } else {
+                            if (this.verificaCreditos() == 1)
+                                return (schedule);
+                            schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                            schedule.turma[classIndex] = this.state.turmaSelecionada
+                            schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                            schedule.semestre = self.semestre
+                            schedule.carregou[classIndex] = true
+                            schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                            this.diminuirCreditos();
+                            schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                            if (this.state.boolean_tp == true) {
+                                schedule.tipo_aula[classIndex] = 1
+                            } else {
+                                schedule.tipo_aula[classIndex] = 2
+                            }
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 2) {
@@ -451,7 +524,6 @@ class GradeConsulta extends React.Component {
             fase: 1,
             id_course: 12
         })
-
         this.setState({ arrayTurmasSalvas: response.data })
 
         var arrayTurmasSalvas = this.state.arrayTurmasSalvas;
@@ -464,9 +536,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 1 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
-
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
 
                             return (schedule)
                         })
