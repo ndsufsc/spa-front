@@ -34,6 +34,8 @@ import { css } from '@emotion/core';
 //react bootstrap
 import { Table, Modal } from 'react-bootstrap'
 
+import Loading from '../../components/loading'
+
 // load
 import { ClipLoader, BounceLoader } from 'react-spinners';
 
@@ -546,7 +548,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 2) {
       this.setState({
         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
@@ -575,7 +576,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 3) {
       this.setState({
         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
@@ -604,7 +604,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 4) {
       this.setState({
         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
@@ -633,7 +632,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 5) {
       this.setState({
         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
@@ -662,7 +660,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 6) {
       this.setState({
         schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
@@ -1017,34 +1014,6 @@ class Grade extends React.Component {
             botaoSalvarContinuar={<Button onClick={() => this.salvarGrade()} size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
           />
         </AppBar>
-        {/* Modal loading */}
-        <Modal
-          show={this.state.showLoading}
-          onHide={this.handleClose}
-          size="sm"
-          style={{ marginTop: '5%' }}
-        >
-          <Modal.Header closeButton>Carregando...</Modal.Header>
-          <Modal.Body
-            style={{
-              // background: 'transparent',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ marginTop: 50, marginBottom: 50 }}>
-              <BounceLoader
-                css={override}
-                sizeUnit={'px'}
-                size={60}
-                color={'#123b7a'}
-                loading={this.state.loading}
-              />
-
-            </div>
-          </Modal.Body>
-        </Modal>
-
         <main className={classes.content}>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
@@ -1399,6 +1368,33 @@ class Grade extends React.Component {
           anchor="right"
         >
 
+        {/* Modal loading */}
+          <Loading loading={this.state.showLoading}/>
+          {/*<Modal
+            show={this.state.showLoading}
+            onHide={this.handleClose}
+            size="sm"
+            style={{ marginTop: '5%' }}>
+            <Modal.Header closeButton>Carregando...</Modal.Header>
+            <Modal.Body
+              style={{
+                // background: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div style={{ marginTop: 50, marginBottom: 50 }}>
+                <BounceLoader
+                  css={override}
+                  sizeUnit={'px'}
+                  size={60}
+                  color={'#123b7a'}
+                  loading={this.state.loading}
+                />
+
+              </div>
+            </Modal.Body>
+            </Modal>*/}
 
           <div className={classes.spacer}></div>
 
