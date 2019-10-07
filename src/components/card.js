@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { withStyles } from "@material-ui/core/styles"
 import { Close } from '@material-ui/icons';
 
+import './card.css';
+
 
 const styles = theme => ({
     cardTeorico: {
@@ -56,20 +58,29 @@ const styles = theme => ({
 class Card extends React.Component {
     constructor() {
         super()
+        this.state = {mostraClose: false}
     }
 
+    handleMouseHover = () => {
+        var atual = this.state.mostraClose
+        this.setState({mostraClose: !atual})
+    }
+    
     render() {
         const { classes } = this.props;
+        const self = this.props;
         return (
-            <div className={this.props.teorica == true ? classes.cardTeorico : classes.cardPratico}>
+            <div id="icon" 
+                 className={this.props.teorica == true ? classes.cardTeorico : classes.cardPratico} 
+                 onMouseEnter={this.handleMouseHover}
+                 onMouseLeave={this.handleMouseHover}>
                 <div />
                 <div>
                     <p className={classes.disciplina}>{this.props.nomeDisciplina}</p>
                     <p className={classes.turma}>{this.props.nomeTurma}</p>
                     <p className={classes.turma}>{this.props.teorica === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
                 </div>
-                <Close onClick={() => console.log("clicou")
-                } style={{ fontSize: 20, color: '#fff' }} />
+                {this.state.mostraClose ? <Close style={{ fontSize: 20, color: '#fff' }} /> : <div style={{width: 0}}/> }
             </div>
         )
     }

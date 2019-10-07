@@ -45,6 +45,7 @@ import { Close } from '@material-ui/icons';
 import Header from '../../components/header';
 import Card from '../../components/card';
 import api from '../../service/api';
+import GradeConsulta from '../../components/gradeConsulta';
 
 //ROTEAMENTO
 import { Link } from 'react-router-dom'
@@ -274,6 +275,7 @@ class Grade extends React.Component {
       carregouMatutino: false,
       arrayLinhas: [1, 2, 3, 4, 5],
       arrayColunas: [1, 2, 3, 4, 5, 6],
+      mostraClose: false,
       //matutino
       schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
       schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
@@ -455,19 +457,31 @@ class Grade extends React.Component {
   //diminui a quantidade de créditos
   async diminuirCreditos() {
 
+    console.log("HORAS PRÁTICAS: ", this.state.horas_praticas);
+    console.log("HORAS TEÓRICAS: ", this.state.horas_teoricas);
+
     if (this.state.selectedDisciplina.horas_totais != 0) {
+      console.log("entrando1");
+
       await this.setState({ selectedDisciplina: { nome: this.state.selectedDisciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.state.selectedDisciplina.id_curriculo_disciplina } })
     }
 
-
-
     if (this.state.boolean_tp == false && this.state.horas_praticas != 0 && this.state.horas_teoricas != 0) {
+      console.log("entrando2");
       if (this.state.horas_praticas > 0) {
+
         await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
+
+
       } else {
+        console.log("entrando 3");
+        
         await this.setState({ boolean_tp: true })
+
       }
     } else if (this.state.boolean_tp == true && this.state.horas_teoricas != 0) {
+      console.log("entrando4");
+
       if (this.state.horas_teoricas > 0) {
 
         await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
@@ -475,11 +489,15 @@ class Grade extends React.Component {
       }
 
       if (this.state.horas_teoricas == 0) {
+        console.log("entrando5");
+
         await this.setState({ boolean_tp: false })
 
         this.verificaCreditos();
       }
       if (this.state.horas_praticas == 0) {
+        console.log("entrando6");
+
         await this.setState({ boolean_tp: false })
 
         this.verificaCreditos();
@@ -928,70 +946,63 @@ class Grade extends React.Component {
     vetorGrade = [this.state.arrayQuadroMatutino, this.state.arrayQuadroMatutino2, this.state.arrayQuadroMatutino3, this.state.arrayQuadroMatutino4, this.state.arrayQuadroMatutino6, this.state.arrayQuadroVespertino, this.state.arrayQuadroVespertino2, this.state.arrayQuadroVespertino3, this.state.arrayQuadroVespertino4, this.state.arrayQuadroVespertino5, this.state.arrayQuadroNoturno, this.state.arrayQuadroNoturno2, this.state.arrayQuadroNoturno3, this.state.arrayQuadroNoturno4];
 
 
-    let i = 0;
-    for (i = 0; i < 6; i++) {
-      let j = 0;
-      let id_semestre = 2;
-      let aux = 0;
+    // let i = 0;
+    // for (i = 0; i < 6; i++) {
+    //   let j = 0;
+    //   let id_semestre = 2;
+    //   let aux = 0;
 
-      for (j = 0; j < vetorGrade.length; j++) {
-        if (vetorGrade[j].id_curriculo_disciplina[i] != null) {
-          console.log("AUX externo: ", aux, "i: ", j);
-          
-          if (aux == 0) {
-            let qtd_aulas = 0;
+    //   for (j = 0; j < vetorGrade.length; j++) {
+    //     if (vetorGrade[j].id_curriculo_disciplina[i] != null) {
 
-            let k = 0;
-            for (k = j; k < vetorGrade.length - 1; k++) {
-              qtd_aulas++;
-              aux++;
-              console.log("AUX INTERNO: ", aux);
+    //       if (aux == 0) {
+    //         let qtd_aulas = 0;
 
-              if ((vetorGrade[k].id_curriculo_disciplina[i] != vetorGrade[k + 1].id_curriculo_disciplina[i])) {
-                console.log("BREAK NA POSIÇÃO: ", k);
-                
-                break;
-              }
-              if(k == vetorGrade.length){
-                if((vetorGrade[k-1].id_curriculo_disciplina[i] != vetorGrade[k].id_curriculo_disciplina[i])){
-                  break;
-                }
-              }
-            }
-            aux--;
-            //if ((vetorGrade[vetorGrade.length - 2].id_curriculo_disciplina[i] == vetorGrade[vetorGrade.length - 1].id_curriculo_disciplina[i]) && (vetorGrade[vetorGrade.length - 2].turma[i] == vetorGrade[vetorGrade.length - 1].turma[i])) {
-            //    qtd_aulas++;
-            //}
+    //         let k = 0;
+    //         for (k = j; k < vetorGrade.length - 1; k++) {
+    //           qtd_aulas++;
+    //           aux++;
 
-            var post = {
-              id_sala: 1,
-              id_professor: 1,
-              id_semestre: `${id_semestre}`,
-              id_turma: `${vetorGrade[j].turma[i]}`,
-              id_curriculo_disciplina: `${vetorGrade[j].id_curriculo_disciplina[i]}`,
-              id_horario_inicio: `${vetorGrade[j].linha}`,
-              dia_semana: i + 2,
-              qtde_aulas: qtd_aulas,
-              teorico: 3,
-              tipo_aula: `${vetorGrade[j].tipo_aula}`,
-            };
-            console.log("post: ", post);
-          } else {
-            aux--;
-          }
-        }
-      }
-    }
+    //           if ((vetorGrade[k].id_curriculo_disciplina[i] != vetorGrade[k + 1].id_curriculo_disciplina[i])) {
 
+    //             break;
+    //           }
+    //           if (k == vetorGrade.length) {
+    //             if ((vetorGrade[k - 1].id_curriculo_disciplina[i] != vetorGrade[k].id_curriculo_disciplina[i])) {
+    //               break;
+    //             }
+    //           }
+    //         }
+    //         aux--;
 
+    //         var post = {
+    //           id_sala: 1,
+    //           id_professor: 1,
+    //           id_semestre: `${id_semestre}`,
+    //           id_turma: `${vetorGrade[j].turma[i]}`,
+    //           id_curriculo_disciplina: `${vetorGrade[j].id_curriculo_disciplina[i]}`,
+    //           id_horario_inicio: `${vetorGrade[j].linha}`,
+    //           dia_semana: i + 2,
+    //           qtde_aulas: qtd_aulas,
+    //           teorico: `${vetorGrade[j].tipo_aula[i]}`,
+    //         };
+    //         console.log("post: ", { post });
 
+    //       }
+    //     }
+    //   }
+    // }
 
-    // await api.post('/disciplina/salvarTurmas', {
-    //   vetorGrade: vetorGrade,
-    //   id_semestre: this.state.selectedOptionSemestre.value
-    // })
+    await api.post('/disciplina/salvarTurmas', {
+      vetorGrade: vetorGrade,
+      id_semestre: this.state.selectedOptionSemestre.value
+    })
   }
 
+  handleMouseHover = () => {
+    var atual = this.state.mostraClose
+    this.setState({ mostraClose: !atual })
+  }
 
   render() {
 
@@ -1040,9 +1051,8 @@ class Grade extends React.Component {
             <h4 style={{ fontSize: 18, color: '#000' }}>Engenharia de Computação</h4>
             <h4 style={{ fontSize: 18, color: '#000' }}><i>1º Semestre</i></h4>
           </div>
-          <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-          >
+{/* 
+          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1155,10 +1165,8 @@ class Grade extends React.Component {
               ))
               }
             </tbody>
-          </Table>
-          <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-          >
+          </Table> */}
+          {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1268,9 +1276,7 @@ class Grade extends React.Component {
               }
             </tbody>
           </Table>
-          <Table borderless
-            style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}
-          >
+          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1364,7 +1370,24 @@ class Grade extends React.Component {
               }
 
             </tbody>
-          </Table>
+          </Table> */}
+                   
+          {this.state.semestre != null ?
+            <GradeConsulta
+              disciplina={this.state.selectedDisciplina}
+              turmaCodigo={this.state.turmaCodigo}
+              horas_praticas={this.state.horas_praticas}
+              horas_teoricas={this.state.horas_teoricas}
+              semestre={this.state.selectedOptionSemestre.value}
+            />
+            :
+            <GradeConsulta
+              disciplina={this.state.selectedDisciplina}
+              turmaCodigo={this.state.turmaCodigo}
+              horas_praticas={this.state.horas_praticas}
+              horas_teoricas={this.state.horas_teoricas}
+            />
+          }
         </main>
 
         <Drawer
@@ -1389,7 +1412,11 @@ class Grade extends React.Component {
                   <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 </div>
                 {this.state.carregouComponente ?
-                  <div style={{ cursor: 'pointer' }} className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}>
+                  <div id="iconDrawer"
+                    style={{ cursor: 'pointer' }}
+                    className={this.state.boolean_tp === true ? classes.cardTeorico : classes.cardPratico}
+                    onMouseEnter={this.handleMouseHover}
+                    onMouseLeave={this.handleMouseHover}>
                     <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
                     <p className={classes.turma}>{this.state.selectedTurma.nome}</p>
                     <p className={classes.turma}>{this.state.boolean_tp === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
