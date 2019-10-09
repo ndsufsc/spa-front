@@ -34,6 +34,8 @@ import { css } from '@emotion/core';
 //react bootstrap
 import { Table, Modal } from 'react-bootstrap'
 
+import Loading from '../../components/loading'
+
 // load
 import { ClipLoader, BounceLoader } from 'react-spinners';
 
@@ -316,6 +318,7 @@ class Grade extends React.Component {
       boolean_tp: true,
       showLoading: false,
       turmaCodigo: '',
+      horas_totais_t: '',
     }
   }
 
@@ -355,8 +358,8 @@ class Grade extends React.Component {
     this.setState({ id_disciplina: response.data[0].id_curso })
     this.setState({ selectedDisciplina: { nome: item.nome, horas_totais: item.hrs_totais, id_curriculo_disciplina: item.id_curriculo_disciplina, id_disciplina: item.id_disciplina } });
 
-    this.setState({ turmas: '', carregouTurma: false });
-
+    this.setState({ turmas: '', carregouTurma: false, horas_totais_t: this.state.selectedDisciplina.horas_totais });
+    
     for (var i = 0; i < response2.data.length; i++) {
       await this.setState({ turmas: [...this.state.turmas, { id_turma: response2.data[i].id_turmas, turma: response2.data[i].codigo }], carregouTurma: true })
     }
@@ -428,6 +431,15 @@ class Grade extends React.Component {
     await this.setState({ carregouComponente: true })
 
   };
+
+  disableRadio(t){
+    this.state.disabled[this.state.index] = true;
+  }
+
+  attRestante(v){
+    this.setState({ horas_totais_t: v })
+  }
+
 
   componentDidMount = async () => {
     if (localStorage.getItem('login') == 'on') {
@@ -546,7 +558,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 2) {
       this.setState({
         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
@@ -575,7 +586,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 3) {
       this.setState({
         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
@@ -604,7 +614,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 4) {
       this.setState({
         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
@@ -633,7 +642,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 5) {
       this.setState({
         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
@@ -662,7 +670,6 @@ class Grade extends React.Component {
         })
       })
     }
-
     if (pos == 6) {
       this.setState({
         schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
@@ -917,6 +924,12 @@ class Grade extends React.Component {
     }
   }
 
+  armazenarSchedule(schedule){
+    this.setState({ schedulesMatutino: schedule });
+    console.log("schedules matutino: ", this.state.schedulesMatutino);
+    
+  }
+
   async salvarGrade() {
 
     for (let i = 0; i < 6; i++) {
@@ -1017,42 +1030,14 @@ class Grade extends React.Component {
             botaoSalvarContinuar={<Button onClick={() => this.salvarGrade()} size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
           />
         </AppBar>
-        {/* Modal loading */}
-        <Modal
-          show={this.state.showLoading}
-          onHide={this.handleClose}
-          size="sm"
-          style={{ marginTop: '5%' }}
-        >
-          <Modal.Header closeButton>Carregando...</Modal.Header>
-          <Modal.Body
-            style={{
-              // background: 'transparent',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ marginTop: 50, marginBottom: 50 }}>
-              <BounceLoader
-                css={override}
-                sizeUnit={'px'}
-                size={60}
-                color={'#123b7a'}
-                loading={this.state.loading}
-              />
-
-            </div>
-          </Modal.Body>
-        </Modal>
-
         <main className={classes.content}>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
             <h4 style={{ fontSize: 18, color: '#000' }}>Engenharia de Computação</h4>
             <h4 style={{ fontSize: 18, color: '#000' }}><i>1º Semestre</i></h4>
           </div>
-{/* 
-          <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
+ 
+           {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
                 <th></th>
@@ -1165,7 +1150,7 @@ class Grade extends React.Component {
               ))
               }
             </tbody>
-          </Table> */}
+          </Table>   */}
           {/* <Table borderless style={{ width: '100%', textAlign: 'center', backgroundColor: 'transparent' }}>
             <thead>
               <tr style={{ backgroundColor: '#FAFAFA' }}>
@@ -1379,6 +1364,11 @@ class Grade extends React.Component {
               horas_praticas={this.state.horas_praticas}
               horas_teoricas={this.state.horas_teoricas}
               semestre={this.state.selectedOptionSemestre.value}
+              index={this.state.index}
+              atualizarRadio={(t) => this.disableRadio(t)}
+              atualizarRestante={(v) => this.attRestante(v)}
+              salvarGrade={(schedule) => this.armazenarSchedule(schedule)}
+              turmaSelecionada={this.state.turmaSelecionada}
             />
             :
             <GradeConsulta
@@ -1386,6 +1376,11 @@ class Grade extends React.Component {
               turmaCodigo={this.state.turmaCodigo}
               horas_praticas={this.state.horas_praticas}
               horas_teoricas={this.state.horas_teoricas}
+              index={this.state.index}
+              atualizarRadio={(t) =>this.disableRadio(t)}
+              atualizarRestante={(v) => this.attRestante(v)}
+              salvarGrade={(schedule) => this.armazenarSchedule(schedule)}
+              turmaSelecionada={this.state.turmaSelecionada}
             />
           }
         </main>
@@ -1399,6 +1394,33 @@ class Grade extends React.Component {
           anchor="right"
         >
 
+        {/* Modal loading */}
+          <Loading loading={this.state.showLoading}/>
+          {/*<Modal
+            show={this.state.showLoading}
+            onHide={this.handleClose}
+            size="sm"
+            style={{ marginTop: '5%' }}>
+            <Modal.Header closeButton>Carregando...</Modal.Header>
+            <Modal.Body
+              style={{
+                // background: 'transparent',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div style={{ marginTop: 50, marginBottom: 50 }}>
+                <BounceLoader
+                  css={override}
+                  sizeUnit={'px'}
+                  size={60}
+                  color={'#123b7a'}
+                  loading={this.state.loading}
+                />
+
+              </div>
+            </Modal.Body>
+            </Modal>*/}
 
           <div className={classes.spacer}></div>
 
@@ -1408,7 +1430,7 @@ class Grade extends React.Component {
 
               <div className={classes.cardView}>
                 <div className={classes.infoCardDiv}>
-                  <p className={classes.cardsRestantes}>RESTANTES: <b>{this.state.selectedDisciplina.horas_totais}</b></p>
+                  <p className={classes.cardsRestantes}>RESTANTES: <b>{this.state.horas_totais_t}</b></p>
                   <Delete className={classes.delete} color="action" style={{ fontSize: 25 }} onClick={() => self.handleDelete()} />
                 </div>
                 {this.state.carregouComponente ?

@@ -248,13 +248,22 @@ class GradeConsulta extends React.Component {
         this.setClass(0, 0, 1);
     }
 
-    async componentDidUpdate(prevProps) {
-        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas) {
-            if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
-                this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina})
-            }
+    async componentWillReceiveProps(prevProps){
+        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina) {
+            console.log("props disciplina: ", this.props.disciplina);
+            this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
         }
     }
+
+    // async componentDidUpdate(prevProps) {
+    //     if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas) {
+    //         if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
+    //             console.log("entrando");
+                
+    //             this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
+    //         }
+    //     }
+    // }
 
     closeModal = async () => {
         await this.setState({ openModalGrade: false })
@@ -277,18 +286,22 @@ class GradeConsulta extends React.Component {
     }
 
     verificaCreditos() {
+        console.log("selected disciplina horas totais: ", this.state.selectedDisciplina.horas_totais);
+
         if (this.state.selectedDisciplina.horas_totais <= 0) {
-            this.state.disabled[this.state.index] = true
             alert("Horas totais de créditos preenchidas");
-            this.setState({ boolean_tp: true })
+            this.setState({ boolean_tp: true})
+            this.props.atualizarRadio(true);
+            console.log("schedules MATUTINO: ", this.state.schedulesMatutino);
+            this.props.salvarGrade(this.state.schedulesMatutino)
             return 1;
         }
     }
 
     async diminuirCreditos() {
-        
+
         if (this.state.selectedDisciplina.horas_totais != 0) {
-            
+
             await this.setState({ selectedDisciplina: { nome: this.props.disciplina.nome, horas_totais: parseInt(this.state.selectedDisciplina.horas_totais) - 1, id_curriculo_disciplina: this.props.disciplina.id_curriculo_disciplina } })
         }
         if (this.state.boolean_tp == false && this.state.horas_praticas >= 0 && this.state.horas_teoricas >= 0) {
@@ -296,7 +309,7 @@ class GradeConsulta extends React.Component {
                 await this.setState({ horas_praticas: parseInt(this.state.horas_praticas) - 1 })
             } else {
                 await this.setState({ boolean_tp: true })
-                
+
             }
         } else if (this.state.boolean_tp == true && this.state.horas_teoricas != 0) {
             if (this.state.horas_teoricas > 0) {
@@ -304,6 +317,8 @@ class GradeConsulta extends React.Component {
             } else {
             }
 
+            console.log("horas teoricas: ", this.state.horas_teoricas);
+            
             if (this.state.horas_teoricas == 0) {
                 await this.setState({ boolean_tp: false })
                 this.verificaCreditos();
@@ -314,6 +329,9 @@ class GradeConsulta extends React.Component {
             }
         }
 
+        console.log("boolean tp: ", this.state.boolean_tp);
+        
+        this.props.atualizarRestante(this.state.selectedDisciplina.horas_totais);
     }
 
     verificarPosicao(scheduleId, classIndex, pos) {
@@ -324,22 +342,24 @@ class GradeConsulta extends React.Component {
                     if (schedule.id === scheduleId) {
                         if (schedule.classes[classIndex] != null) {
                             this.setar(schedule, classIndex)
+                            return(schedule)
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            console.log("entrou no verifica créditos");
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
                         } else {
-                            if (this.verificaCreditos() == 1)
-                                return (schedule);
-                            schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
-                            schedule.turma[classIndex] = this.state.turmaSelecionada
-                            schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                            schedule.semestre = self.semestre
-                            schedule.carregou[classIndex] = true
-                            schedule.turmaCodigo[classIndex] = self.turmaCodigo
-                            this.diminuirCreditos();
-                            schedule.boolean_tp[classIndex] = this.state.boolean_tp
-                            if (this.state.boolean_tp == true) {
-                                schedule.tipo_aula[classIndex] = 1
-                            } else {
-                                schedule.tipo_aula[classIndex] = 2
-                            }
+                            schedule.tipo_aula[classIndex] = 2
                         }
                         return (schedule)
                     }
