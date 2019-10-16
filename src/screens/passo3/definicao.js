@@ -268,6 +268,7 @@ class Definicao extends React.Component {
       selectedTurma: '',
       arrayProfessores: '',
       arrayP: [],
+      professorInfo: [{ nome: '', bool: '' }]
     }
   }
 
@@ -292,8 +293,11 @@ class Definicao extends React.Component {
 
   handleChangeProfessor = async selectedOptionProfessor => {
     await this.setState({ selectedOptionProfessor });
+    await this.setState({ selectedProfessor: selectedOptionProfessor.label });
 
-    this.setState({ selectedProfessor: selectedOptionProfessor.label });
+    await this.setState({ professorInfo: [...this.state.professorInfo, { nome: this.state.selectedProfessor, id_professor: selectedOptionProfessor.value }] });
+    console.log("professor info: ", this.state.professorInfo);
+
     this.handleChangeComponente();
 
 
@@ -372,14 +376,12 @@ class Definicao extends React.Component {
         this.setState({ arrayP: [...this.state.arrayP, { label: item.nome, value: item.id_professor }] })
       }))
 
-      console.log("array professores: ", this.state.arrayProfessores);
 
     }
 
   };
 
   render() {
-    
 
     const { selectedOptionSemestre, selectedOptionProfessor } = this.state;
     const self = this;
@@ -478,7 +480,7 @@ class Definicao extends React.Component {
         </Drawer>
 
         <main className={classes.content}>
-          <GradeConsulta />
+          <GradeConsulta professor={this.state.professorInfo} />
 
         </main>
 

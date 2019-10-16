@@ -240,7 +240,22 @@ class GradeConsulta extends React.Component {
             boolean_tp: true,
             horas_praticas: '',
             horas_teoricas: '',
-            horas_totais: ''
+            horas_totais: '',
+            schedulesMatutinoM: [],
+            schedulesMatutino2M: [],
+            schedulesMatutino3M: [],
+            schedulesMatutino4M: [],
+            schedulesMatutino5M: [],
+            schedulesVespertinoM: [],
+            schedulesVespertino2M: [],
+            schedulesVespertino3M: [],
+            schedulesVespertino4M: [],
+            schedulesVespertino5M: [],
+            schedulesVespertino5M: [],
+            schedulesNoturnoM: [],
+            schedulesNoturno2M: [],
+            schedulesNoturno3M: [],
+            schedulesNoturno4M: [],
         }
     }
 
@@ -248,22 +263,22 @@ class GradeConsulta extends React.Component {
         this.setClass(0, 0, 1);
     }
 
-    async componentWillReceiveProps(prevProps){
-        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina) {
-            console.log("props disciplina: ", this.props.disciplina);
-            this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
-        }
-    }
-
-    // async componentDidUpdate(prevProps) {
-    //     if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas) {
-    //         if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
-    //             console.log("entrando");
-                
+    // async componentWillReceiveProps(prevProps) {
+    //     if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina) {
+    //         console.log("props disciplina: ", this.props.disciplina);
+    //         if (this.props.horas_teoricas != 0 || this.props.horas_praticas != 0) {
     //             this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
     //         }
     //     }
     // }
+
+    async componentDidUpdate(prevProps) {
+        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina) {
+            // if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
+            this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
+            // }
+        }
+    }
 
     closeModal = async () => {
         await this.setState({ openModalGrade: false })
@@ -271,11 +286,13 @@ class GradeConsulta extends React.Component {
 
     }
 
-    teste(schedule, pos) {
-        console.log("schedule: ", schedule);
+    att = async () => {
+        await this.setClass(0, 0, 1, true);
+    }
 
+    teste(schedule, pos) {
         return (
-            <ModalGrade show={this.state.openModalGrade} schedule={schedule} pos={pos} close={this.closeModal} />
+            <ModalGrade show={this.state.openModalGrade} schedule={schedule} pos={pos} professor={this.props.professor} close={this.closeModal} atualizar={this.att} />
         )
     }
 
@@ -286,14 +303,14 @@ class GradeConsulta extends React.Component {
     }
 
     verificaCreditos() {
-        console.log("selected disciplina horas totais: ", this.state.selectedDisciplina.horas_totais);
+        const self = this.state;
 
         if (this.state.selectedDisciplina.horas_totais <= 0) {
             alert("Horas totais de créditos preenchidas");
-            this.setState({ boolean_tp: true})
+            this.setState({ boolean_tp: true })
             this.props.atualizarRadio(true);
-            console.log("schedules MATUTINO: ", this.state.schedulesMatutino);
-            this.props.salvarGrade(this.state.schedulesMatutino)
+            this.props.limparTurma();
+            this.props.salvarGrade(this.state.schedulesMatutinoM, this.state.schedulesMatutino2M, this.state.schedulesMatutino3M, this.state.schedulesMatutino4M, this.state.schedulesMatutino5M, this.state.schedulesVespertinoM, this.state.schedulesVespertino2M, this.state.schedulesVespertino3M, this.state.schedulesVespertino4M, this.state.schedulesVespertino5M, this.state.schedulesNoturnoM, this.state.schedulesNoturno2M, this.state.schedulesNoturno3M, this.state.schedulesNoturno4M);
             return 1;
         }
     }
@@ -316,9 +333,6 @@ class GradeConsulta extends React.Component {
                 await this.setState({ horas_teoricas: parseInt(this.state.horas_teoricas) - 1 })
             } else {
             }
-
-            console.log("horas teoricas: ", this.state.horas_teoricas);
-            
             if (this.state.horas_teoricas == 0) {
                 await this.setState({ boolean_tp: false })
                 this.verificaCreditos();
@@ -328,13 +342,13 @@ class GradeConsulta extends React.Component {
                 this.verificaCreditos();
             }
         }
-
-        console.log("boolean tp: ", this.state.boolean_tp);
-        
         this.props.atualizarRestante(this.state.selectedDisciplina.horas_totais);
     }
 
     verificarPosicao(scheduleId, classIndex, pos) {
+
+        console.log("disciplina selecionada: ", this.props.disciplina.nome);
+
         const self = this.props;
         if (pos == 1) {
             this.setState({
@@ -342,10 +356,13 @@ class GradeConsulta extends React.Component {
                     if (schedule.id === scheduleId) {
                         if (schedule.classes[classIndex] != null) {
                             this.setar(schedule, classIndex)
-                            return(schedule)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
                         }
                         if (this.verificaCreditos() == 1) {
-                            console.log("entrou no verifica créditos");
                             return (schedule);
                         }
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
@@ -367,188 +384,467 @@ class GradeConsulta extends React.Component {
             })
         }
         if (pos == 2) {
-            this.state.schedulesMatutino2.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 3) {
-            this.state.schedulesMatutino3.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 4) {
-            this.state.schedulesMatutino4.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 5) {
-            this.state.schedulesMatutino5.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 6) {
-            this.state.schedulesVespertino.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 7) {
-            this.state.schedulesVespertino2.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesVespertino2: this.state.schedulesVespertino2.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 8) {
-            this.state.schedulesVespertino3.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesVespertino3: this.state.schedulesVespertino3.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 9) {
-            this.state.schedulesVespertino4.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesVespertino4: this.state.schedulesVespertino4.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 10) {
-            this.state.schedulesVespertino5.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesVespertino5: this.state.schedulesVespertino5.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 11) {
-            this.state.schedulesNoturno.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesNoturno: this.state.schedulesNoturno.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 12) {
-            this.state.schedulesNoturno2.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesNoturno2: this.state.schedulesNoturno2.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 13) {
-            this.state.schedulesNoturno3.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesNoturno3: this.state.schedulesNoturno3.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
         if (pos == 14) {
-            this.state.schedulesNoturno4.map(schedule => {
-                console.log(schedule);
-                if (schedule.id === scheduleId) {
-                    if (schedule.classes[classIndex] != null) {
-                        alert("Este horário já está preenchido")
-                        return (schedule);
-                    } else {
+            this.setState({
+                schedulesNoturno4: this.state.schedulesNoturno4.map(schedule => {
+                    if (schedule.id === scheduleId) {
+                        if (schedule.classes[classIndex] != null) {
+                            this.setar(schedule, classIndex)
+                            return (schedule)
+                        }
+                        if (!this.props.selecionouTurma && this.props.disciplina.nome != undefined) {
+                            alert("Selecione a turma primeiro!")
+                            return (schedule);
+                        }
+                        if (this.verificaCreditos() == 1) {
+                            return (schedule);
+                        }
+                        schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                        schedule.turma[classIndex] = self.turmaSelecionada
+                        schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                        schedule.semestre = self.semestre
+                        schedule.carregou[classIndex] = true
+                        schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                        this.diminuirCreditos();
+                        schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                        if (this.state.boolean_tp == true) {
+                            schedule.tipo_aula[classIndex] = 1
+                        } else {
+                            schedule.tipo_aula[classIndex] = 2
+                        }
                         return (schedule)
                     }
-                }
+                })
             })
         }
 
+
+        this.setState({ schedulesMatutinoM: this.state.schedulesMatutino })
+        this.setState({ schedulesMatutino2M: this.state.schedulesMatutino2 })
+        this.setState({ schedulesMatutino3M: this.state.schedulesMatutino3 })
+        this.setState({ schedulesMatutino4M: this.state.schedulesMatutino4 })
+        this.setState({ schedulesMatutino5M: this.state.schedulesMatutino5 })
+        this.setState({ schedulesVespertinoM: this.state.schedulesVespertino })
+        this.setState({ schedulesVespertino2M: this.state.schedulesVespertino2 })
+        this.setState({ schedulesVespertino3M: this.state.schedulesVespertino3 })
+        this.setState({ schedulesVespertino4M: this.state.schedulesVespertino4 })
+        this.setState({ schedulesVespertino5M: this.state.schedulesVespertino5 })
+        this.setState({ schedulesNoturnoM: this.state.schedulesNoturno })
+        this.setState({ schedulesNoturno2M: this.state.schedulesNoturno2 })
+        this.setState({ schedulesNoturno3M: this.state.schedulesNoturno3 })
+        this.setState({ schedulesNoturno4M: this.state.schedulesNoturno4 })
+
     }
 
-    async setClass(scheduleId, classIndex, pos) {
+    async setClass(scheduleId, classIndex, pos, reload) {
         const response = await api.post('/disciplina/carregarTurmasSalvas', {
             id_semestre: 1,
             fase: 1,
             id_course: 12
         })
-        this.setState({ arrayTurmasSalvas: response.data })
+        await this.setState({ arrayTurmasSalvas: response.data })
+
+        console.log("array turmas salvas: ", this.state.arrayTurmasSalvas);
+
+        if (reload)
+            window.location.reload();
 
         var arrayTurmasSalvas = this.state.arrayTurmasSalvas;
-
-        var qtde = 0;
 
         if (pos == 1) {
 
@@ -558,6 +854,7 @@ class GradeConsulta extends React.Component {
                         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
                             schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
@@ -572,8 +869,13 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 2 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
                         })
                     })
@@ -583,8 +885,13 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 3 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
                         })
                     })
@@ -594,8 +901,13 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 4 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
                         })
                     })
@@ -605,8 +917,157 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 5 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 6 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 7 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesVespertino2: this.state.schedulesVespertino2.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 8 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesVespertino3: this.state.schedulesVespertino3.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 9 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesVespertino4: this.state.schedulesVespertino4.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 10 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesVespertino5: this.state.schedulesVespertino5.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 11 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesNoturno: this.state.schedulesNoturno.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 12 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesNoturno2: this.state.schedulesNoturno2.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 13 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesNoturno3: this.state.schedulesNoturno3.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
+                            return (schedule)
+                        })
+                    })
+                    arrayTurmasSalvas[i].qtde_aulas--;
+                    arrayTurmasSalvas[i].id_horario_inicio++;
+                }
+                if (arrayTurmasSalvas[i].id_horario_inicio == 14 && arrayTurmasSalvas[i].qtde_aulas > 0) {
+                    this.setState({
+                        schedulesNoturno4: this.state.schedulesNoturno4.map(schedule => {
+                            schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
+                            schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
+                            schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
+                            schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
+                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
+                            schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
                         })
                     })
@@ -614,9 +1075,8 @@ class GradeConsulta extends React.Component {
                     arrayTurmasSalvas[i].id_horario_inicio++;
                 }
             }
-            console.log("MATUTINO 1: ", this.state.schedulesMatutino);
-
         }
+        console.log("schedules matutino: ", this.state.schedulesMatutino);
     }
 
     render() {
@@ -819,7 +1279,9 @@ class GradeConsulta extends React.Component {
                         {this.state.schedulesVespertino4.map(schedule => (
                             <tr><td className={classes.tdHora}><b>{schedule.label}</b></td>
                                 {schedule.classes.map((_class, index) => (
-                                    <td className={classes.tdDrop} onClick={() => { schedule.carregou[index] ? console.log("deletar posição: ", index) : this.verificarPosicao(schedule.id, index, 9) }}>{!_class ? '' : _class}
+                                    <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 9)}>
+
+                                        {!_class ? '' : <Card nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
 
                                         {schedule.carregou[index] ?
                                             null
