@@ -256,6 +256,23 @@ class GradeConsulta extends React.Component {
             schedulesNoturno2M: [],
             schedulesNoturno3M: [],
             schedulesNoturno4M: [],
+            //matutino
+            schedulesMatutinoP: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino2P: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino3P: [{ id: 3, label: '9:10 - 10:00', linha: 3, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino4P: [{ id: 4, label: '10:10 - 11:00', linha: 4, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesMatutino5P: [{ id: 5, label: '11:00 - 11:50', linha: 5, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            //vespertino
+            schedulesVespertinoP: [{ id: 1, label: '13:30 - 14:20', linha: 6, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino2P: [{ id: 2, label: '14:20 - 15:10', linha: 7, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino3P: [{ id: 3, label: '15:10 - 16:00', linha: 8, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino4P: [{ id: 4, label: '16:20 - 17:10', linha: 9, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesVespertino5P: [{ id: 5, label: '17:10 - 18:00', linha: 10, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            //noturno
+            schedulesNoturnoP: [{ id: 1, label: '18:30 - 19:20', linha: 11, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno2P: [{ id: 2, label: '19:20 - 20:10', linha: 12, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno3P: [{ id: 3, label: '20:20 - 21:10', linha: 13, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+            schedulesNoturno4P: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
         }
     }
 
@@ -273,9 +290,12 @@ class GradeConsulta extends React.Component {
     // }
 
     async componentDidUpdate(prevProps) {
-        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina) {
+        if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina
+            || this.props.fase !== prevProps.fase
+            ) {
             // if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
             this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
+            this.componentDidMount();
             // }
         }
     }
@@ -345,11 +365,303 @@ class GradeConsulta extends React.Component {
         this.props.atualizarRestante(this.state.selectedDisciplina.horas_totais);
     }
 
+    preencherGradeNova(classIndex, pos) {
+        console.log("classIndex: ", classIndex);
+        
+        const self = this.props;
+        if (pos == 1) {
+            this.setState({
+                schedulesMatutinoP: this.state.schedulesMatutinoP.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 2) {
+            this.setState({
+                schedulesMatutino2P: this.state.schedulesMatutino2P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 3) {
+            this.setState({
+                schedulesMatutino3P: this.state.schedulesMatutino3P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 4) {
+            this.setState({
+                schedulesMatutino4P: this.state.schedulesMatutino4P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 5) {
+            this.setState({
+                schedulesMatutino5P: this.state.schedulesMatutino5P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 6) {
+            this.setState({
+                schedulesVespertinoP: this.state.schedulesVespertinoP.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 7) {
+            this.setState({
+                schedulesVespertino2P: this.state.schedulesVespertino2P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 8) {
+            this.setState({
+                schedulesVespertino3P: this.state.schedulesVespertino3P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 9) {
+            this.setState({
+                schedulesVespertino4P: this.state.schedulesVespertino4P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 10) {
+            this.setState({
+                schedulesVespertino5P: this.state.schedulesVespertino5P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 11) {
+            this.setState({
+                schedulesNoturnoP: this.state.schedulesNoturnoP.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 12) {
+            this.setState({
+                schedulesNoturno2P: this.state.schedulesNoturno2P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 13) {
+            this.setState({
+                schedulesNoturno3P: this.state.schedulesNoturno3P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        if (pos == 14) {
+            this.setState({
+                schedulesNoturno4P: this.state.schedulesNoturno4P.map(schedule => {
+                    schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
+                    schedule.turma[classIndex] = self.turmaSelecionada
+                    schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
+                    schedule.semestre = self.semestre
+                    schedule.carregou[classIndex] = true
+                    schedule.turmaCodigo[classIndex] = self.turmaCodigo
+                    schedule.boolean_tp[classIndex] = this.state.boolean_tp
+                    if (this.state.boolean_tp == true) {
+                        schedule.tipo_aula[classIndex] = 1
+                    } else {
+                        schedule.tipo_aula[classIndex] = 2
+                    }
+                    return (schedule)
+                })
+            })
+        }
+        
+        this.setState({ schedulesMatutinoM: this.state.schedulesMatutinoP })
+        this.setState({ schedulesMatutino2M: this.state.schedulesMatutino2P })
+        this.setState({ schedulesMatutino3M: this.state.schedulesMatutino3P })
+        this.setState({ schedulesMatutino4M: this.state.schedulesMatutino4P })
+        this.setState({ schedulesMatutino5M: this.state.schedulesMatutino5P })
+        this.setState({ schedulesVespertinoM: this.state.schedulesVespertinoP })
+        this.setState({ schedulesVespertino2M: this.state.schedulesVespertino2P })
+        this.setState({ schedulesVespertino3M: this.state.schedulesVespertino3P })
+        this.setState({ schedulesVespertino4M: this.state.schedulesVespertino4P })
+        this.setState({ schedulesVespertino5M: this.state.schedulesVespertino5P })
+        this.setState({ schedulesNoturnoM: this.state.schedulesNoturnoP })
+        this.setState({ schedulesNoturno2M: this.state.schedulesNoturno2P })
+        this.setState({ schedulesNoturno3M: this.state.schedulesNoturno3P })
+        this.setState({ schedulesNoturno4M: this.state.schedulesNoturno4P })
+
+    }
+
+
+    //criar outras variáveis de schedules, no momento que for setar, passar o classindex para outra função para poder preencher na posição classindex
     verificarPosicao(scheduleId, classIndex, pos) {
 
-        console.log("disciplina selecionada: ", this.props.disciplina.nome);
-
         const self = this.props;
+
+        console.log("self semestre: ", self.semestre);
+        
+
         if (pos == 1) {
             this.setState({
                 scheduleMatutino: this.state.schedulesMatutino.map(schedule => {
@@ -365,6 +677,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -398,6 +711,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -431,6 +745,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -464,6 +779,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -497,6 +813,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -530,6 +847,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -563,6 +881,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -596,6 +915,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -629,6 +949,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -662,6 +983,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -695,6 +1017,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -728,6 +1051,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -761,6 +1085,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -794,6 +1119,7 @@ class GradeConsulta extends React.Component {
                         if (this.verificaCreditos() == 1) {
                             return (schedule);
                         }
+                        this.preencherGradeNova(classIndex, pos);
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
@@ -813,28 +1139,12 @@ class GradeConsulta extends React.Component {
             })
         }
 
-
-        this.setState({ schedulesMatutinoM: this.state.schedulesMatutino })
-        this.setState({ schedulesMatutino2M: this.state.schedulesMatutino2 })
-        this.setState({ schedulesMatutino3M: this.state.schedulesMatutino3 })
-        this.setState({ schedulesMatutino4M: this.state.schedulesMatutino4 })
-        this.setState({ schedulesMatutino5M: this.state.schedulesMatutino5 })
-        this.setState({ schedulesVespertinoM: this.state.schedulesVespertino })
-        this.setState({ schedulesVespertino2M: this.state.schedulesVespertino2 })
-        this.setState({ schedulesVespertino3M: this.state.schedulesVespertino3 })
-        this.setState({ schedulesVespertino4M: this.state.schedulesVespertino4 })
-        this.setState({ schedulesVespertino5M: this.state.schedulesVespertino5 })
-        this.setState({ schedulesNoturnoM: this.state.schedulesNoturno })
-        this.setState({ schedulesNoturno2M: this.state.schedulesNoturno2 })
-        this.setState({ schedulesNoturno3M: this.state.schedulesNoturno3 })
-        this.setState({ schedulesNoturno4M: this.state.schedulesNoturno4 })
-
     }
 
     async setClass(scheduleId, classIndex, pos, reload) {
         const response = await api.post('/disciplina/carregarTurmasSalvas', {
             id_semestre: 1,
-            fase: 1,
+            fase: this.props.fase,
             id_course: 12
         })
         await this.setState({ arrayTurmasSalvas: response.data })
