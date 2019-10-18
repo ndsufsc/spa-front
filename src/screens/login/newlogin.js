@@ -46,34 +46,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
-
-
-
-export default function SignInSide() {
+export default function SignInSide(props) {
   const classes = useStyles();
-  const [email_usuario, setEmail] = useState(0);
-  
-  function InputEmail(event) {
-    setEmail(email_usuario = event.target.value)
-  }
 
+  const [email_usuario, setEmail] = useState('');
+  const [senha_usuario, setSenha] = useState('');
 
   async function login() {
     console.log("email usuario: ", email_usuario);
     console.log("senha usuario: ", senha_usuario);
 
-    const res = await api.post('/login/verificar', { siape: this.state.email_usuario, senha_usuario: this.state.senha_usuario })
-
-    console.log("resposta do login: ", res.data);
-
-
-    // if (res.data.length >= 1) {
-    //   localStorage.setItem('login', 'on');
-    //   localStorage.setItem('usuario', JSON.stringify(res.data[0]));
-    //   this.props.history.push("/index");
-    // }
-    // else alert('Login/senha invalidos');
+    const res = await api.post('/login/verificar', { siape: email_usuario, senha_usuario: senha_usuario })
+      
+    if (res.data.length >= 1) {
+      localStorage.setItem('login', 'on');
+      localStorage.setItem('usuario', JSON.stringify(res.data[0]));
+      props.history.push("/index");
+    }
+    else alert('Login/senha invalidos');
   }
 
   return (
@@ -88,12 +78,13 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Login SPA
           </Typography>
-          <form className={classes.form} noValidate method="POST" enctype="application/json" action="//http:localhost:3333/login/verify">
+          <form className={classes.form} noValidate method="POST" encType="application/json" action="//http:localhost:3333/login/verify">
             <TextField
               variant="outlined"
               margin="normal"
               required
-              onChange={(event) => this.InputEmail(event)}
+              value={email_usuario}
+              onChange={e => setEmail(e.target.value)}
               fullWidth
               id="email_usuario"
               label="SIAPE"
@@ -106,7 +97,8 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
-              onChange={this.InputPassword}
+              value={senha_usuario}
+              onChange={e => setSenha(e.target.value)}
               name="senha_usuario"
               label="Senha"
               type="password"
