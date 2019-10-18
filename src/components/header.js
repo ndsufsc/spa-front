@@ -54,6 +54,7 @@ export default function ButtonAppBar(props) {
   }
   const classes = useStyles();
   const header = headerStyles();
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
@@ -72,7 +73,7 @@ export default function ButtonAppBar(props) {
 
         </Toolbar>
       </AppBar>
-      {/*<div className={header.root}>
+      <div className={header.root}>
         <AppBar position="static" color="inherit" className={classes.appBar2}>
           <Toolbar>	
             <Typography variant="h6" className={header.title}>
@@ -86,7 +87,7 @@ export default function ButtonAppBar(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-      </div>*/}
+      </div>
     </div>
   );
 }

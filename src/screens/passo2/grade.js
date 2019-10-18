@@ -270,7 +270,7 @@ class Grade extends React.Component {
       disciplinas: [],
       turmas: [],
       selectedDisciplina: { nome: '', hrs_totais: '', id_curriculo_disciplina: '', id_disciplina: '' },
-      selectedTurma: '',
+      selectedTurma: {nome: '', id_turma: ''},
       itemChecked: false,
       index: '',
       arrayAux: [],
@@ -629,7 +629,7 @@ class Grade extends React.Component {
                     onMouseEnter={this.handleMouseHover}
                     onMouseLeave={this.handleMouseHover}>
                     <p className={classes.disciplina}>{this.state.selectedDisciplina.nome}</p>
-                    <p className={classes.turma}>{this.state.selectedTurma}</p>
+                    <p className={classes.turma}>{this.state.selectedTurma.nome}</p>
                     <p className={classes.turma}>{this.state.boolean_tp === true ? 'TEÓRICA' : 'PRÁTICA'}</p>
                   </div>
                   : <div style={{ cursor: 'pointer' }} className={classes.card}>
