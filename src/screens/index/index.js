@@ -60,11 +60,15 @@ function getStepContent(step: number) {
               \nCaso alguma disciplina possua horas-aula práticas você deve escolher o laboratório onde será ministrada.
               \nLembre-se sempre de SALVAR as alterações feitas para não perder seu progresso.`;
     case 1:
-      return 'Descrição 2.';
+      return `Monte a grade de horários de cada semestre, selecionando o mesmo e então selecionando as turmas desejadas de cada disciplina. 
+              \nApós a seleção, clique na posição da grade que representa a hora/aula desejada para cadastrar a disciplina, sempre prestando atenção no bloco da disciplina confirmando a disciplina, a turma e se a hora/aula é teórica ou prática.
+              \nCaso queira retirar uma disciplina cadastrada, clique no 'X' no seu bloco de disciplina que estará na grade.
+              \nSalve suas alterações antes de mudar o semestre, e lembre-se sempre de SALVAR as alterações feitas para não perder seu progresso.`;
     case 2:
-      return `Descrição.`;
+      return `Selecione o semestre desejado para listar todas as disciplinas do mesmo. Então, selecione o professor desejado e clique no bloco de disciplina que representa a hora/aula desejada, sempre prestando atenção no bloco da disciplina confirmando a disciplina, a turma e se a hora/aula é teórica ou prática.
+              \nSalve suas alterações antes de mudar o semestre, e lembre-se sempre de SALVAR as alterações feitas para não perder seu progresso.`;
     case 3:
-      return 'Descrição.';
+      return 'Rodar algoritmo para buscar a melhor solução para alocar as salas pelas turmas.';
     default:
       return 'Erro interno';
   }

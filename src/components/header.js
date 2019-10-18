@@ -37,6 +37,9 @@ const headerStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       zIndex: 100,
+    },
+    sair: {
+      color: '#fff',
     }
   }),
 );
@@ -51,6 +54,7 @@ export default function ButtonAppBar(props) {
   }
   const classes = useStyles();
   const header = headerStyles();
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
@@ -64,12 +68,12 @@ export default function ButtonAppBar(props) {
             {props.botaoSalvarContinuar}
           </div>
           <Link to="/" >
-            <Button  size="medium" color="inherit" >Sair</Button>
+            <Button  size="medium" color="inherit" className={header.sair}>Sair</Button>
           </Link>
 
         </Toolbar>
       </AppBar>
-      {/*<div className={header.root}>
+      <div className={header.root}>
         <AppBar position="static" color="inherit" className={classes.appBar2}>
           <Toolbar>	
             <Typography variant="h6" className={header.title}>
@@ -83,7 +87,7 @@ export default function ButtonAppBar(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-      </div>*/}
+      </div>
     </div>
   );
 }
