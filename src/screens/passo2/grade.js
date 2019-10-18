@@ -323,6 +323,7 @@ class Grade extends React.Component {
       showModalAlerta: false,
       carregandoDisciplina: true,
       selecionouTurma: false,
+      fase_curso: 0,
     }
   }
 
@@ -334,12 +335,11 @@ class Grade extends React.Component {
       id_course: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
-    await this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false });
+    await this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false, fase_curso: this.state.selectedOptionSemestre.value });
 
     const response3 = await api.post("/disciplina/buscarDisciplinaSalva", {
       fase_curso: this.state.selectedOptionSemestre.value,
     })
-
 
     for (var i = 0; i < response.data.length; i++) {
       var nome = response.data[i].codigo;
@@ -347,11 +347,6 @@ class Grade extends React.Component {
       nome += response.data[i].nome;
       await this.setState({ disciplinas: [...this.state.disciplinas, { nome: nome, hrs_totais: response.data[i].horas_totais, id_curriculo_disciplina: response.data[i].id_spa_curriculo_disciplina, id_disciplina: response.data[i].id_disciplina, id_curriculo: response.data[i].id_curriculo }], carregouDisciplina: true })
     }
-
-
-    console.log("DISCIPLINAS: ", this.state.disciplinas);
-
-
 
     if (response3.data != 0) {
       this.state.disciplinas.map((item, index) => {
@@ -490,7 +485,6 @@ class Grade extends React.Component {
   armazenarSchedule(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14) {
     // fazer condições para ver qual preencher
     this.setState({ schedulesMatutino: s1, schedulesMatutino2: s2, schedulesMatutino3: s3, schedulesMatutino4: s4, schedulesMatutino5: s5, schedulesVespertino: s6, schedulesVespertino2: s7, schedulesVespertino3: s8, schedulesVespertino4: s9, schedulesVespertino5: s10, schedulesNoturno: s11, schedulesNoturno2: s12, schedulesNoturno3: s13, schedulesNoturno4: s14 });
-
   }
 
   async salvarGrade() {
@@ -579,7 +573,7 @@ class Grade extends React.Component {
               turmaCodigo={this.state.turmaCodigo}
               horas_praticas={this.state.horas_praticas}
               horas_teoricas={this.state.horas_teoricas}
-              semestre={this.state.selectedOptionSemestre.value}
+              semestre={1}
               index={this.state.index}
               atualizarRadio={(t) => this.disableRadio(t)}
               atualizarRestante={(v) => this.attRestante(v)}
@@ -587,6 +581,7 @@ class Grade extends React.Component {
               turmaSelecionada={this.state.turmaSelecionada}
               selecionouTurma={this.state.selecionouTurma}
               limparTurma={this.limparTurma}
+              fase={this.state.fase_curso}
             />
             :
             <GradeConsulta
@@ -601,6 +596,8 @@ class Grade extends React.Component {
               turmaSelecionada={this.state.turmaSelecionada}
               selecionouTurma={this.state.selecionouTurma}
               limparTurma={this.limparTurma}
+              semestre={1}
+              fase={this.state.fase_curso}
             />
           }
         </main>
