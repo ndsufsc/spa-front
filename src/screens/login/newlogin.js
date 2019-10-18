@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -46,24 +46,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-async function login() {
 
-    console.log("email usuario: ", this.state.email_usuario);
-    console.log("senha usuario: ", this.state.senha_usuario);
 
-    const res = await api.post('/login/verificar', { siape: this.state.email_usuario, senha_usuario: this.state.senha_usuario })
-      
-    if (res.data.length >= 1) {
-      localStorage.setItem('login', 'on');
-      localStorage.setItem('usuario', JSON.stringify(res.data[0]));
-      this.props.history.push("/index");
-    }
-    else alert('Login/senha invalidos');
-}
 
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [email_usuario, setEmail] = useState(0);
+  
+  function InputEmail(event) {
+    setEmail(email_usuario = event.target.value)
+  }
+
+
+  async function login() {
+    console.log("email usuario: ", email_usuario);
+    console.log("senha usuario: ", senha_usuario);
+
+    const res = await api.post('/login/verificar', { siape: this.state.email_usuario, senha_usuario: this.state.senha_usuario })
+
+    console.log("resposta do login: ", res.data);
+
+
+    // if (res.data.length >= 1) {
+    //   localStorage.setItem('login', 'on');
+    //   localStorage.setItem('usuario', JSON.stringify(res.data[0]));
+    //   this.props.history.push("/index");
+    // }
+    // else alert('Login/senha invalidos');
+  }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -81,6 +93,7 @@ export default function SignInSide() {
               variant="outlined"
               margin="normal"
               required
+              onChange={(event) => this.InputEmail(event)}
               fullWidth
               id="email_usuario"
               label="SIAPE"
@@ -93,6 +106,7 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
+              onChange={this.InputPassword}
               name="senha_usuario"
               label="Senha"
               type="password"
@@ -104,7 +118,6 @@ export default function SignInSide() {
               label="Remember me"
             />*/}
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
