@@ -11,18 +11,16 @@ import { Switch, Route } from 'react-router-dom';
 
 import NewLogin from '../screens/login/newlogin';
 
-
-
 function Router() {
     return (
         <Switch>
-            <Route path="/" exact={true} component={Login} />
+            <Route path="/" exact={true} component={NewLogin} />
             <Route path="/index" exact={true} component={App} />
             <Route path="/revisao" exact={true} component={Revisao} />
             <Route path="/grade" exact={true} component={Grade} />
             <Route path="/tabela" exact={true} component={Tabela} />
             <Route path="/definicao" exact={true} component={Definicao} />
-            <Route path="/newlogin" exact={true} component={NewLogin} />
+            <Route path="/alocacao" exact={true} component={Alocacao} />
         </Switch>
     );
 }

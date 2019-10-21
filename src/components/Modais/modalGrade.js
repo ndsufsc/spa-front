@@ -60,7 +60,7 @@ export default class Modais extends Component {
                     <Modal
                         show={self.show}
                         onHide={() => self.close()}
-                        style={{ marginTop: '5%', width: '100%' }}
+                        style={{ marginTop: '10%', width: '100%' }}
                     >
                         <Modal.Header closeButton style={{ fontSize: 16, fontWeight: 'bold' }}>{self.schedule.nome_disciplina[self.pos]}</Modal.Header>
                         <Modal.Body

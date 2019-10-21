@@ -37,6 +37,9 @@ const headerStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       zIndex: 100,
+    },
+    sair: {
+      color: '#fff',
     }
   }),
 );
@@ -65,7 +68,7 @@ export default function ButtonAppBar(props) {
             {props.botaoSalvarContinuar}
           </div>
           <Link to="/" >
-            <Button  size="medium" color="inherit" >Sair</Button>
+            <Button  size="medium" color="inherit" className={header.sair}>Sair</Button>
           </Link>
 
         </Toolbar>

@@ -96,7 +96,7 @@ const styles = theme => ({
     backgroundColor: '#E7E7E7',
     minHeight: 130,
     width: '90%',
-    marginTop: 0,
+    marginTop: 80,
     marginBottom: 20,
     paddingBottom: 10,
     alignSelf: 'center',
