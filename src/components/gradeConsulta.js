@@ -289,6 +289,25 @@ class GradeConsulta extends React.Component {
     //     }
     // }
 
+    limparSchedules(){
+        this.setState({  schedulesMatutino: [{ id: 1, label: '7:30 - 8:20', linha: 1, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesMatutino2: [{ id: 2, label: '8:20 - 9:10', linha: 2, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesMatutino3: [{ id: 3, label: '9:10 - 10:00', linha: 3, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesMatutino4: [{ id: 4, label: '10:10 - 11:00', linha: 4, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesMatutino5: [{ id: 5, label: '11:00 - 11:50', linha: 5, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        //vespertino
+        schedulesVespertino: [{ id: 1, label: '13:30 - 14:20', linha: 6, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesVespertino2: [{ id: 2, label: '14:20 - 15:10', linha: 7, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesVespertino3: [{ id: 3, label: '15:10 - 16:00', linha: 8, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesVespertino4: [{ id: 4, label: '16:20 - 17:10', linha: 9, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesVespertino5: [{ id: 5, label: '17:10 - 18:00', linha: 10, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        //noturno
+        schedulesNoturno: [{ id: 1, label: '18:30 - 19:20', linha: 11, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesNoturno2: [{ id: 2, label: '19:20 - 20:10', linha: 12, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesNoturno3: [{ id: 3, label: '20:20 - 21:10', linha: 13, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }],
+        schedulesNoturno4: [{ id: 4, label: '21:10 - 22:00', linha: 14, classes: [null, null, null, null, null, null], id_turma_sala: [null, null, null, null, null, null], dia_semana: [null, null, null, null, null, null], nome_disciplina: [null, null, null, null, null, null], id_curriculo_disciplina: [null, null, null, null, null, null], turma: [null, null, null, null, null, null], semestre: '', carregou: [false, false, false, false, false, false], boolean_tp: [false, false, false, false, false, false], turmaCodigo: [0, 0, 0, 0, 0, 0], tipo_aula: [null, null, null, null, null, null] }], })
+    }
+
     async componentDidUpdate(prevProps) {
         if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina
             || this.props.fase !== prevProps.fase
@@ -297,6 +316,7 @@ class GradeConsulta extends React.Component {
             // if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
             this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
             this.componentDidMount();
+            this.limparSchedules();
             // }
         }
     }
@@ -682,7 +702,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -716,7 +736,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -750,7 +770,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -784,7 +804,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -818,7 +838,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -852,7 +872,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -886,7 +906,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -920,7 +940,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -954,7 +974,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -988,7 +1008,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -1022,7 +1042,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -1056,7 +1076,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -1090,7 +1110,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -1124,7 +1144,7 @@ class GradeConsulta extends React.Component {
                         schedule.classes[classIndex] = self.disciplina.nome.substring(0, 7)
                         schedule.turma[classIndex] = self.turmaSelecionada
                         schedule.id_curriculo_disciplina[classIndex] = self.disciplina.id_curriculo_disciplina
-                        schedule.semestre = self.semestre
+                        schedule.semestre = 1
                         schedule.carregou[classIndex] = true
                         schedule.turmaCodigo[classIndex] = self.turmaCodigo
                         this.diminuirCreditos();
@@ -1143,6 +1163,9 @@ class GradeConsulta extends React.Component {
     }
 
     async setClass(scheduleId, classIndex, pos, reload) {
+        console.log("this.props.fase: ", this.props.fase);
+        
+
         const response = await api.post('/disciplina/carregarTurmasSalvas', {
             id_semestre: 1,
             fase: this.props.fase,

@@ -483,7 +483,7 @@ class Grade extends React.Component {
 
 
   armazenarSchedule(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14) {
-    // fazer condições para ver qual preencher
+    // fazer condições para ver qual preencherj
     console.log("s1: ", s1);
     console.log("s2: ", s2);
     console.log("s3: ", s3);
@@ -528,7 +528,7 @@ class Grade extends React.Component {
 
     await api.post('/disciplina/salvarTurmas', {
       vetorGrade: vetorGrade,
-      id_semestre: this.state.selectedOptionSemestre.value
+      id_semestre: 1
     })
 
     window.location.reload();
