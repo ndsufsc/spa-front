@@ -484,6 +484,12 @@ class Grade extends React.Component {
 
   armazenarSchedule(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14) {
     // fazer condições para ver qual preencher
+    console.log("s1: ", s1);
+    console.log("s2: ", s2);
+    console.log("s3: ", s3);
+    console.log("s4: ", s4);
+    
+
     this.setState({ schedulesMatutino: s1, schedulesMatutino2: s2, schedulesMatutino3: s3, schedulesMatutino4: s4, schedulesMatutino5: s5, schedulesVespertino: s6, schedulesVespertino2: s7, schedulesVespertino3: s8, schedulesVespertino4: s9, schedulesVespertino5: s10, schedulesNoturno: s11, schedulesNoturno2: s12, schedulesNoturno3: s13, schedulesNoturno4: s14 });
   }
 

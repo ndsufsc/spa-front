@@ -292,7 +292,8 @@ class GradeConsulta extends React.Component {
     async componentDidUpdate(prevProps) {
         if (this.props.horas_praticas !== prevProps.horas_praticas || this.props.horas_teoricas !== prevProps.horas_teoricas || this.props.disciplina !== prevProps.disciplina
             || this.props.fase !== prevProps.fase
-            ) {
+        ) {
+
             // if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
             this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
             this.componentDidMount();
@@ -367,7 +368,7 @@ class GradeConsulta extends React.Component {
 
     preencherGradeNova(classIndex, pos) {
         console.log("classIndex: ", classIndex);
-        
+
         const self = this.props;
         if (pos == 1) {
             this.setState({
@@ -635,7 +636,7 @@ class GradeConsulta extends React.Component {
                 })
             })
         }
-        
+
         this.setState({ schedulesMatutinoM: this.state.schedulesMatutinoP })
         this.setState({ schedulesMatutino2M: this.state.schedulesMatutino2P })
         this.setState({ schedulesMatutino3M: this.state.schedulesMatutino3P })
@@ -660,7 +661,7 @@ class GradeConsulta extends React.Component {
         const self = this.props;
 
         console.log("self semestre: ", self.semestre);
-        
+
 
         if (pos == 1) {
             this.setState({
@@ -1166,7 +1167,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
 
@@ -1183,7 +1184,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1199,7 +1200,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1215,7 +1216,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1231,7 +1232,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1247,7 +1248,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1263,7 +1264,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1279,7 +1280,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1295,7 +1296,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1311,7 +1312,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1327,7 +1328,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1343,7 +1344,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1359,7 +1360,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1375,7 +1376,7 @@ class GradeConsulta extends React.Component {
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
                             schedule.nome_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].nome
-                            schedule.turma[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
+                            schedule.turmaCodigo[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo_turma
                             schedule.tipo_aula[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].teorico
                             schedule.dia_semana[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].dia_semana
                             return (schedule)
@@ -1386,7 +1387,6 @@ class GradeConsulta extends React.Component {
                 }
             }
         }
-        console.log("schedules matutino: ", this.state.schedulesMatutino);
     }
 
     render() {
