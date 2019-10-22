@@ -79,7 +79,7 @@ export default class Modais extends Component {
                                             <Form.Label style={{ marginTop: 10 }}>Horário</Form.Label>
                                             <Form.Control type="text" defaultValue={self.schedule.label} />
                                             <Form.Label style={{ marginTop: 10 }}>Turma</Form.Label>
-                                            <Form.Control type="text" defaultValue={self.schedule.turma[self.pos]} />
+                                            <Form.Control type="text" defaultValue={self.schedule.turmaCodigo[self.pos]} />
                                         </Form.Group>
                                     </Form>
                                 </p>

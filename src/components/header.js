@@ -64,6 +64,7 @@ export default function ButtonAppBar(props) {
             Sistema de Planejamento Acadêmico
           </Typography>
           <div>
+            {props.botaoImprimir}
             {props.botaoSalvar}
             {props.botaoSalvarContinuar}
           </div>

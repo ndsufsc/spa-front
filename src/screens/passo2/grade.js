@@ -259,6 +259,7 @@ class Grade extends React.Component {
 
   constructor() {
     super()
+    this.child = React.createRef();
     this.state = {
       selectedOption: null,
       id_curso: '',
@@ -270,7 +271,7 @@ class Grade extends React.Component {
       disciplinas: [],
       turmas: [],
       selectedDisciplina: { nome: '', hrs_totais: '', id_curriculo_disciplina: '', id_disciplina: '' },
-      selectedTurma: {nome: '', id_turma: ''},
+      selectedTurma: { nome: '', id_turma: '' },
       itemChecked: false,
       index: '',
       arrayAux: [],
@@ -488,7 +489,7 @@ class Grade extends React.Component {
     console.log("s2: ", s2);
     console.log("s3: ", s3);
     console.log("s4: ", s4);
-    
+
 
     this.setState({ schedulesMatutino: s1, schedulesMatutino2: s2, schedulesMatutino3: s3, schedulesMatutino4: s4, schedulesMatutino5: s5, schedulesVespertino: s6, schedulesVespertino2: s7, schedulesVespertino3: s8, schedulesVespertino4: s9, schedulesVespertino5: s10, schedulesNoturno: s11, schedulesNoturno2: s12, schedulesNoturno3: s13, schedulesNoturno4: s14 });
   }
@@ -549,6 +550,10 @@ class Grade extends React.Component {
 
   }
 
+  onClick = () => {
+    this.child.current.imprimir();
+  };
+
   render() {
 
     const { selectedOptionSemestre } = this.state;
@@ -562,7 +567,8 @@ class Grade extends React.Component {
 
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <Header botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
+          <Header botaoImprimir={<Button size="medium" color="inherit" onClick={this.onClick} className={classes.botaoSalvar}>Imprimir</Button>}
+            botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
             botaoSalvarContinuar={<Button onClick={() => this.salvarGrade()} size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
           />
         </AppBar>
@@ -588,6 +594,7 @@ class Grade extends React.Component {
               selecionouTurma={this.state.selecionouTurma}
               limparTurma={this.limparTurma}
               fase={this.state.fase_curso}
+              ref={this.child} 
             />
             :
             <GradeConsulta
@@ -604,6 +611,7 @@ class Grade extends React.Component {
               limparTurma={this.limparTurma}
               semestre={1}
               fase={this.state.fase_curso}
+              ref={this.child} 
             />
           }
         </main>
