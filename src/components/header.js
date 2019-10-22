@@ -69,14 +69,14 @@ export default function ButtonAppBar(props) {
             {props.botaoSalvarContinuar}
           </div>
           <Link to="/" >
-            <Button  size="medium" color="inherit" className={header.sair}>Sair</Button>
+            <Button size="medium" color="inherit" className={header.sair}>Sair</Button>
           </Link>
 
         </Toolbar>
       </AppBar>
       <div className={header.root}>
         <AppBar position="static" color="inherit" className={classes.appBar2}>
-          <Toolbar>	
+          <Toolbar>
             <Typography variant="h6" className={header.title}>
               Coordenador: <b>Fabrício Ourique</b>
             </Typography>

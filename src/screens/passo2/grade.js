@@ -568,8 +568,8 @@ class Grade extends React.Component {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Header botaoImprimir={<Button size="medium" color="inherit" onClick={this.onClick} className={classes.botaoSalvar}>Imprimir</Button>}
-            botaoSalvar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar</Button>}
-            botaoSalvarContinuar={<Button onClick={() => this.salvarGrade()} size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
+            botaoSalvar={<Button size="medium" color="inherit" onClick={() => this.salvarGrade()} className={classes.botaoSalvar}>Salvar</Button>}
+            botaoSalvarContinuar={<Button size="medium" color="inherit" className={classes.botaoSalvar}>Salvar e Ir</Button>}
           />
         </AppBar>
         <main className={classes.content}>

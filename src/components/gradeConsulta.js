@@ -341,7 +341,8 @@ class GradeConsulta extends React.Component {
             // if (this.props.horas_praticas != 0 || this.props.horas_praticas != 0) {
             this.setState({ horas_praticas: this.props.horas_praticas, horas_teoricas: this.props.horas_teoricas, selectedDisciplina: this.props.disciplina })
             this.componentDidMount();
-            this.limparSchedules();
+            // this.limparSchedules();
+
             // }
         }
     }
