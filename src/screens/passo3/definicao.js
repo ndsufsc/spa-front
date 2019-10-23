@@ -68,7 +68,7 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    marginTop: 80,
+    marginTop: 120,
     width: '75%',
   },
   toolbar: theme.mixins.toolbar,
@@ -80,7 +80,7 @@ const styles = theme => ({
     alignSelf: 'center',
   },
   select2: {
-    marginTop: '4%',
+    marginTop: 20,
     width: '90%',
     alignSelf: 'center',
   },
@@ -90,7 +90,7 @@ const styles = theme => ({
     backgroundColor: '#E7E7E7',
     minHeight: 130,
     width: '90%',
-    marginTop: 0,
+    marginTop: 80,
     marginBottom: 20,
     paddingBottom: 10,
     alignSelf: 'center',
@@ -268,7 +268,8 @@ class Definicao extends React.Component {
       selectedTurma: '',
       arrayProfessores: '',
       arrayP: [],
-      professorInfo: [{ nome: '', bool: '' }]
+      professorInfo: [{ nome: '', bool: '' }],
+      fase_curso: ''
     }
   }
 
@@ -279,7 +280,7 @@ class Definicao extends React.Component {
       codigo_curso: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
     })
 
-    this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false });
+    this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false, fase_curso: this.state.selectedOptionSemestre.value });
 
     for (var i = 0; i < response.data.length; i++) {
       var nome = response.data[i].codigo;
@@ -473,14 +474,12 @@ class Definicao extends React.Component {
 
             </div>
             <div class='buttonsDiv'>
-              {/* <Button className={classes.button} variant="contained" size="large" color="primary">Salvar</Button>
-              <Button onClick={() => this.salvarGrade()} className={classes.button} variant="contained" size="large" color="primary">Salvar e Concluir</Button> */}
             </div>
           </div>
         </Drawer>
 
         <main className={classes.content}>
-          <GradeConsulta professor={this.state.professorInfo} />
+          <GradeConsulta professor={this.state.professorInfo} fase={this.state.fase_curso} />
 
         </main>
 
