@@ -14,40 +14,42 @@ export default class Modais extends Component {
     async componentDidUpdate(prevProps) {
         if (this.props.professor !== prevProps.professor) {
             console.log("entrou: ", this.props.professor);
-            
+
             this.setState({ nomeProfessor: this.props.professor.slice(-1).pop().nome })
             console.log("nome professor: ", this.state.nomeProfessor);
-            
+
         }
     }
 
-    deletarHorario = async(self) => {
+    deletarHorario = async (self) => {
         const response = await api.post('/disciplina/buscarDisciplinaTurmaSala', {
             id_curriculo_disciplina: self.schedule.id_curriculo_disciplina[self.pos]
-        }) 
+        })
 
         console.log("response do buscar disciplina: ", response.data);
-        
+
         var arrayDelete = [];
 
         response.data.map(item => { arrayDelete.push(item.id_turma_sala) });
 
-        // await api.post('/disciplina/deleteProfessorTurmaSala', { id_turma_sala: self.schedule.id_turma_sala[self.pos] });
-        await api.post('/disciplina/deleteArrayIdTurmaSala', { arrayDelete: arrayDelete } );
+        await api.post('/disciplina/deleteProfessorTurmaSala', { id_turma_sala: self.schedule.id_turma_sala[self.pos] });
+        await api.post('/disciplina/deleteArrayIdTurmaSala', { arrayDelete: arrayDelete });
         self.atualizar();
     }
 
     async inserirProfessor(professor) {
         const self = this.props;
 
-        console.log("professor inserção: ", professor.slice(-1).pop().nome );
-        console.log("id professor inserção: ", professor.slice(-1).pop().id_professor );
+        console.log("professor inserção: ", professor.slice(-1).pop().nome);
+        console.log("id professor inserção: ", professor.slice(-1).pop().id_professor);
 
         console.log("schedule: ", this.props.schedule.id_turma_sala[self.pos]);
         await api.post('/disciplina/inserirProfessorTurmaSala', {
             id_professor: professor.slice(-1).pop().id_professor,
             id_turma_sala: this.props.schedule.id_turma_sala[self.pos]
-        })        
+        })
+
+        window.location.reload();
     }
 
     render() {

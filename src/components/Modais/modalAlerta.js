@@ -23,7 +23,7 @@ export default class ModalAleta extends Component {
                 <Modal
                     show={self.modalOpen}
                     onHide={() => self.close()}
-                    style={{ marginTop: '5%', width: '100%' }}
+                    style={{ marginTop: '15%', width: '100%' }}
                 >
                     <Modal.Header closeButton style={{ fontSize: 16, fontWeight: 'bold' }}>Alerta!</Modal.Header>
                     <Modal.Body
