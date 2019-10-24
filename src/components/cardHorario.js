@@ -55,7 +55,7 @@ const styles = theme => ({
     },
 })
 
-class Card extends React.Component {
+class CardHorario extends React.Component {
     constructor() {
         super()
         this.state = {mostraClose: false}
@@ -88,8 +88,8 @@ class Card extends React.Component {
     }
 }
 
-Card.propTypes = {
+CardHorario.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Card);
+export default withStyles(styles)(CardHorario);

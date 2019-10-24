@@ -45,7 +45,7 @@ import { Close } from '@material-ui/icons';
 
 //COMPONENTES
 import Header from '../../components/header';
-import Card from '../../components/card';
+import CardHorario from '../../components/cardHorario';
 import api from '../../service/api';
 import GradeConsulta from '../../components/gradeConsulta';
 import ModalAlerta from '../../components/Modais/modalAlerta'
