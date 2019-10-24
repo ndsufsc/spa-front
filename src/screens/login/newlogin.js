@@ -76,7 +76,7 @@ export default function SignInSide(props) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login SPA
+            Login SISPLAN
           </Typography>
           <form className={classes.form} noValidate method="POST" encType="application/json" action="//http:localhost:3333/login/verify">
             <TextField
