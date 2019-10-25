@@ -43,7 +43,7 @@ export default class Modais extends Component {
         console.log("professor inserção: ", professor.slice(-1).pop().nome);
         console.log("id professor inserção: ", professor.slice(-1).pop().id_professor);
 
-        console.log("schedule: ", this.props.schedule.id_turma_sala[self.pos]);
+
         await api.post('/disciplina/inserirProfessorTurmaSala', {
             id_professor: professor.slice(-1).pop().id_professor,
             id_turma_sala: this.props.schedule.id_turma_sala[self.pos]
