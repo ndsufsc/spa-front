@@ -1573,7 +1573,7 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 2)}>
 
-{!_class ? 
+                                        {!_class ? 
                                             '' : 
                                             false ? 
                                                 <CardHorario 
@@ -1607,8 +1607,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 3)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
-
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
                                         {schedule.carregou[index] ?
 
                                             null
@@ -1626,7 +1639,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 4)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1645,7 +1672,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 5)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1682,7 +1723,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 6)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1701,7 +1756,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 7)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1720,7 +1789,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 8)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1739,7 +1822,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 9)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
                                             null
@@ -1757,7 +1854,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 10)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1796,7 +1907,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 11)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1815,7 +1940,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 12)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1834,7 +1973,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 13)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
@@ -1853,7 +2006,21 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 14)}>
 
-                                        {!_class ? '' : <CardHorario nomeDisciplina={_class} nomeTurma={schedule.turmaCodigo[index]} teorica={schedule.tipo_aula[index] == 1 ? true : false} />}
+                                        {!_class ? 
+                                            '' : 
+                                            false ? 
+                                                <CardHorario 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                /> :
+                                                <CardProfessor 
+                                                    nomeDisciplina={_class} 
+                                                    nomeTurma={schedule.turmaCodigo[index]} 
+                                                    teorica={schedule.tipo_aula[index] == 1 ? true : false}
+                                                    nomeProfessor={null} 
+                                                />
+                                        }
 
                                         {schedule.carregou[index] ?
 
