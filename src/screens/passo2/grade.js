@@ -600,6 +600,7 @@ class Grade extends React.Component {
               limparTurma={this.limparTurma}
               fase={this.state.fase_curso}
               ref={this.child}
+              definir={false}
             />
             :
             <GradeConsulta
@@ -617,6 +618,7 @@ class Grade extends React.Component {
               semestre={1}
               fase={this.state.fase_curso}
               ref={this.child}
+              definir={false}
             />
           }
         </main>
