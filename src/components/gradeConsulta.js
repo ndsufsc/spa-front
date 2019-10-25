@@ -1595,21 +1595,12 @@ class GradeConsulta extends React.Component {
                                 {schedule.classes.map((_class, index) => (
                                     <td className={classes.tdDrop} onClick={() => this.verificarPosicao(schedule.id, index, 2)}>
 
-<<<<<<< HEAD
-                                        {!_class ? 
-                                            '' : 
-                                            false ? 
-                                                <CardHorario 
-                                                    nomeDisciplina={_class} 
-                                                    nomeTurma={schedule.turmaCodigo[index]} 
-=======
                                         {!_class ?
                                             '' :
                                             this.state.professorTela ?
                                                 <CardHorario
                                                     nomeDisciplina={_class}
                                                     nomeTurma={schedule.turmaCodigo[index]}
->>>>>>> 17c660f7d754f3f6dc8c211cebb4f3b63fc7fa45
                                                     teorica={schedule.tipo_aula[index] == 1 ? true : false}
                                                 /> :
                                                 <CardProfessor
