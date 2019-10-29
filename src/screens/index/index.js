@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import api from '../../service/api';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 //ROTEAMENTO
 import { Link, Redirect } from 'react-router-dom'
@@ -68,7 +69,7 @@ function getStepContent(step: number) {
       return `Selecione o semestre desejado para listar todas as disciplinas do mesmo. Então, selecione o professor desejado e clique no bloco de disciplina que representa a hora/aula desejada, sempre prestando atenção no bloco da disciplina confirmando a disciplina, a turma e se a hora/aula é teórica ou prática.
               \nSalve suas alterações antes de mudar o semestre, e lembre-se sempre de SALVAR as alterações feitas para não perder seu progresso.`;
     case 3:
-      return 'Rodar algoritmo para buscar a melhor solução para alocar as salas pelas turmas.';
+      return 'Executar algoritmo para buscar a melhor solução para alocar as salas pelas turmas.';
     default:
       return 'Erro interno';
   }
@@ -94,7 +95,9 @@ class App extends React.Component {
     super()
     this.state = {
       steps: getSteps(),
-      step: 0
+      step: 0,
+      alocando: false,
+      alocado: true,
     }
   }
 
@@ -137,23 +140,58 @@ class App extends React.Component {
                     <Typography>{getStepContent(this.state.step)}</Typography>
                     <div className={classes.actionsContainer}>
                       <div>
-                        <Button
-                          disabled={this.state.step === 0}
-                          onClick={null}
-                          className={classes.button}
-                        >
-                          Voltar
-                        </Button>
-                        <Link to={getRoute(this.state.step)} >
+                        { this.state.alocando ? null :
+                          <Button
+                            disabled={this.state.step === 0 || this.state.step === 2 || this.state.step === 3}
+                            onClick={() => this.setState({ step: this.state.step-1 })}
+                            className={classes.button}
+                          >
+                            Voltar
+                          </Button>
+                        }
+                        {
+                          this.state.step === 3 ?
+                              
+                          this.state.alocando ?
+                              <div>
+                                <p><b>Aguarde, alocando salas.</b></p>
+                                <LinearProgress />
+                              </div>
+                            :
+                              <Link to={getRoute(this.state.step)} >
+                                <Button
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={null}
+                                  className={classes.button}
+                                >
+                                  {this.state.alocado ? 'Visualizar' : 'Executar'}
+                                </Button>
+                              </Link>
+                            
+                          :
+                            <Link to={getRoute(this.state.step)} >
+                              <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={null}
+                                className={classes.button}
+                              >
+                                Editar
+                              </Button>
+                            </Link>
+                        }
+                        
+                        {this.state.alocando ? null :
                           <Button
                             variant="contained"
                             color="primary"
-                            onClick={null}
+                            onClick={() => this.setState({ step: this.state.step+1 })}
                             className={classes.button}
                           >
-                            {this.state.step === this.state.steps.length - 1 ? 'Fim' : 'Editar'}
+                            Concluir
                           </Button>
-                        </Link>
+                        }
                       </div>
                     </div>
                   </StepContent>
