@@ -6,6 +6,7 @@ import Grade from '../screens/passo2/grade';
 import Definicao from '../screens/passo3/definicao';
 import Tabela from '../components/tabela';
 import Alocacao from '../screens/alocacao/alocacao';
+import Relatorio from '../screens/relatorio/relatorio';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ function Router() {
             <Route path="/tabela" exact={true} component={Tabela} />
             <Route path="/definicao" exact={true} component={Definicao} />
             <Route path="/alocacao" exact={true} component={Alocacao} />
+            <Route path="/relatorio" exact={true} component={Relatorio} />
         </Switch>
     );
 }

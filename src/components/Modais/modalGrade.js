@@ -13,10 +13,7 @@ export default class Modais extends Component {
 
     async componentDidUpdate(prevProps) {
         if (this.props.professor !== prevProps.professor) {
-            console.log("entrou: ", this.props.professor);
-
             this.setState({ nomeProfessor: this.props.professor.slice(-1).pop().nome })
-            console.log("nome professor: ", this.state.nomeProfessor);
 
         }
     }
@@ -32,6 +29,8 @@ export default class Modais extends Component {
 
         response.data.map(item => { arrayDelete.push(item.id_turma_sala) });
 
+        console.log("DELETE ID TURMA SALA: ", self.schedule.id_turma_sala[self.pos]);
+
         await api.post('/disciplina/deleteProfessorTurmaSala', { id_turma_sala: self.schedule.id_turma_sala[self.pos] });
         await api.post('/disciplina/deleteArrayIdTurmaSala', { arrayDelete: arrayDelete });
         self.atualizar();
@@ -43,7 +42,7 @@ export default class Modais extends Component {
         console.log("professor inserção: ", professor.slice(-1).pop().nome);
         console.log("id professor inserção: ", professor.slice(-1).pop().id_professor);
 
-        console.log("schedule: ", this.props.schedule.id_turma_sala[self.pos]);
+
         await api.post('/disciplina/inserirProfessorTurmaSala', {
             id_professor: professor.slice(-1).pop().id_professor,
             id_turma_sala: this.props.schedule.id_turma_sala[self.pos]
@@ -55,6 +54,8 @@ export default class Modais extends Component {
     render() {
         const self = this.props;
         const state = this.state;
+
+
         return (
             <div
             >
@@ -89,10 +90,12 @@ export default class Modais extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="danger" onClick={() => (this.deletarHorario(this.props), self.close())}>Deletar</Button>
-                            {self.professor != null ?
+                            {self.schedule.nomeProfessor[self.pos] == null &&
+                                self.professor != null ?
                                 <Button variant="success" onClick={() => this.inserirProfessor(self.professor)}>Inserir</Button>
                                 :
-                                null}
+                                null
+                            }
                         </Modal.Footer>
                     </Modal>
                     : null}

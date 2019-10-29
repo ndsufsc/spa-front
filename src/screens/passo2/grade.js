@@ -665,7 +665,8 @@ class Grade extends React.Component {
                 value={selectedOptionSemestre}
                 onChange={this.handleChangeSemestre}
                 options={this.state.array}
-                className={classes.select}
+                className={classes.
+                  select}
                 placeholder={'Semestre'}
               />
 
