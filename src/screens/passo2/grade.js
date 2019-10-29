@@ -45,7 +45,7 @@ import { Close } from '@material-ui/icons';
 
 //COMPONENTES
 import Header from '../../components/header';
-import Card from '../../components/card';
+import CardHorario from '../../components/cardHorario';
 import api from '../../service/api';
 import GradeConsulta from '../../components/gradeConsulta';
 import ModalAlerta from '../../components/Modais/modalAlerta'
@@ -53,7 +53,7 @@ import ModalAlerta from '../../components/Modais/modalAlerta'
 //ROTEAMENTO
 import { Link } from 'react-router-dom'
 
-const drawerWidth = "25%";
+const drawerWidth = "22%";
 //loading style
 const override = css`
   display: block;
@@ -395,12 +395,17 @@ class Grade extends React.Component {
       id_disciplina: this.state.selectedDisciplina.id_disciplina
     })
 
+
     for (let j = 0; j < response3.data.length; j++) {
       if (response3.data[j].horas_praticas != 0 && response3.data[j].horas_praticas != null)
         await this.setState({ horas_praticas: response3.data[j].horas_praticas })
       if (response3.data[j].horas_teoricas != 0 && response3.data[j].horas_praticas != null)
         await this.setState({ horas_teoricas: response3.data[j].horas_teoricas })
+      if (response3.data[j].horas_praticas == null && response3.data[j].horas_teoricas == null) {
+        this.setState({ horas_praticas: 4, horas_teoricas: 0 })
+      }
     }
+
 
     if (this.state.horas_praticas != null) {
       this.setState({ boolean_hrs_praticas: true })
@@ -594,7 +599,8 @@ class Grade extends React.Component {
               selecionouTurma={this.state.selecionouTurma}
               limparTurma={this.limparTurma}
               fase={this.state.fase_curso}
-              ref={this.child} 
+              ref={this.child}
+              definir={false}
             />
             :
             <GradeConsulta
@@ -611,7 +617,8 @@ class Grade extends React.Component {
               limparTurma={this.limparTurma}
               semestre={1}
               fase={this.state.fase_curso}
-              ref={this.child} 
+              ref={this.child}
+              definir={false}
             />
           }
         </main>

@@ -55,7 +55,7 @@ const styles = theme => ({
     },
 })
 
-class Card extends React.Component {
+class CardHorario extends React.Component {
     constructor() {
         super()
         this.state = {mostraClose: false}
@@ -69,8 +69,6 @@ class Card extends React.Component {
     render() {
         const { classes } = this.props;
         const self = this.props;
-        console.log("props do que vem no card: ", this.props.teorica);
-        
         return (
             <div id="icon" 
                  className={this.props.teorica == true ? classes.cardTeorico : classes.cardPratico} 
@@ -88,8 +86,8 @@ class Card extends React.Component {
     }
 }
 
-Card.propTypes = {
+CardHorario.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Card);
+export default withStyles(styles)(CardHorario);

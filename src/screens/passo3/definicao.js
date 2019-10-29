@@ -256,7 +256,7 @@ class Definicao extends React.Component {
     this.state = {
       selectedOption: null,
       id_curso: '',
-      array: [{ value: '', label: '' }],
+      array: [],
       carregou: '',
       carregouDisciplina: '',
       carregouTurma: '',
@@ -300,7 +300,6 @@ class Definicao extends React.Component {
     console.log("professor info: ", this.state.professorInfo);
 
     this.handleChangeComponente();
-
 
   };
 
@@ -479,7 +478,7 @@ class Definicao extends React.Component {
         </Drawer>
 
         <main className={classes.content}>
-          <GradeConsulta professor={this.state.professorInfo} fase={this.state.fase_curso} />
+          <GradeConsulta professor={this.state.professorInfo} definir={true} fase={this.state.fase_curso} />
 
         </main>
 

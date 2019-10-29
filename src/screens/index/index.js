@@ -100,6 +100,10 @@ class App extends React.Component {
       let usuario = JSON.parse(localStorage.getItem('usuario'));
       await this.setState({ step: usuario.etapa })
 
+      const res = await api.post('/login/verificar', { siape: 123, senha_usuario: 123 })
+
+      this.setState({ step: res.data[0].etapa })
+
       const response = await api.post('/login/obterSemestreAtual');
       console.log("response: ", response.data);
       
