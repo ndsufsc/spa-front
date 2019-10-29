@@ -254,9 +254,41 @@ class Definicao extends React.Component {
             arrayProfessores: '',
             arrayP: [],
             professorInfo: [{ nome: '', bool: '' }],
-            fase_curso: ''
+            fase_curso: '',
+            arrayCurso: [],
         }
     }
+
+    async componentDidMount()
+    {
+        // const cursos = await  api.get('/curriculo/obterCursos');
+        // console.log(cursos.data);
+
+        const response = await api.get('/curriculo/obterCursos');
+
+        let i = 0;
+        for (i = 0; i < response.data.length; i++)
+        {
+            this.setState({ arrayCurso: [ ...this.state.arrayCurso, {value: response.data[i].descricao_curso, label: response.data[i].id_curso} ] })
+        }
+
+        console.log(this.state.arrayCurso);
+    }
+
+    handleChangeCursos = async selectedOptionCursos => {
+        await this.setState({ selectedOptionCursos });
+    
+        const response = await api.get('/curriculo/obterCursos');
+
+        let i = 0;
+        for (i = 0; i < response.data.length; i++)
+        {
+            this.setState({ arrayCurso: [ ...this.state.arrayCurso, {value: response.data[i].descricao_curso, label: response.data[i].id_curso} ] })
+        }
+
+        console.log(this.state.arrayCurso);
+    
+      };
 
 
     render() {
@@ -276,12 +308,23 @@ class Definicao extends React.Component {
            
           ];
         const { classes } = this.props;
+        const { selectedOptionCursos } = this.state;
         return (
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar position="fixed" className={classes.appBar}>
                     <Header />
                 </AppBar>
+
+
+                <Select id="cadastro_turmas_input_1"
+                value={selectedOptionCursos}
+                onChange={this.selectedOptionCursos}
+                options={this.state.arrayCursos}
+                className={classes.
+                  select}
+                placeholder={'Semestre'}
+              />
 {/* 
                 <BootstrapTable
                     keyField="id"
