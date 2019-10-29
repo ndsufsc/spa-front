@@ -238,7 +238,7 @@ class GradeConsulta extends React.Component {
             carregou1: true,
             scheduleMatutinoR: [],
             arrayTurmasSalvas: '',
-            arrayProfessorAlocado: '',
+            arrayProfessorAlocado: null,
             close: false,
             teste: '',
             openModalGrade: false,
@@ -1227,6 +1227,8 @@ class GradeConsulta extends React.Component {
 
         console.log("array turmas salvas: ", arrayTurmasSalvas);
 
+        console.log("array professor alocado: ", this.state.arrayProfessorAlocado);
+        
 
         if (pos == 1) {
 
@@ -1234,10 +1236,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 1 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino: this.state.schedulesMatutino.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1255,10 +1259,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 2 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino2: this.state.schedulesMatutino2.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1276,10 +1282,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 3 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino3: this.state.schedulesMatutino3.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1297,10 +1305,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 4 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino4: this.state.schedulesMatutino4.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1318,10 +1328,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 5 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesMatutino5: this.state.schedulesMatutino5.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1339,10 +1351,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 6 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesVespertino: this.state.schedulesVespertino.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1360,10 +1374,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 7 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesVespertino2: this.state.schedulesVespertino2.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1381,10 +1397,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 8 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesVespertino3: this.state.schedulesVespertino3.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1402,10 +1420,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 9 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesVespertino4: this.state.schedulesVespertino4.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1423,10 +1443,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 10 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesVespertino5: this.state.schedulesVespertino5.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1444,10 +1466,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 11 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesNoturno: this.state.schedulesNoturno.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1465,10 +1489,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 12 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesNoturno2: this.state.schedulesNoturno2.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1486,10 +1512,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 13 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesNoturno3: this.state.schedulesNoturno3.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
@@ -1507,10 +1535,12 @@ class GradeConsulta extends React.Component {
                 if (arrayTurmasSalvas[i].id_horario_inicio == 14 && arrayTurmasSalvas[i].qtde_aulas > 0) {
                     this.setState({
                         schedulesNoturno4: this.state.schedulesNoturno4.map(schedule => {
-                            this.state.arrayProfessorAlocado.map(item => {
-                                if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
-                                    schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
-                            })
+                            if (this.state.arrayProfessorAlocado != 0) {
+                                this.state.arrayProfessorAlocado.map(item => {
+                                    if (item.id_turma_sala == arrayTurmasSalvas[i].id_turma_sala)
+                                        schedule.professorAlocado[arrayTurmasSalvas[i].dia_semana - 2] = true;
+                                })
+                            }
                             schedule.id_turma_sala[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_turma_sala
                             schedule.classes[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].codigo
                             schedule.id_curriculo_disciplina[arrayTurmasSalvas[i].dia_semana - 2] = arrayTurmasSalvas[i].id_curriculo_disciplina
