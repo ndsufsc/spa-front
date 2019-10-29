@@ -10,25 +10,10 @@ import { withStyles } from "@material-ui/core/styles";
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Tabela from '../../components/tabela';
-import Button from '@material-ui/core/Button';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginator from 'react-bootstrap-table2-paginator';
+
+
 
 //COMPONENTES
 import Header from '../../components/header';
@@ -273,118 +258,23 @@ class Definicao extends React.Component {
         }
     }
 
-    handleChangeSemestre = async selectedOptionSemestre => {
-        await this.setState({ selectedOptionSemestre });
-
-        const response = await api.post("/disciplina/obter", {
-            codigo_curso: this.state.id_curso, fase: this.state.selectedOptionSemestre.value
-        })
-
-        this.setState({ disciplinas: '', carregouDisciplina: false, turmas: '', carregouTurma: false, fase_curso: this.state.selectedOptionSemestre.value });
-
-        for (var i = 0; i < response.data.length; i++) {
-            var nome = response.data[i].codigo;
-            nome += ' - ';
-            nome += response.data[i].nome;
-            await this.setState({ disciplinas: [...this.state.disciplinas, { nome: nome, id_disciplina: response.data[i].id_disciplina }], carregouDisciplina: true })
-        }
-
-    };
-
-
-    handleChangeProfessor = async selectedOptionProfessor => {
-        await this.setState({ selectedOptionProfessor });
-        await this.setState({ selectedProfessor: selectedOptionProfessor.label });
-
-        await this.setState({ professorInfo: [...this.state.professorInfo, { nome: this.state.selectedProfessor, id_professor: selectedOptionProfessor.value }] });
-        console.log("professor info: ", this.state.professorInfo);
-
-        this.handleChangeComponente();
-
-    };
-
-    async handleChangeDisciplina(item, index) {
-
-        const response = await api.post("/disciplina/buscarTurmas", {
-            id_disciplina: item.id_disciplina
-        })
-
-        this.setState({ selectedDisciplina: item.nome });
-
-        this.setState({ turmas: '', carregouTurma: false });
-
-        for (var i = 0; i < response.data.length; i++) {
-            await this.setState({ turmas: [...this.state.turmas, { id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma }], carregouTurma: true })
-        }
-
-        console.log("Index: ", index);
-
-    };
-
-    async handleDelete() {
-
-        this.setState({ selectedDisciplina: '' });
-        this.setState({ selectedTurma: '' });
-
-        await this.setState({ carregouComponente: false })
-        await this.setState({ carregouGerar: false })
-        await this.setState({ carregouTurma: false })
-
-    };
-
-    async handleChangeTurma(item) {
-        this.setState({ selectedTurma: [...this.state.selectedTurma, item.turma] });
-        await this.setState({ carregouGerar: true })
-
-    };
-
-    async handleChangeComponente(item) {
-
-        await this.setState({ carregouComponente: true })
-
-    };
-
-    componentDidMount = async () => {
-        if (localStorage.getItem('login') == 'on') {
-            var usuario = JSON.parse(localStorage.getItem('usuario'))
-            this.setState({ usuario: usuario })
-
-            const response = await api.post("/disciplina/buscarCurso", {
-                id_usuario: usuario.id_usuario
-            })
-
-            this.setState({ id_curso: response.data[0].id_curso })
-
-            const response2 = await api.post("/disciplina/buscarSemestre", {
-                id_course: response.data[0].id_curso
-            })
-
-            await this.setState({ qtdeSemestre: response2.data[0].semestres, })
-            var rows = [];
-            for (var i = 1; i <= this.state.qtdeSemestre; i++) {
-                this.setState({ array: [...this.state.array, { value: i, label: i + "º Semestre" }] })
-                this.setState({ carregou: true })
-            }
-
-            const responseProfessor = await api.post("/disciplina/buscaProfessores", {
-                id_departamento: this.state.usuario.id_departamento
-            })
-
-            await this.setState({ arrayProfessores: responseProfessor.data })
-
-            this.state.arrayProfessores.map((item => {
-                this.setState({ arrayP: [...this.state.arrayP, { label: item.nome, value: item.id_professor }] })
-            }))
-
-
-        }
-
-    };
 
     render() {
-
-        const { selectedOptionSemestre, selectedOptionProfessor } = this.state;
-        const self = this;
+        const columns = [
+            {
+              dataField: 'id_estoque',
+              text: 'ID',
+            },
+            {
+              dataField: 'nome',
+              text: 'Nome',
+            },
+            {
+              dataField: 'quantidade',
+              text: 'Quantidade',
+            },
+           
+          ];
         const { classes } = this.props;
         return (
             <div className={classes.root}>
@@ -392,6 +282,14 @@ class Definicao extends React.Component {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Header />
                 </AppBar>
+{/* 
+                <BootstrapTable
+                    keyField="id"
+                    pagination={paginator()}
+                    data={this.state.estoque}
+                    columns={columns}
+                /> */}
+
             </div>
         );
     }
