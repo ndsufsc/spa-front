@@ -262,19 +262,19 @@ class Definicao extends React.Component {
     render() {
         const columns = [
             {
-              dataField: 'id_estoque',
-              text: 'ID',
+                dataField: 'id_estoque',
+                text: 'ID',
             },
             {
-              dataField: 'nome',
-              text: 'Nome',
+                dataField: 'nome',
+                text: 'Nome',
             },
             {
-              dataField: 'quantidade',
-              text: 'Quantidade',
+                dataField: 'quantidade',
+                text: 'Quantidade',
             },
-           
-          ];
+
+        ];
         const { classes } = this.props;
         return (
             <div className={classes.root}>
@@ -282,7 +282,7 @@ class Definicao extends React.Component {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Header />
                 </AppBar>
-{/* 
+                {/* 
                 <BootstrapTable
                     keyField="id"
                     pagination={paginator()}
