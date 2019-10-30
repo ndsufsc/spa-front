@@ -12,7 +12,7 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginator from 'react-bootstrap-table2-paginator';
-
+import { Button } from 'react-bootstrap'
 
 
 //COMPONENTES
@@ -241,54 +241,128 @@ class Definicao extends React.Component {
         this.state = {
             selectedOption: null,
             id_curso: '',
-            array: [],
-            carregou: '',
-            carregouDisciplina: '',
-            carregouTurma: '',
-            qtdeSemestre: '',
-            disciplinas: [],
-            turmas: [],
-            selectedDisciplina: '',
-            selectedProfessor: '',
-            selectedTurma: '',
+            arrayFases: [],
+            arrayCurso: [],
+            habilitarSemestre: false,
             arrayProfessores: '',
-            arrayP: [],
-            professorInfo: [{ nome: '', bool: '' }],
-            fase_curso: ''
+            arrayProfessorRelatorio: '',
         }
+    }
+
+    async obterCursos() {
+        const response = await api.get('/curriculo/obterCursos');
+        let i = 0;
+        for (i = 0; i < response.data.length; i++) {
+            this.setState({ arrayCurso: [...this.state.arrayCurso, { value: response.data[i].id_curso, label: response.data[i].descricao_curso }] })
+        }
+    }
+
+    async componentDidMount() {
+        this.obterCursos();
+
+    }
+
+    // selecionar professor para fazer o relatório por professor disciplina
+    disciplinaProfessor = async professorDisciplinaOption => {
+        await this.setState({ professorDisciplinaOption });
+
+        const r = await api.post('/relatorios/disciplinaProfessor', {
+            id_professor: professorDisciplinaOption.value
+        })
+
+        this.setState({ arrayProfessorRelatorio: r.data })
+        console.log("resposta da rota ", this.state.arrayProfessorRelatorio);
+        
+
+    };
+
+    handleChangeCursos = async selectedOptionCursos => {
+        await this.setState({ selectedOptionCursos });
+
+        const r = await api.post("/disciplina/buscarSemestre", {
+            id_course: selectedOptionCursos.value
+        })
+        for (var i = 1; i <= r.data[0].semestres; i++) {
+            this.setState({ arrayFases: [...this.state.arrayFases, { value: i, label: i + "º Semestre" }], habilitarSemestre: true })
+        }
+    };
+
+    async buscarProfessor() {
+        const rProfessor = await api.post('/relatorios/todosProfessores');
+        rProfessor.data.map(item => {
+            this.setState({ arrayProfessores: [...this.state.arrayProfessores, { value: item.id_professor, label: item.nome }] })
+        })
+        this.setState({ buscarProf: true })
     }
 
 
     render() {
         const columns = [
             {
-                dataField: 'id_estoque',
-                text: 'ID',
-            },
-            {
                 dataField: 'nome',
                 text: 'Nome',
             },
             {
-                dataField: 'quantidade',
-                text: 'Quantidade',
+                dataField: 'nome_disciplina',
+                text: 'Nome',
+            },
+            {
+                dataField: 'dia_semana',
+                text: 'Dia da semana',
             },
 
         ];
         const { classes } = this.props;
+        const { selectedOptionCursos, selectedOptionSemestre, professorDisciplinaOption } = this.state;
+
         return (
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar position="fixed" className={classes.appBar}>
                     <Header />
                 </AppBar>
-                {/* 
+
+                <main className={classes.content}>
+                    <input type="radio" onClick={() => this.buscarProfessor()} />
+                    <p>Filtrar por professor</p>
+                    {this.state.buscarProf ?
+                        <Select id="cadastro_turmas_input_1"
+                            value={professorDisciplinaOption}
+                            onChange={this.disciplinaProfessor}
+                            options={this.state.arrayProfessores}
+                            className={classes.select}
+                            placeholder={'Selecione o professor'}
+                        />
+                        : null}
+                    {/* <Select id="cadastro_turmas_input_1"
+                        value={selectedOptionCursos}
+                        onChange={this.handleChangeCursos}
+                        options={this.state.arrayCurso}
+                        className={classes.
+                            select}
+                        placeholder={'Curso'}
+                    />
+
+                    <Select id="cadastro_turmas_input_1"
+                        value={selectedOptionSemestre}
+                        onChange={this.selectedOptionCursos}
+                        options={this.state.arrayFases}
+                        className={classes.
+                            select}
+                        placeholder={'Semestre'}
+                        isDisabled={false}
+                    /> */}
+                
+                <Button>Gerar Relatório</Button>
+
+                </main>
+                
                 <BootstrapTable
                     keyField="id"
                     pagination={paginator()}
-                    data={this.state.estoque}
+                    data={this.state.arrayProfessorRelatorio}
                     columns={columns}
-                /> */}
+                />
 
             </div>
         );
