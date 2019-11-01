@@ -178,7 +178,7 @@ class Definicao extends React.Component {
         ];
         const { classes } = this.props;
         const { selectedOptionCursos, selectedOptionSemestre, professorDisciplinaOption } = this.state;
-
+        const { tipoRelatorio } = this.state
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -194,8 +194,8 @@ class Definicao extends React.Component {
                             <RadioGroup className={classes.formGroup} 
                                         aria-label="relatorio" 
                                         name="relatorio" 
-                                        value={this.state.tipoRelatorio} 
-                                        onChange={() => this.handleChangeRelatorio}>
+                                        value={tipoRelatorio} 
+                                        onChange={this.handleChangeRelatorio}>
                                 
                                 <FormControlLabel className={classes.radio} 
                                                 value="Turma/Semestre" 
