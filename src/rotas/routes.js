@@ -6,7 +6,7 @@ import Grade from '../screens/passo2/grade';
 import Definicao from '../screens/passo3/definicao';
 import Tabela from '../components/tabela';
 import Alocacao from '../screens/alocacao/alocacao';
-import Relatorio from '../screens/relatorio/relatorio';
+import Relatorio from '../screens/passo4/relatorio';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 

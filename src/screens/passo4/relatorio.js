@@ -7,31 +7,21 @@ import Select from 'react-select'
 //COMPONENTES MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginator from 'react-bootstrap-table2-paginator';
-import { Button } from 'react-bootstrap'
+import Button from '@material-ui/core/Button';
 
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 //COMPONENTES
 import Header from '../../components/header';
 import api from '../../service/api';
-
-//ROTEAMENTO
-import { Link } from 'react-router-dom'
-//MATERIAL ICONS
-import { Delete } from '@material-ui/icons';
-import { Close } from '@material-ui/icons';
-// load
-import { ClipLoader, BounceLoader } from 'react-spinners';
-//react bootstrap
-
-import { Table, Modal } from 'react-bootstrap'
-//COMPONENTES CRIADOS
-import GradeConsulta from '../../components/gradeConsulta';
-
 
 const drawerWidth = "25%";
 
@@ -43,195 +33,64 @@ const styles = theme => ({
         zIndex: theme.zIndex.drawer + 1,
         boxShadow: 'none',
     },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        marginTop: 120,
-        width: '75%',
-    },
-    toolbar: theme.mixins.toolbar,
-    spacer: {
-        marginTop: 80,
-    },
-    select: {
-        width: '90%',
-        alignSelf: 'center',
-    },
-    select2: {
-        marginTop: 20,
-        width: '90%',
-        alignSelf: 'center',
-    },
-    cardView: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#E7E7E7',
-        minHeight: 130,
-        width: '90%',
-        marginTop: 80,
-        marginBottom: 20,
-        paddingBottom: 10,
-        alignSelf: 'center',
-        borderRadius: 5,
-        cursor: 'default'
-    },
-    informativo: {
-        fontFamily: 'Roboto',
-        color: '#707070',
-        textAlign: 'center',
-        marginBottom: -5,
-    },
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#757575',
-        width: 200,
-        minHeight: 90,
-        borderRadius: 5,
-        boxShadow: "1px 1px 3px #9E9E9E",
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
-    },
-    checkbox: {
-        paddingTop: 0,
-        paddingBottom: 0,
-    },
     formControl: {
         paddingLeft: '5%',
         paddingRight: '5%',
         marginTop: 10,
     },
-    group: {
-        margin: theme.spacing(1, 0),
-    },
-    radio: {
-        paddingTop: 0,
-        paddingBottom: 0,
-    },
-    fab: {
-        margin: theme.spacing(1),
-        width: '90%',
-        alignSelf: 'center',
-    },
     formcontrollabel: {
         fontFamily: 'Roboto',
-    },
-    contentdrawer: {
-        display: 'flex',
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-    },
-    generator: {
-        display: 'flex',
-        flexDirection: 'column',
     },
     button: {
         marginRight: 20,
         marginBottom: 10,
     },
-    infoCardDiv: {
+    formGroup: {
+        flexDirection: 'column',
+        marginBottom: 10,
+    },
+    controllerDiv: {
         display: 'flex',
         flex: 1,
-        cursor: 'pointer',
-        justifyContent: 'space-between',
-        marginRight: 5,
-        marginTop: 5,
-        marginLeft: 5,
+        flexDirection: 'column',
+        marginTop: 150,
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    filterDiv: {
+        display: 'flex',
+        flex: 1,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
+        width: '100%',
+        marginRight: 80,
+        marginBottom: 20,
     },
-    cardsRestantes: {
-        fontFamily: 'Roboto',
-        fontWeight: 500,
-        fontSize: 14,
-        color: '#000',
-        marginTop: 5,
-        marginLeft: 5,
+    radio: {
+        marginBottom: -10,
+        marginTop: 0,
     },
-    codigodisciplina: {
-        color: '#fff',
-        fontFamily: 'Roboto',
-        fontWeight: 300,
-        fontSize: 12,
-        textAlign: 'center',
-        margin: 0,
-        padding: 0,
+    margin: {
+        flex:  1,
+        width: '25%'
     },
-    cardTeorico: {
+    selectGroup: {
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#2196f3',
-        width: 200,
-        minHeight: 90,
-        borderRadius: 5,
-        boxShadow: "1px 1px 3px #9E9E9E",
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
+        width: '40%',
+        marginTop: 10,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
-    cardPratico: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#0d47a1',
-        width: 200,
-        minHeight: 90,
-        borderRadius: 5,
-        boxShadow: "1px 1px 3px #9E9E9E",
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
+    select: {
+        marginBottom: 15,
+        width: '100%'
     },
-    disciplina: {
-        color: '#fff',
-        fontFamily: 'Roboto',
-        fontWeight: 700,
-        textAlign: 'center',
-        margin: 0,
-        padding: 0,
-        fontSize: 14,
-    },
-    turma: {
-        color: '#fff',
-        fontFamily: 'Roboto',
-        fontWeight: 400,
-        textAlign: 'center',
-        margin: 0,
-        padding: 0,
-        fontSize: 12,
-    },
-    th: {
-        width: 140,
-        backgroundColor: 'transparent',
-        textTransform: 'uppercase',
-        color: '#3F51B5',
-    },
-    thHorario: {
-        width: 120,
-        textTransform: 'uppercase',
-        color: '#3F51B5',
-    },
-    tdDrop: {
-        cursor: 'pointer',
-        backgroundColor: '#E7E7E7',
-        borderRadius: 5,
-        height: 55,
-        width: 140,
-    },
-    tdHora: {
-        color: '#707070',
-        textTransform: 'uppercase',
-    },
-    botaoSalvar: {
-        marginRight: 10,
-    },
+    table: {
+        width: '100%',
+        paddingLeft: 20,
+        paddingRight: 20,
+    }
 })
 
 class Definicao extends React.Component {
@@ -246,6 +105,7 @@ class Definicao extends React.Component {
             habilitarSemestre: false,
             arrayProfessores: '',
             arrayProfessorRelatorio: '',
+            tipoRelatorio: 'Turma/Semestre',
         }
     }
 
@@ -295,6 +155,10 @@ class Definicao extends React.Component {
         this.setState({ buscarProf: true })
     }
 
+    handleChangeRelatorio = event => {
+        this.setState({ tipoRelatorio: event.target.value});
+    }
+
 
     render() {
         const columns = [
@@ -322,48 +186,118 @@ class Definicao extends React.Component {
                     <Header />
                 </AppBar>
 
-                <main className={classes.content}>
-                    <input type="radio" onClick={() => this.buscarProfessor()} />
-                    <p>Filtrar por professor</p>
-                    {this.state.buscarProf ?
-                        <Select id="cadastro_turmas_input_1"
-                            value={professorDisciplinaOption}
-                            onChange={this.disciplinaProfessor}
-                            options={this.state.arrayProfessores}
-                            className={classes.select}
-                            placeholder={'Selecione o professor'}
-                        />
-                        : null}
-                    {/* <Select id="cadastro_turmas_input_1"
-                        value={selectedOptionCursos}
-                        onChange={this.handleChangeCursos}
-                        options={this.state.arrayCurso}
-                        className={classes.
-                            select}
-                        placeholder={'Curso'}
+                <div className={classes.controllerDiv}>
+                    <div className={classes.filterDiv}>
+                        <FormControl component="fieldset" className={classes.formControl}>
+                            <FormLabel component="legend">Selecione o relatório desejado:</FormLabel>
+                            
+                            <RadioGroup className={classes.formGroup} 
+                                        aria-label="relatorio" 
+                                        name="relatorio" 
+                                        value={this.state.tipoRelatorio} 
+                                        onChange={() => this.handleChangeRelatorio}>
+                                
+                                <FormControlLabel className={classes.radio} 
+                                                value="Turma/Semestre" 
+                                                control={<Radio name="rel" color="primary"/>} 
+                                                label="Turma/Semestre" />
+                                <FormControlLabel className={classes.radio}
+                                                value="Disciplina/Professor" 
+                                                control={<Radio name="rel" color="primary"/>} 
+                                                label="Disciplina/Professor" />
+                                <FormControlLabel className={classes.radio}
+                                                value="Grade Semestral Curso/Fase" 
+                                                control={<Radio name="rel" color="primary"/>} 
+                                                label="Grade Semestral Curso/Fase" />
+                                <FormControlLabel className={classes.radio}
+                                                value="Sala" 
+                                                control={<Radio name="rel" color="primary"/>} 
+                                                label="Carga horárioa por semestre" />
+                                <FormControlLabel className={classes.radio}
+                                                value="Disciplina Teórica/Prática" 
+                                                control={<Radio name="rel" color="primary"/>} 
+                                                label="Disciplina Teórica/Prática" />
+                                <FormControlLabel className={classes.radio}
+                                                value="Professor/Departamento" 
+                                                control={<Radio name="rel" color="primary"/>} 
+                                                label="Professor/Departamento" />
+                            </RadioGroup>
+
+                        </FormControl>
+
+                        <div className={classes.selectGroup}>
+                            <FormLabel component="legend">Filtre seu resultado:</FormLabel>
+                            <Select id="cadastro_turmas_input_1"
+                                value={professorDisciplinaOption}
+                                onChange={this.disciplinaProfessor}
+                                options={this.state.arrayProfessores}
+                                className={classes.select}
+                                placeholder={'Selecione o professor'}
+                            />
+                            <Select id="cadastro_turmas_input_1"
+                                value={professorDisciplinaOption}
+                                onChange={this.disciplinaProfessor}
+                                options={this.state.arrayProfessores}
+                                className={classes.select}
+                                placeholder={'Selecione o professor'}
+                            />
+                            <Select id="cadastro_turmas_input_1"
+                                value={professorDisciplinaOption}
+                                onChange={this.disciplinaProfessor}
+                                options={this.state.arrayProfessores}
+                                className={classes.select}
+                                placeholder={'Selecione o professor'}
+                            />
+                            
+                        </div>
+                    </div>
+
+                    <Button variant="contained" size="large" color="primary" className={classes.margin}>
+                        Gerar Relatório
+                    </Button>
+                </div>
+                
+                <div className={classes.table}>
+                    <BootstrapTable
+                        keyField="id"
+                        pagination={paginator()}
+                        data={this.state.arrayProfessorRelatorio}
+                        columns={columns}
                     />
-
+                </div>
+                
+                {/*<input type="radio" onClick={() => this.buscarProfessor()} />
+                
+                <p>Filtrar por professor</p>
+                
+                {this.state.buscarProf ?
                     <Select id="cadastro_turmas_input_1"
-                        value={selectedOptionSemestre}
-                        onChange={this.selectedOptionCursos}
-                        options={this.state.arrayFases}
-                        className={classes.
-                            select}
-                        placeholder={'Semestre'}
-                        isDisabled={false}
-                    /> */}
-                
-                <Button>Gerar Relatório</Button>
+                        value={professorDisciplinaOption}
+                        onChange={this.disciplinaProfessor}
+                        options={this.state.arrayProfessores}
+                        className={classes.select}
+                        placeholder={'Selecione o professor'}
+                    />
+                    : null}
 
-                </main>
-                
-                <BootstrapTable
-                    keyField="id"
-                    pagination={paginator()}
-                    data={this.state.arrayProfessorRelatorio}
-                    columns={columns}
+                {/* <Select id="cadastro_turmas_input_1"
+                    value={selectedOptionCursos}
+                    onChange={this.handleChangeCursos}
+                    options={this.state.arrayCurso}
+                    className={classes.
+                        select}
+                    placeholder={'Curso'}
                 />
 
+                <Select id="cadastro_turmas_input_1"
+                    value={selectedOptionSemestre}
+                    onChange={this.selectedOptionCursos}
+                    options={this.state.arrayFases}
+                    className={classes.
+                        select}
+                    placeholder={'Semestre'}
+                    isDisabled={false}
+                />*/} 
             </div>
         );
     }
