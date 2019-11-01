@@ -272,7 +272,7 @@ class Definicao extends React.Component {
 
         this.setState({ arrayProfessorRelatorio: r.data })
         console.log("resposta da rota ", this.state.arrayProfessorRelatorio);
-        
+
 
     };
 
@@ -299,7 +299,7 @@ class Definicao extends React.Component {
     render() {
         const columns = [
             {
-                dataField: 'nome',
+                dataField: 'nome_professor',
                 text: 'Nome',
             },
             {
@@ -352,11 +352,11 @@ class Definicao extends React.Component {
                         placeholder={'Semestre'}
                         isDisabled={false}
                     /> */}
-                
-                <Button>Gerar Relatório</Button>
+
+                    <Button>Gerar Relatório</Button>
 
                 </main>
-                
+
                 <BootstrapTable
                     keyField="id"
                     pagination={paginator()}
