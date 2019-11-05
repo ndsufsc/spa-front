@@ -55,7 +55,7 @@ function getSteps() {
 }
 
 function getStepContent(step: number) {
-  switch (step) {
+  switch (0) {
     case 0:
       return `Para cada disciplina ofertada no semestre recomendamos a revisão das informações para garantir que erros não serão cometidos durante o planejamento.
               \nCaso alguma disciplina possua horas-aula práticas você deve escolher o laboratório onde será ministrada.
@@ -79,7 +79,7 @@ function getRoute(step: number) {
     case 1:
       return '/grade';
     case 2:
-      return `/`;
+      return `/definicao`;
     case 3:
       return '/';
     default:
@@ -105,7 +105,7 @@ class App extends React.Component {
 
       const res = await api.post('/login/verificar', { siape: 123, senha_usuario: 123 })
 
-      this.setState({ step: res.data[0].etapa })
+      this.setState({ step: 0 })
 
       const response = await api.post('/login/obterSemestreAtual');
       console.log("response: ", response.data);
@@ -139,7 +139,7 @@ class App extends React.Component {
                       <div>
                         { this.state.alocando ? null :
                           <Button
-                            disabled={this.state.step === 0 || this.state.step === 2 || this.state.step === 3}
+                            disabled={this.state.step === 0}
                             onClick={() => this.setState({ step: this.state.step-1 })}
                             className={classes.button}
                           >
@@ -183,6 +183,7 @@ class App extends React.Component {
                           <Button
                             variant="contained"
                             color="primary"
+                            disabled={this.state.step === 3}
                             onClick={() => this.setState({ step: this.state.step+1 })}
                             className={classes.button}
                           >

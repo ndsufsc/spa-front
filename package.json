@@ -2,7 +2,7 @@
   "name": "spa",
   "version": "0.1.0",
   "engines": {
-    "node": "10.16.3"
+    "node": "10.16.2"
   },
   "private": true,
   "dependencies": {
