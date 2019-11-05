@@ -317,8 +317,6 @@ class Definicao extends React.Component {
       await this.setState({ turmas: [...this.state.turmas, { id_turma: response.data[i].id_plano_ensino, turma: response.data[i].turma }], carregouTurma: true })
     }
 
-    console.log("Index: ", index);
-
   };
 
   async handleDelete() {
