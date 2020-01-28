@@ -196,7 +196,7 @@ class Grade extends React.Component {
       arrayAux: [],
       carregouHorario: false,
       arrayQuadro: '',
-      arrayTeste: [1,2,3,4,5,6,7,8,9]
+      arrayTeste: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     }
   }
@@ -301,9 +301,9 @@ class Grade extends React.Component {
     console.log("array quadro: ", this.state.arrayQuadro);
 
   }
-  
- 
- 
+
+
+
   render() {
 
     const { selectedOptionSemestre } = this.state;

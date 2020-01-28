@@ -26,8 +26,6 @@ class Login extends Component {
   }
   async login() {
 
-    console.log("email usuario: ", this.state.email_usuario);
-    console.log("senha usuario: ", this.state.senha_usuario);
 
     const res = await api.post('/login/verificar', { siape: this.state.email_usuario, senha_usuario: this.state.senha_usuario })
       
