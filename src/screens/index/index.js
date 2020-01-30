@@ -81,7 +81,7 @@ function getRoute(step: number) {
     case 2:
       return `/definicao`;
     case 3:
-      return '/';
+      return '/alocacao';
     default:
       return '/';
   }
@@ -108,18 +108,22 @@ class App extends React.Component {
       this.setState({ step: 0 })
 
       const response = await api.post('/login/obterSemestreAtual');
-      console.log("response: ", response.data);
-      
     }
 
   };
+
+  async plusStep() {  
+    await this.setState({ step: this.state.step + 1 })
+    if(this.state.step == 3)
+      this.setState({ alocando: true })
+  }
 
   render() {
     const { classes } = this.props;
     if (localStorage.getItem('login') == 'on') {
       return (
         <div>
-          <Header  />
+          <Header />
           <div className='introducao'>
             <h4 className={classes.h4}>Olá, Coordenador(a)!</h4>
             <p>Seja bem vindo ao Sistema de Planejamento Acadêmico.<br />
@@ -137,24 +141,24 @@ class App extends React.Component {
                     <Typography>{getStepContent(this.state.step)}</Typography>
                     <div className={classes.actionsContainer}>
                       <div>
-                        { this.state.alocando ? null :
+                        {this.state.alocando ? null :
                           <Button
                             disabled={this.state.step === 0}
-                            onClick={() => this.setState({ step: this.state.step-1 })}
+                            onClick={() => this.setState({ step: this.state.step - 1 })}
                             className={classes.button}
                           >
                             Voltar
                           </Button>
                         }
                         {
-                          this.state.step === 3 ?
-                              
-                          this.state.alocando ?
+                          this.state.step == 3 ?
+
+                            this.state.alocando ?
                               <div>
                                 <p><b>Aguarde, alocando salas.</b></p>
                                 <LinearProgress />
                               </div>
-                            :
+                              :
                               <Link to={getRoute(this.state.step)} >
                                 <Button
                                   variant="contained"
@@ -165,8 +169,8 @@ class App extends React.Component {
                                   {this.state.alocado ? 'Visualizar' : 'Executar'}
                                 </Button>
                               </Link>
-                            
-                          :
+
+                            :
                             <Link to={getRoute(this.state.step)} >
                               <Button
                                 variant="contained"
@@ -178,13 +182,13 @@ class App extends React.Component {
                               </Button>
                             </Link>
                         }
-                        
+
                         {this.state.alocando ? null :
                           <Button
                             variant="contained"
                             color="primary"
                             disabled={this.state.step === 3}
-                            onClick={() => this.setState({ step: this.state.step+1 })}
+                            onClick={() => this.plusStep()}
                             className={classes.button}
                           >
                             Concluir
